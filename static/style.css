@@ -1,0 +1,275 @@
+
+.wz-app-2{
+	
+	background: #27282C;
+	
+}
+
+.wz-app-2 .wz-win-menu{
+	
+	height: 50px;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%); 
+    background-image: -webkit-linear-gradient(-90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%);
+    background-image: -o-linear-gradient(-90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%);
+    background-image: linear-gradient(0deg,rgb(76,77,85) 0%,rgb(64,65,72) 100%);
+	
+}
+
+.wz-win-menu.dark{
+	
+	border-bottom: none;
+	
+}
+
+.wz-app-2 input{
+	
+	width: 180px;
+	height: 17px;
+	margin: 0 auto;
+	padding: 3px 0px 0px 20px;
+	
+	background: #E9E9E9;
+	border-radius: 10px;
+	font-size: 14px;
+	color: #3A3D34;
+	text-align: left;
+	box-shadow:	0px 1px 1px #333;
+	
+}
+
+.wz-app-2 .contacts-top-finder{
+	
+	width: 200px;
+	height: 16px;
+	float: left;
+	padding: 18px 25px 15px;
+	box-shadow: -1px 1px 1px #64656E;
+	
+}
+
+.wz-app-2 .contacts-top-options{
+	
+	height: 16px;
+	float: right;
+    padding: 18px 23px 15px;
+	
+}
+
+.wz-app-2 .contacts-aside{
+	
+	width: 250px;
+	height: 500px;
+	float: left;
+	background: #404148;
+	overflow: hidden;
+	
+	background-image: -moz-linear-gradient(50% 0% 0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px); 
+    background-image: -webkit-linear-gradient(0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px);
+    background-image: -o-linear-gradient(0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px);
+    background-image: linear-gradient(-90deg,rgb(39,40,44) 0px,rgb(40,41,45) 1px,rgb(61,62,69) 10px,rgb(64,65,72) 249px);
+	
+}
+
+.wz-app-2 .contacts-aside span{
+	
+	font-size: 16px;
+	color: #E9E9E9;
+	float: left;
+	margin: 12px 0px 8px 18px;
+	
+}
+
+.wz-app-2 .contacts-aside-file{
+	
+	width: 226px;
+	height: 20px;
+	float: left;
+	padding: 7px 0px 10px 18px;
+	display: block;
+	border-bottom: 1px solid #46474F;
+	overflow: hidden;
+		
+}
+
+.wz-app-2 .contacts-aside-file:hover{
+	
+	background: #33343A;
+	
+}
+
+.wz-app-2 .contacts-aside-file img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	background: #f00;
+}
+
+.wz-app-2 .contacts-aside-file span{
+	width: 186px;
+	height: 14px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 6px;
+	font-size: 13px;
+	color: #E9E9E9;	
+	overflow: hidden;
+}
+
+.wz-app-2 .contacts-aside-users{
+	
+	height: 300px;
+	border-bottom: 1px solid #E9E9E9;
+	overflow: hidden;
+
+}
+
+.wz-app-2 .contacts-aside-groups{
+	
+	height: 150px;
+	overflow: hidden;
+
+}	
+
+.wz-app-2 .contacts-info{
+	
+	width: 500px;
+	height: 500px;
+	float: left;
+	background: #E9E9E9;
+	overflow: auto;
+	
+}
+
+.wz-app-2 .contacts-info-user{
+	
+	width: 420px;
+	height: 150px;
+	border-bottom: 1px solid #404148;
+	float: left;
+	margin-left: 40px;
+	
+}
+
+.wz-app-2 .contacts-info-user:last-child{
+	
+	border-bottom: none;
+	
+}
+
+.wz-app-2 .contacts-info-user img{
+	
+	width: 100px;
+	height: 100px;
+	background: #0f0;
+	float: left;
+	margin-top: 20px;	
+	
+}
+
+.wz-app-2 .contacts-info-user span{
+	
+	font-size: 13px;
+	color: #404148;
+	
+}
+
+.wz-app-2 .contacts-info-user-data{
+	
+	width: 300px;
+	height: 130px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 20px;
+	position: relative;
+	
+}
+
+.wz-app-2 span.contacts-info-user-name{
+	
+	width: 300px;
+	font-size: 14px;
+	float: left;
+	
+}
+
+.wz-app-2 .contacts-info-user-bio{
+	
+	width: 300px;
+	height: 40px;
+	float: left;
+	text-align: justify;
+	margin-top: 10px;
+	overflow: hidden;
+	word-wrap: break-word;
+	
+}
+
+.wz-app-2 .contacts-info-user-location{
+	
+	float: left;
+	margin-top: 10px;
+	margin-right: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 95px;
+	
+}
+
+.wz-app-2 .contacts-info-user-url{
+	
+	float: right;
+	text-align: right;
+	margin-top: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 200px;
+
+}
+
+.wz-app-2 .contacts-info-user-data figure{
+	
+	height: 20px;
+	padding: 3px 8px 1px 10px;
+	border-radius: 3px;
+	position: absolute;
+	bottom: 10px;
+	
+	background-image: -moz-linear-gradient(50% 0% 90deg,rgb(140,63,50) 0%,rgb(193,100,85) 100%); 
+    background-image: -webkit-linear-gradient(90deg,rgb(140,63,50) 0%,rgb(193,100,85) 100%);
+    background-image: -o-linear-gradient(90deg,rgb(140,63,50) 0%,rgb(193,100,85) 100%);
+    background-image: linear-gradient(180deg,rgb(193,100,85) 0%,rgb(140,63,50) 100%);
+	
+}
+
+.wz-app-2 .contacts-info-user-data figure:hover{
+	
+	background-image: -moz-linear-gradient(50% 0% 90deg,rgb(163,101,91) 0%,rgb(205,131,119) 100%); 
+    background-image: -webkit-linear-gradient(90deg,rgb(163,101,91) 0%,rgb(205,131,119) 100%);
+    background-image: -o-linear-gradient(90deg,rgb(163,101,91) 0%,rgb(205,131,119) 100%);
+    background-image: linear-gradient(180deg,rgb(205,131,119) 0%,rgb(163,101,91) 100%);
+	
+}
+
+.wz-app-2 .contacts-info-user-data figure:first-child{
+	
+	left: 0px;
+	
+}
+
+.wz-app-2 .contacts-info-user-data figure:last-child{
+	
+	right: 0px;
+	
+}
+
+.wz-app-2 .contacts-info-user-data figure span{
+	
+	font-size: 13px;
+	color: #EBEBEB;
+	
+}
+	
+	
