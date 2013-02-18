@@ -129,7 +129,18 @@
 	height: 150px;
 	overflow: hidden;
 
-}	
+}
+
+.wz-app-2 .contacts-aside-groups figure{
+
+	height: 18px;
+	width: 18px;
+	background: url("https://static.weezeel.com/app/2/plus.png") no-repeat;
+	float: left;
+	margin-top: 11px;
+	margin-left: 11px;
+	
+}
 
 .wz-app-2 .contacts-info{
 	
@@ -145,7 +156,7 @@
 	
 	width: 420px;
 	height: 150px;
-	border-bottom: 1px solid #404148;
+	border-bottom: 1px solid #66676D;
 	float: left;
 	margin-left: 40px;
 	
@@ -271,5 +282,128 @@
 	color: #EBEBEB;
 	
 }
+
+.wz-app-2 .contacts-info-profile{
 	
+	width: 420px;
+	height: 150px;
+	float: left;
+	margin-left: 40px;
 	
+}	
+
+.wz-app-2 .contacts-info-profile-section{
+	
+	width: 420px;
+	margin-top: 15px;
+	border-bottom: 1px solid #B1B1B4;
+	
+}
+
+.wz-app-2 .contacts-info-profile-section:last-child{
+	
+	margin-bottom: 30px;
+	border-bottom: none;
+	
+}
+
+.wz-app-2 .contacts-info-profile-section span{
+	
+	font-size: 16px;
+	color: #404148;	
+		
+}
+
+.wz-app-2 .contacts-info span figure{
+	
+	width: 15px;
+	height: 15px;
+	background: url("https://static.weezeel.com/app/2/black_plus.png") no-repeat; 
+	display: inline-block;
+	margin-bottom: -3px;
+	margin-left: 10px;
+	
+}
+
+.wz-app-2 .contacts-info-profile-section article{
+	
+	margin-bottom: 5px;
+	margin-left: 5px;
+	
+}
+
+.wz-app-2 .contacts-info-profile-section article:nth-child(2){
+	
+	margin-top: 10px;
+	
+}
+
+.wz-app-2 .contacts-info-profile-section article:last-child{
+	
+	margin-bottom: 10px;
+	
+}
+
+.wz-app-2 span.contacts-info-profile-data{
+	
+	font-size: 14px;
+	color: #85858A;
+	
+}
+
+.wz-app-2 span.contacts-info-profile-info{
+	
+	font-size: 14px;
+	
+}
+
+.wz-app-2 .contacts-info-group{
+	
+	width: 420px;
+	float: left;
+	margin-top: 15px;
+	margin-left: 40px;
+	
+}
+
+.wz-app-2 .contacts-info-group span{
+	
+	float: left;
+	
+}
+
+.wz-app-2 .contacts-info-group-member{
+	
+	width: 226px;
+	height: 20px;
+	float: left;
+	clear: both;
+	padding: 7px 0px 10px 18px;
+	display: block;
+	overflow: hidden;
+	
+}
+
+.wz-app-2 .contacts-info-group-member:nth-child(2){
+	
+	margin-top: 15px;
+	
+}
+
+.wz-app-2 .contacts-info-group-member img{
+	width: 25px;
+	height: 25px;
+	float: left;
+	background: #f00;
+}
+
+.wz-app-2 .contacts-info-group-member span{
+	width: 186px;
+	height: 14px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 6px;
+	font-size: 13px;
+	color: #404148;	
+	overflow: hidden;
+}
