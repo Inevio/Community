@@ -48,6 +48,55 @@
 	
 }
 
+.wz-app-2 .contacts-top-settings{
+	
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-top: 17px;
+	margin-left: 10px;
+	background: url("https://static.weezeel.com/app/2/gear.png") no-repeat;; 	
+	
+}
+
+.wz-app-2 .contacts-top-request{
+	
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-top: 17px;
+	margin-left: 10px;
+	background: url("https://static.weezeel.com/app/2/request.png") no-repeat;; 	
+	
+}
+
+.wz-app-2 .contacts-top-request-notification{
+	
+	width: 16px;
+	height: 15px;
+	background: #f00;
+	border-radius: 8px;
+	position: relative;
+	top: -5px;
+	right: -12px;
+	text-align: center;
+	padding-top: 1px;
+	font-size: 14px;
+	color: #E9E9E9;	
+	
+}
+
+.wz-app-2 .contacts-top-blocked{
+	
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-top: 17px;
+	margin-left: 10px;
+	background: url("https://static.weezeel.com/app/2/blocked.png") no-repeat;; 	
+	
+}
+
 .wz-app-2 .contacts-top-options{
 	
 	height: 16px;

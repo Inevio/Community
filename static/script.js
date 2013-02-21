@@ -1,37 +1,29 @@
 
 wz.app.addScript( 2, 'common', function( win, params ){
 	
-	var contactsAsideUsers = $( '.contacts-aside-users', win );
-	var contactsAsideFilePrototype = $( '.contacts-aside-file.prototype', win );
+	var contactsAsideUsers 			= $( '.contacts-aside-users', win );
+	var contactsAsideGroups			= $( '.contacts-aside-groups', win );
+	var contactsAsideFilePrototype 	= $( '.contacts-aside-file.prototype', win );
 
 	var friends = function(){
-		
-		console.log('1');
-		
+				
 		wz.user
 			
 			.friendList( function( error, list ){
-				
-				console.log(error, list, '2');
-				
+								
 				// ToDo Error
 				
 				if( list.length === 0 ){
-					
-					console.log('3');
-					
-					var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
-					userCard.children('span').text('No tienes ningún amigo agregado, búscalo en weeZeel con el buscador de arriba.');
+										
+					var userCard = contactsAsideFilePrototype.clone().removeClass();
+					userCard.children('img').remove();
+					userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('No tienes ningún amigo agregado, búscalo en weeZeel con el buscador de arriba.');
 					contactsAsideUsers.append(userCard);
 					
 				}else{
-					
-					console.log('4');
-				
+									
 					for( var i = 0; i < list.length; i++ ){
-						
-						console.log('5', contactsAsideFilePrototype);
-						
+												
 						var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
 						//userCard.children('img').attr('src')
 						userCard.children('span').text(list[i].fullName);
@@ -46,19 +38,28 @@ wz.app.addScript( 2, 'common', function( win, params ){
 	}
 	
 	var groups = function(){
-		
+				
 		wz.user
 			
-			.friendList( function( error, list ){
+			.groupList( function( error, list ){
 				
-				// ToDo Error
-				
+				// ToDo Error				
 				if( list.length === 0 ){
+										
+					var userCard = contactsAsideFilePrototype.clone().removeClass();
+					userCard.children('img').remove();
+					userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('No estás metido en ningún grupo, dale al + para crear uno.');
+					contactsAsideGroups.append(userCard);
 					
 				}else{
-				
+									
 					for( var i = 0; i < list.length; i++ ){
-						list[i];
+												
+						var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
+						//userCard.children('img').attr('src')
+						userCard.children('span').text(list[i].name);
+						contactsAsideGroups.append(userCard);
+
 					}
 				
 				}
@@ -68,5 +69,6 @@ wz.app.addScript( 2, 'common', function( win, params ){
 	}
 	
 	friends();
+	groups();
 		
 });
