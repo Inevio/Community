@@ -17,7 +17,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
 										
 					var userCard = contactsAsideFilePrototype.clone().removeClass();
 					userCard.children('img').remove();
-					userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('No tienes ningún amigo agregado, búscalo en weeZeel con el buscador de arriba.');
+					userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('You don\'t have any friends yet, look for them in weeZeel using the search engine at the top.');
 					contactsAsideUsers.append(userCard);
 					
 				}else{
