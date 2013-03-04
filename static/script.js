@@ -3,8 +3,13 @@ wz.app.addScript( 2, 'common', function( win, params ){
 	
 	var contactsAsideUsers 			= $( '.contacts-aside-users', win );
 	var contactsAsideGroups			= $( '.contacts-aside-groups', win );
+	var contactsInfo				= $( '.contacts-info', win );
 	var contactsAsideFilePrototype 	= $( '.contacts-aside-file.prototype', win );
-
+	var friendInfo				 	= $( '.contacts-info-user.prototype', win );
+	var friendData				 	= $( '.contacts-info-profile.prototype', win );
+	var friendDataSection		 	= $( '.contacts-info-profile-section.prototype', win );
+	var friendDataSectionArticle 	= $( '.contacts-info-profile-section .prototype', win );
+	
 	var friends = function(){
 				
 		wz.user
@@ -25,6 +30,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
 					for( var i = 0; i < list.length; i++ ){
 												
 						var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
+						userCard.data( 'id', list[i].id );
 						//userCard.children('img').attr('src')
 						userCard.children('span').text(list[i].fullName);
 						contactsAsideUsers.append(userCard);
@@ -68,7 +74,39 @@ wz.app.addScript( 2, 'common', function( win, params ){
 		
 	}
 	
+	var friendShowInfo = function( id ){
+		
+		var friendCard = friendInfo.clone().removeClass( 'prototype' );
+		
+		wz.user
+		
+			.getUser( id, function( error, object ){
+				friendCard.find( '.contacts-info-user-name' ).text( object.fullName );
+				friendCard.find( '.contacts-info-user-bio' ).text( object.bio );
+				friendCard.find( '.contacts-info-user-location' ).text( object.location );
+				friendCard.find( '.contacts-info-user-url' ).text( object.url );
+			})
+		
+		contactsInfo.append( friendCard );
+		
+		var infoCard = friendData.clone().removeClass( 'prototype' );
+		
+		contactsInfo.append( infoCard );
+		
+		var userDataCard = friendDataSection.clone().removeClass( 'prototype' );
+	
+	}
+	
 	friends();
 	groups();
 		
+	win
+	
+		.on('click', '.contacts-aside-file', function(){
+			
+			contactsInfo.children().not('.prototype').remove();
+			friendShowInfo($(this).data('id'));
+			
+		})
+	
 });
