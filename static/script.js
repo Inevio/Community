@@ -89,11 +89,11 @@ wz.app.addScript( 2, 'common', function( win, params ){
 		
 		contactsInfo.append( friendCard );
 		
-		var infoCard = friendData.clone().removeClass( 'prototype' );
+		/*var infoCard = friendData.clone().removeClass( 'prototype' );
 		
 		contactsInfo.append( infoCard );
 		
-		var userDataCard = friendDataSection.clone().removeClass( 'prototype' );
+		var userDataCard = friendDataSection.clone().removeClass( 'prototype' );*/
 	
 	}
 	
@@ -102,10 +102,92 @@ wz.app.addScript( 2, 'common', function( win, params ){
 		
 	win
 	
-		.on('click', '.contacts-aside-file', function(){
+		.on( 'mousedown', '.contacts-aside-file', function(){
 			
 			contactsInfo.children().not('.prototype').remove();
 			friendShowInfo($(this).data('id'));
+			
+		})
+		
+		.on( 'mousedown', '.friend-contact', function(){
+			
+			if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
+				alert( 'I\'m sorry but due to weeMail not working this functionality neither does' );
+			}else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending' ) ){
+				alert( 'In the future you\'ll be able to accept a pending user' )
+			}else{
+				alert( 'I\'m sorry but due to weeMail not working this functionality neither does' );
+			}			
+			
+		})
+		
+		.on( 'mousedown', '.friend-info', function(){
+			
+			if( $(this).parents( '.contacts-info-user' ).hasClass('friend') ){
+				wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+					user.removeFriend( function(){
+						alert( user.fullName + ' is not your friend anymore!' );						
+					});				
+				});
+			}else if( $(this).parents( '.contacts-info-user' ).hasClass('pending') ){
+				alert('In the future you\'ll be able to cancel a pending user')
+			}else{
+				wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+					user.addFriend( 'Hello dolly', function(){
+						alert( 'A request has been sended to ' + user.fullName );						
+					});				
+				});
+			}
+								
+		})
+		
+		.key( 'enter', function( e ){
+			
+			if( $(e.target).is( '.contacts-top-finder input' ) ){
+				
+				if( $(e.target).val() ){
+					
+					var friendsList = $();
+
+					wz.user.searchUser( $(e.target).val(), function( error, users ){
+
+						for( var i = 0 ; i < users.length ; i++ ){
+							
+								var friendCard = friendInfo.clone().removeClass( 'prototype' );
+
+								if( users[i].relation === 'friend' ){
+									friendCard.addClass( 'friend' );
+									friendCard.find( '.friend-contact span' ).text( 'Send message' );
+									friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Delete friend' );
+								}else if( users[i].relation === 'pending' ){
+									friendCard.addClass( 'pending' );
+									friendCard.find( '.friend-contact span' ).text( 'Accept' );
+									friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Cancel' );
+								}else{
+									friendCard.addClass( 'stranger' );
+									friendCard.find( '.friend-contact span' ).text( 'Send message' );
+									friendCard.find( '.friend-info span' ).text( 'Add as friend' );
+								}
+								
+								friendCard.data( 'id', users[i].id );
+								friendCard.find( '.contacts-info-user-name' ).text( users[i].fullName );
+								//friendCard.find( '.contacts-info-user-bio' ).text( object.bio );
+								//friendCard.find( '.contacts-info-user-location' ).text( object.location );
+								//friendCard.find( '.contacts-info-user-url' ).text( object.url );
+								
+								friendsList = friendsList.add( friendCard );
+						
+						}
+						
+						contactsInfo.children().not('prototype').remove();
+						
+						contactsInfo.append( friendsList );
+					
+					});
+				
+				}
+				
+			}
 			
 		})
 	

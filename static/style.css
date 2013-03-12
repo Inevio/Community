@@ -16,9 +16,61 @@
 	
 }
 
-.wz-win-menu.dark{
+.wz-app-2 .wz-win-menu.dark{
 	
 	border-bottom: none;
+	
+}
+
+.wz-app-2 .button{
+	
+	width: 90px;
+	height: 19px;
+	padding: 3px 8px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	
+	border-top: 1px solid #50BDFF;
+	border-radius: 5px;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%); 
+    background-image: -webkit-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
+    background-image: -o-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
+    background-image: linear-gradient(0deg,rgb(44,153,255) 0%,rgb(60,181,255) 100%);
+	
+}
+
+.wz-app-2 .button:hover{
+	
+	border-top: 1px solid #60CBFF;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%); 
+    background-image: -webkit-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
+    background-image: -o-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
+    background-image: linear-gradient(0deg,rgb(56,175,255) 0%,rgb(77,197,255) 100%);
+	
+}
+
+.wz-app-2 .button.warning{
+	
+	border-top: 1px solid #D96D60;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg, #D46355 0%, #B22F27 100%); 
+    background-image: -webkit-linear-gradient(-90deg, #D46355 0%, #B22F27 100%);
+    background-image: -o-linear-gradient(-90deg , #D46355) 0%, #B22F27 100%);
+    background-image: linear-gradient(0deg, #B22F27 0%, #D46355 100%);
+	
+}
+
+.wz-app-2 .button.warning:hover{
+	
+	border-top: 1px solid #E18A80;
+	
+	background-image: -moz-linear-gradient(50% 0% -90deg, #DD8277 0%, #C15851 100%); 
+    background-image: -webkit-linear-gradient(-90deg, #DD8277 0%, #C15851 100%);
+    background-image: -o-linear-gradient(-90deg , #DD8277) 0%, #C15851 100%);
+    background-image: linear-gradient(0deg, #C15851 0%, #DD8277 100%);
 	
 }
 
@@ -237,7 +289,7 @@
 .wz-app-2 .contacts-info-user-data{
 	
 	width: 300px;
-	height: 130px;
+	height: 100px;
 	float: left;
 	margin-left: 20px;
 	margin-top: 20px;
@@ -289,30 +341,6 @@
 
 }
 
-.wz-app-2 .contacts-info-user-data figure{
-	
-	height: 20px;
-	padding: 3px 8px 1px 10px;
-	border-radius: 3px;
-	position: absolute;
-	bottom: 10px;
-	
-	background-image: -moz-linear-gradient(50% 0% 90deg,rgb(140,63,50) 0%,rgb(193,100,85) 100%); 
-    background-image: -webkit-linear-gradient(90deg,rgb(140,63,50) 0%,rgb(193,100,85) 100%);
-    background-image: -o-linear-gradient(90deg,rgb(140,63,50) 0%,rgb(193,100,85) 100%);
-    background-image: linear-gradient(180deg,rgb(193,100,85) 0%,rgb(140,63,50) 100%);
-	
-}
-
-.wz-app-2 .contacts-info-user-data figure:hover{
-	
-	background-image: -moz-linear-gradient(50% 0% 90deg,rgb(163,101,91) 0%,rgb(205,131,119) 100%); 
-    background-image: -webkit-linear-gradient(90deg,rgb(163,101,91) 0%,rgb(205,131,119) 100%);
-    background-image: -o-linear-gradient(90deg,rgb(163,101,91) 0%,rgb(205,131,119) 100%);
-    background-image: linear-gradient(180deg,rgb(205,131,119) 0%,rgb(163,101,91) 100%);
-	
-}
-
 .wz-app-2 .contacts-info-user-data figure:first-child{
 	
 	left: 0px;
@@ -328,7 +356,7 @@
 .wz-app-2 .contacts-info-user-data figure span{
 	
 	font-size: 13px;
-	color: #EBEBEB;
+	color: #FFF;
 	
 }
 
