@@ -23,9 +23,9 @@ wz.app.addScript( 2, 'common', function( win, params ){
 										
 					var userCard = contactsAsideFilePrototype.clone().removeClass();
 					userCard.children('img').remove();
-					userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('You don\'t have any friends yet, look for them in weeZeel using the search engine at the top.');
+					userCard.addClass('alone').css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('You don\'t have any friends yet, look for them in weeZeel using the search engine at the top.');
 					contactsAsideUsers.append(userCard);
-					
+				
 				}else{
 									
 					for( var i = 0; i < list.length; i++ ){
@@ -81,6 +81,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
 		userCard.data( 'id', user.id );
 		//userCard.children('img').attr('src')
 		userCard.children('span').text(user.fullName);
+		contactsAsideUsers.children().remove('.alone');
 		contactsAsideUsers.append(userCard);
 		
 	}
@@ -93,6 +94,10 @@ wz.app.addScript( 2, 'common', function( win, params ){
 		
 		if( contactInfo.size() ){
 			contactInfo.remove();
+		}
+
+		if( contactsAsideUsers.children().size() < 3 ){
+			friends();
 		}
 		
 	}
