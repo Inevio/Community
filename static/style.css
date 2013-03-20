@@ -1,487 +1,487 @@
 
 .wz-app-2{
-	
-	background: #27282C;
-	
+    
+    background: #27282C;
+    
 }
 
 .wz-app-2 .wz-win-menu{
-	
-	height: 50px;
-	
-	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%); 
+    
+    height: 50px;
+    
+    background-image: -moz-linear-gradient(50% 0% -90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%); 
     background-image: -webkit-linear-gradient(-90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(64,65,72) 0%,rgb(76,77,85) 100%);
     background-image: linear-gradient(0deg,rgb(76,77,85) 0%,rgb(64,65,72) 100%);
-	
+    
 }
 
 .wz-app-2 .wz-win-menu.dark{
-	
-	border-bottom: none;
-	
+    
+    border-bottom: none;
+    
 }
 
 .wz-app-2 .button{
-	
-	width: 90px;
-	height: 19px;
-	padding: 3px 8px;
-	text-align: center;
-	position: absolute;
-	bottom: 0;
-	
-	border-top: 1px solid #50BDFF;
-	border-radius: 5px;
-	
-	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%); 
+    
+    width: 90px;
+    height: 19px;
+    padding: 3px 8px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    
+    border-top: 1px solid #50BDFF;
+    border-radius: 5px;
+    
+    background-image: -moz-linear-gradient(50% 0% -90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%); 
     background-image: -webkit-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
     background-image: linear-gradient(0deg,rgb(44,153,255) 0%,rgb(60,181,255) 100%);
-	
+    
 }
 
 .wz-app-2 .button:hover{
-	
-	border-top: 1px solid #60CBFF;
-	
-	background-image: -moz-linear-gradient(50% 0% -90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%); 
+    
+    border-top: 1px solid #60CBFF;
+    
+    background-image: -moz-linear-gradient(50% 0% -90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%); 
     background-image: -webkit-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
     background-image: -o-linear-gradient(-90deg,rgb(77,197,255) 0%,rgb(56,175,255) 100%);
     background-image: linear-gradient(0deg,rgb(56,175,255) 0%,rgb(77,197,255) 100%);
-	
+    
 }
 
 .wz-app-2 .button.warning{
-	
-	border-top: 1px solid #D96D60;
-	
-	background-image: -moz-linear-gradient(50% 0% -90deg, #D46355 0%, #B22F27 100%); 
+    
+    border-top: 1px solid #D96D60;
+    
+    background-image: -moz-linear-gradient(50% 0% -90deg, #D46355 0%, #B22F27 100%); 
     background-image: -webkit-linear-gradient(-90deg, #D46355 0%, #B22F27 100%);
     background-image: -o-linear-gradient(-90deg , #D46355) 0%, #B22F27 100%);
     background-image: linear-gradient(0deg, #B22F27 0%, #D46355 100%);
-	
+    
 }
 
 .wz-app-2 .button.warning:hover{
-	
-	border-top: 1px solid #E18A80;
-	
-	background-image: -moz-linear-gradient(50% 0% -90deg, #DD8277 0%, #C15851 100%); 
+    
+    border-top: 1px solid #E18A80;
+    
+    background-image: -moz-linear-gradient(50% 0% -90deg, #DD8277 0%, #C15851 100%); 
     background-image: -webkit-linear-gradient(-90deg, #DD8277 0%, #C15851 100%);
     background-image: -o-linear-gradient(-90deg , #DD8277) 0%, #C15851 100%);
     background-image: linear-gradient(0deg, #C15851 0%, #DD8277 100%);
-	
+    
 }
 
 .wz-app-2 input{
-	
-	width: 180px;
-	height: 17px;
-	margin: 0 auto;
-	padding: 3px 0px 0px 20px;
-	
-	background: #E9E9E9;
-	border-radius: 10px;
-	font-size: 14px;
-	color: #3A3D34;
-	text-align: left;
-	box-shadow:	0px 1px 1px #333;
-	
+    
+    width: 180px;
+    height: 17px;
+    margin: 0 auto;
+    padding: 3px 0px 0px 20px;
+    
+    background: #E9E9E9;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #3A3D34;
+    text-align: left;
+    box-shadow: 0px 1px 1px #333;
+    
 }
 
 .wz-app-2 .contacts-top-finder{
-	
-	width: 200px;
-	height: 16px;
-	float: left;
-	padding: 18px 25px 15px;
-	box-shadow: -1px 1px 1px #64656E;
-	
+    
+    width: 200px;
+    height: 16px;
+    float: left;
+    padding: 18px 25px 15px;
+    box-shadow: -1px 1px 1px #64656E;
+    
 }
 
 .wz-app-2 .contacts-top-settings{
-	
-	width: 20px;
-	height: 20px;
-	float: left;
-	margin-top: 17px;
-	margin-left: 10px;
-	background: url("https://static.weezeel.com/app/2/gear.png") no-repeat;; 	
-	
+    
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-top: 17px;
+    margin-left: 10px;
+    background: url("https://static.weezeel.com/app/2/gear.png") no-repeat;;    
+    
 }
 
 .wz-app-2 .contacts-top-request{
-	
-	width: 20px;
-	height: 20px;
-	float: left;
-	margin-top: 17px;
-	margin-left: 10px;
-	background: url("https://static.weezeel.com/app/2/request.png") no-repeat;; 	
-	
+    
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-top: 17px;
+    margin-left: 10px;
+    background: url("https://static.weezeel.com/app/2/request.png") no-repeat;;     
+    
 }
 
 .wz-app-2 .contacts-top-request-notification{
-	
-	width: 16px;
-	height: 15px;
-	background: #B22F27;
-	border-radius: 8px;
-	position: relative;
-	top: -5px;
-	right: -12px;
-	text-align: center;
-	padding-top: 1px;
-	font-size: 14px;
-	color: #E9E9E9;	
-	
+    
+    width: 16px;
+    height: 15px;
+    background: #B22F27;
+    border-radius: 8px;
+    position: relative;
+    top: -5px;
+    right: -12px;
+    text-align: center;
+    padding-top: 1px;
+    font-size: 14px;
+    color: #E9E9E9; 
+    
 }
 
 .wz-app-2 .contacts-top-blocked{
-	
-	width: 20px;
-	height: 20px;
-	float: left;
-	margin-top: 17px;
-	margin-left: 10px;
-	background: url("https://static.weezeel.com/app/2/blocked.png") no-repeat;; 	
-	
+    
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-top: 17px;
+    margin-left: 10px;
+    background: url("https://static.weezeel.com/app/2/blocked.png") no-repeat;;     
+    
 }
 
 .wz-app-2 .contacts-top-options{
-	
-	height: 16px;
-	float: right;
+    
+    height: 16px;
+    float: right;
     padding: 18px 23px 15px;
-	
+    
 }
 
 .wz-app-2 .contacts-aside{
-	
-	width: 250px;
-	height: 500px;
-	float: left;
-	background: #404148;
-	overflow: hidden;
-	
-	background-image: -moz-linear-gradient(50% 0% 0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px); 
+    
+    width: 250px;
+    height: 500px;
+    float: left;
+    background: #404148;
+    overflow: hidden;
+    
+    background-image: -moz-linear-gradient(50% 0% 0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px); 
     background-image: -webkit-linear-gradient(0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px);
     background-image: -o-linear-gradient(0deg,rgb(64,65,72) 0px,rgb(61,62,69) 239px,rgb(40,41,45) 248px,rgb(39,40,44) 249px);
     background-image: linear-gradient(-90deg,rgb(39,40,44) 0px,rgb(40,41,45) 1px,rgb(61,62,69) 10px,rgb(64,65,72) 249px);
-	
+    
 }
 
 .wz-app-2 .contacts-aside span{
-	
-	font-size: 16px;
-	color: #E9E9E9;
-	float: left;
-	margin: 12px 0px 8px 18px;
-	
+    
+    font-size: 16px;
+    color: #E9E9E9;
+    float: left;
+    margin: 12px 0px 8px 18px;
+    
 }
 
 .wz-app-2 .contacts-aside-file{
-	
-	width: 226px;
-	height: 20px;
-	float: left;
-	padding: 7px 0px 10px 18px;
-	display: block;
-	border-bottom: 1px solid #46474F;
-	overflow: hidden;
-		
+    
+    width: 226px;
+    height: 20px;
+    float: left;
+    padding: 7px 0px 10px 18px;
+    display: block;
+    border-bottom: 1px solid #46474F;
+    overflow: hidden;
+        
 }
 
 .wz-app-2 .contacts-aside-file:hover{
-	
-	background: #33343A;
-	
+    
+    background: #33343A;
+    
 }
 
 .wz-app-2 .contacts-aside-file img{
-	width: 25px;
-	height: 25px;
-	float: left;
-	background: #f00;
+    width: 25px;
+    height: 25px;
+    float: left;
+    background: #f00;
 }
 
 .wz-app-2 .contacts-aside-file span{
-	width: 186px;
-	height: 14px;
-	float: left;
-	margin-left: 10px;
-	margin-top: 6px;
-	font-size: 13px;
-	color: #E9E9E9;	
-	overflow: hidden;
+    width: 186px;
+    height: 14px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #E9E9E9; 
+    overflow: hidden;
 }
 
 .wz-app-2 .contacts-aside-users{
-	
-	height: 300px;
-	border-bottom: 1px solid #E9E9E9;
-	overflow: hidden;
+    
+    height: 300px;
+    border-bottom: 1px solid #E9E9E9;
+    overflow: hidden;
 
 }
 
 .wz-app-2 .contacts-aside-groups{
-	
-	height: 150px;
-	overflow: hidden;
+    
+    height: 150px;
+    overflow: hidden;
 
 }
 
 .wz-app-2 .contacts-aside-groups figure{
 
-	height: 18px;
-	width: 18px;
-	background: url("https://static.weezeel.com/app/2/plus.png") no-repeat;
-	float: left;
-	margin-top: 11px;
-	margin-left: 11px;
-	
+    height: 18px;
+    width: 18px;
+    background: url("https://static.weezeel.com/app/2/plus.png") no-repeat;
+    float: left;
+    margin-top: 11px;
+    margin-left: 11px;
+    
 }
 
 .wz-app-2 .contacts-info{
-	
-	width: 500px;
-	height: 500px;
-	float: left;
-	background: #E9E9E9;
-	overflow: auto;
-	
+    
+    width: 500px;
+    height: 500px;
+    float: left;
+    background: #E9E9E9;
+    overflow: auto;
+    
 }
 
 .wz-app-2 .contacts-info-user{
-	
-	width: 420px;
-	height: 150px;
-	border-bottom: 1px solid #66676D;
-	float: left;
-	margin-left: 40px;
-	
+    
+    width: 420px;
+    height: 150px;
+    border-bottom: 1px solid #66676D;
+    float: left;
+    margin-left: 40px;
+    
 }
 
 .wz-app-2 .contacts-info-user:last-child{
-	
-	border-bottom: none;
-	
+    
+    border-bottom: none;
+    
 }
 
 .wz-app-2 .contacts-info-user img{
-	
-	width: 100px;
-	height: 100px;
-	background: #0f0;
-	float: left;
-	margin-top: 20px;	
-	
+    
+    width: 100px;
+    height: 100px;
+    background: #0f0;
+    float: left;
+    margin-top: 20px;   
+    
 }
 
 .wz-app-2 .contacts-info-user span{
-	
-	font-size: 13px;
-	color: #404148;
-	
+    
+    font-size: 13px;
+    color: #404148;
+    
 }
 
 .wz-app-2 .contacts-info-user-data{
-	
-	width: 300px;
-	height: 100px;
-	float: left;
-	margin-left: 20px;
-	margin-top: 20px;
-	position: relative;
-	
+    
+    width: 300px;
+    height: 100px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    position: relative;
+    
 }
 
 .wz-app-2 span.contacts-info-user-name{
-	
-	width: 300px;
-	font-size: 14px;
-	float: left;
-	
+    
+    width: 300px;
+    font-size: 14px;
+    float: left;
+    
 }
 
 .wz-app-2 .contacts-info-user-bio{
-	
-	width: 300px;
-	height: 40px;
-	float: left;
-	text-align: justify;
-	margin-top: 10px;
-	overflow: hidden;
-	word-wrap: break-word;
-	
+    
+    width: 300px;
+    height: 40px;
+    float: left;
+    text-align: justify;
+    margin-top: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
+    
 }
 
 .wz-app-2 .contacts-info-user-location{
-	
-	float: left;
-	margin-top: 10px;
-	margin-right: 10px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 95px;
-	
+    
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 95px;
+    
 }
 
 .wz-app-2 .contacts-info-user-url{
-	
-	float: right;
-	text-align: right;
-	margin-top: 10px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 200px;
+    
+    float: right;
+    text-align: right;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
 
 }
 
 .wz-app-2 .contacts-info-user-data figure:first-child{
-	
-	left: 0px;
-	
+    
+    left: 0px;
+    
 }
 
 .wz-app-2 .contacts-info-user-data figure:last-child{
-	
-	right: 0px;
-	
+    
+    right: 0px;
+    
 }
 
 .wz-app-2 .contacts-info-user-data figure span{
-	
-	font-size: 13px;
-	color: #FFF;
-	
+    
+    font-size: 13px;
+    color: #FFF;
+    
 }
 
 .wz-app-2 .contacts-info-profile{
-	
-	width: 420px;
-	height: 150px;
-	float: left;
-	margin-left: 40px;
-	
-}	
+    
+    width: 420px;
+    height: 150px;
+    float: left;
+    margin-left: 40px;
+    
+}   
 
 .wz-app-2 .contacts-info-profile-section{
-	
-	width: 420px;
-	margin-top: 15px;
-	border-bottom: 1px solid #B1B1B4;
-	
+    
+    width: 420px;
+    margin-top: 15px;
+    border-bottom: 1px solid #B1B1B4;
+    
 }
 
 .wz-app-2 .contacts-info-profile-section:last-child{
-	
-	margin-bottom: 30px;
-	border-bottom: none;
-	
+    
+    margin-bottom: 30px;
+    border-bottom: none;
+    
 }
 
 .wz-app-2 .contacts-info-profile-section span{
-	
-	font-size: 16px;
-	color: #404148;	
-		
+    
+    font-size: 16px;
+    color: #404148; 
+        
 }
 
 .wz-app-2 .contacts-info span figure{
-	
-	width: 15px;
-	height: 15px;
-	background: url("https://static.weezeel.com/app/2/black_plus.png") no-repeat; 
-	display: inline-block;
-	margin-bottom: -3px;
-	margin-left: 10px;
-	
+    
+    width: 15px;
+    height: 15px;
+    background: url("https://static.weezeel.com/app/2/black_plus.png") no-repeat; 
+    display: inline-block;
+    margin-bottom: -3px;
+    margin-left: 10px;
+    
 }
 
 .wz-app-2 .contacts-info-profile-section article{
-	
-	margin-bottom: 5px;
-	margin-left: 5px;
-	
+    
+    margin-bottom: 5px;
+    margin-left: 5px;
+    
 }
 
 .wz-app-2 .contacts-info-profile-section article:nth-child(2){
-	
-	margin-top: 10px;
-	
+    
+    margin-top: 10px;
+    
 }
 
 .wz-app-2 .contacts-info-profile-section article:last-child{
-	
-	margin-bottom: 10px;
-	
+    
+    margin-bottom: 10px;
+    
 }
 
 .wz-app-2 span.contacts-info-profile-data{
-	
-	font-size: 14px;
-	color: #85858A;
-	
+    
+    font-size: 14px;
+    color: #85858A;
+    
 }
 
 .wz-app-2 span.contacts-info-profile-info{
-	
-	font-size: 14px;
-	
+    
+    font-size: 14px;
+    
 }
 
 .wz-app-2 .contacts-info-group{
-	
-	width: 420px;
-	float: left;
-	margin-top: 15px;
-	margin-left: 40px;
-	
+    
+    width: 420px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 40px;
+    
 }
 
 .wz-app-2 .contacts-info-group span{
-	
-	float: left;
-	color: #404148;
-	
+    
+    float: left;
+    color: #404148;
+    
 }
 
 .wz-app-2 .contacts-info-group-member{
-	
-	width: 226px;
-	height: 20px;
-	float: left;
-	clear: both;
-	padding: 7px 0px 10px 18px;
-	display: block;
-	overflow: hidden;
-	
+    
+    width: 226px;
+    height: 20px;
+    float: left;
+    clear: both;
+    padding: 7px 0px 10px 18px;
+    display: block;
+    overflow: hidden;
+    
 }
 
 .wz-app-2 .contacts-info-group-member:nth-child(2){
-	
-	margin-top: 15px;
-	
+    
+    margin-top: 15px;
+    
 }
 
 .wz-app-2 .contacts-info-group-member img{
-	width: 25px;
-	height: 25px;
-	float: left;
-	background: #f00;
+    width: 25px;
+    height: 25px;
+    float: left;
+    background: #f00;
 }
 
 .wz-app-2 .contacts-info-group-member span{
-	width: 186px;
-	height: 14px;
-	float: left;
-	margin-left: 10px;
-	margin-top: 6px;
-	font-size: 13px;
-	color: #404148;	
-	overflow: hidden;
+    width: 186px;
+    height: 14px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #404148; 
+    overflow: hidden;
 }
