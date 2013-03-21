@@ -319,7 +319,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 
                 wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.addFriend( 'Hello dolly', function(){
-                        alert( 'A request has been sended to ' + user.fullName );                       
+                        alert( 'A request has been sent to ' + user.fullName );                       
                     });             
                 });
                 
