@@ -55,7 +55,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                                         
                     var userCard = contactsAsideFilePrototype.clone().removeClass();
                     userCard.children('img').remove();
-                    userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('No estás metido en ningún grupo, dale al + para crear uno.');
+                    userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('You don\'t have any groups yet, click on + to create one.');
                     contactsAsideGroups.append(userCard);
                     
                 }else{
