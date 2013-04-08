@@ -1,5 +1,5 @@
 
-wz.app.addScript( 2, 'common', function( win, params ){
+wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     
     var contactsAsideUsers          = $( '.contacts-aside-users', win );
     var contactsAsideGroups         = $( '.contacts-aside-groups', win );
@@ -23,7 +23,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                                         
                     var userCard = contactsAsideFilePrototype.clone().removeClass();
                     userCard.children('img').remove();
-                    userCard.addClass('alone').css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('You don\'t have any friends yet, look for them in weeZeel using the search engine at the top.');
+                    userCard.addClass('alone').css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text( lang.noFriends );
                     contactsAsideUsers.append(userCard);
                 
                 }else{
@@ -55,7 +55,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                                         
                     var userCard = contactsAsideFilePrototype.clone().removeClass();
                     userCard.children('img').remove();
-                    userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text('You don\'t have any groups yet, click on + to create one.');
+                    userCard.css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text( lang.noGroups );
                     contactsAsideGroups.append(userCard);
                     
                 }else{
@@ -128,16 +128,16 @@ wz.app.addScript( 2, 'common', function( win, params ){
         
         if( user.relation === 'friend' ){
             friendCard.addClass( 'friend' );
-            friendCard.find( '.friend-contact span' ).text( 'Send message' );
-            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Delete friend' );
+            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
         }else if( user.relation === 'pending' ){
             friendCard.addClass( 'pending' );
-            friendCard.find( '.friend-contact span' ).text( 'Accept' );
-            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Cancel' );
+            friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
+            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
         }else{
             friendCard.addClass( 'stranger' );
-            friendCard.find( '.friend-contact span' ).text( 'Send message' );
-            friendCard.find( '.friend-info span' ).text( 'Add as friend' );
+            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+            friendCard.find( '.friend-info span' ).text( lang.addFriend );
         }
         
         friendCard.data( 'id', user.id );
@@ -164,16 +164,16 @@ wz.app.addScript( 2, 'common', function( win, params ){
 
                 if( users[i].relation === 'friend' ){
                     friendCard.addClass( 'friend' );
-                    friendCard.find( '.friend-contact span' ).text( 'Send message' );
-                    friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Delete friend' );
+                    friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+                    friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
                 }else if( users[i].relation === 'pending' ){
                     friendCard.addClass( 'pending' );
-                    friendCard.find( '.friend-contact span' ).text( 'Accept' );
-                    friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Cancel' );
+                    friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
+                    friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
                 }else{
                     friendCard.addClass( 'stranger' );
-                    friendCard.find( '.friend-contact span' ).text( 'Send message' );
-                    friendCard.find( '.friend-info span' ).text( 'Add as friend' );
+                    friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+                    friendCard.find( '.friend-info span' ).text( lang.addFriend );
                 }
                 
                 friendCard.data( 'id', users[i].id );
@@ -227,19 +227,19 @@ wz.app.addScript( 2, 'common', function( win, params ){
             
             if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
                 
-                alert( 'I\'m sorry but due to weeMail not working this functionality neither does' );
+                alert( lang.notWorking );
                 
             }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending' ) ){
                 
                 wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.acceptRequest( function(){
-                        alert( user.fullName + '\'s friend request has been accepted' );                        
+                        alert( user.fullName + lang.requestAccepted );                        
                     });             
                 });
                 
             }else{
                 
-                alert( 'I\'m sorry but due to weeMail not working this functionality neither does' );
+                alert( lang.notWorking );
                 
             }           
             
@@ -261,7 +261,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                     
                     var friendCard = friendInfo.clone().removeClass();
                     friendCard.children().remove();
-                    friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( 'You\'ve no pending friends requests' );
+                    friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noRequests );
                     contactsInfo.children().not('prototype').remove();      
                     contactsInfo.append( friendCard );
                     
@@ -287,7 +287,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                     
                     var friendCard = friendInfo.clone().removeClass();
                     friendCard.children().remove();
-                    friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( 'You\'ve no blocked users' );
+                    friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noBlocked );
                     contactsInfo.children().not('prototype').remove();      
                     contactsInfo.append( friendCard );
                     
@@ -303,7 +303,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 
                 wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.removeFriend( function(){
-                        alert( user.fullName + ' is not your friend anymore!' );                        
+                        alert( user.fullName + ' ' + lang.friendRemoved );                        
                     });             
                 });
                 
@@ -311,7 +311,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 
                 wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
-                        alert( user.fullName + '\'s friend request has been cancelled' );                       
+                        alert( user.fullName + lang.requestCancelled );                       
                     });             
                 });
                 
@@ -319,7 +319,7 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 
                 wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.addFriend( 'Hello dolly', function(){
-                        alert( 'A request has been sent to ' + user.fullName );                       
+                        alert( lang.requestSent + ' ' + user.fullName );                       
                     });             
                 });
                 
@@ -348,8 +348,8 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 if( userRequest.size() ){
                     
                     userRequest.removeClass( 'stranger' ).addClass( 'pending' );
-                    userRequest.find( '.friend-contact span' ).text( 'Accept' );
-                    userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Cancel' );
+                    userRequest.find( '.friend-contact span' ).text( lang.acceptRequest );
+                    userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
                 }
                 
             }
@@ -374,8 +374,8 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 if( userRequest.size() ){
                     
                     userRequest.removeClass( 'pending' ).addClass( 'friend' );
-                    userRequest.find( '.friend-contact span' ).text( 'Send message' );
-                    userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( 'Delete friend' );
+                    userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
+                    userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
                 }
                 
                 
@@ -401,8 +401,8 @@ wz.app.addScript( 2, 'common', function( win, params ){
                 if( userRequest.size() ){
                     
                     userRequest.removeClass( 'pending' ).addClass( 'stranger' );
-                    userRequest.find( '.friend-contact span' ).text( 'Send message' );
-                    userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( 'Add as friend' );
+                    userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
+                    userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( lang.addFriend );
                 }
                 
             }
@@ -420,8 +420,8 @@ wz.app.addScript( 2, 'common', function( win, params ){
             if( userRequest.size() ){
                     
                 userRequest.removeClass( 'friend' ).addClass( 'stranger' );
-                userRequest.find( '.friend-contact span' ).text( 'Send message' );
-                userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( 'Add as friend' );
+                userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
+                userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( lang.addFriend );
             }
             
         })
@@ -445,5 +445,9 @@ wz.app.addScript( 2, 'common', function( win, params ){
             }
             
         })
+
+    $( '.contacts-aside-users-title', contactsAsideUsers ).text( lang.usersTitle );
+    $( '.contacts-aside-groups-title', contactsAsideGroups ).text( lang.groupsTitle );
+    $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
     
 });

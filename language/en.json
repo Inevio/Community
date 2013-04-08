@@ -1,4 +1,22 @@
 
 {
 	
+	"usersTitle" : "Users",
+	"groupsTitle" : "Groups",
+	"userBio" : "Here goes a short bio about the user so you can easily know if he is who you're looking for",
+	"noFriends" : "You don't have any friends yet, look for them in weeZeel using the search engine at the top",
+	"noGroups" : "You don't have any groups yet, click on + to create one",
+	"sendMessage" : "Send message",
+	"deleteFriend" : "Delete friend",
+	"acceptRequest" : "Accept",
+	"cancelRequest" : "Cancel",
+	"addFriend" : "Add as friend",
+	"notWorking" : "I'm sorry but due to weeMail not working this functionality neither does",
+	"requestAccepted" : "'s friend request has been accepted",
+	"noRequests" : "You've no pending friends requests",
+	"noBlocked" : "You've no blocked users",
+	"friendRemoved" : "is not your friend anymore!",
+	"requestCancelled" : "'s friend request has been cancelled",
+	"requestSent" : "A request has been sent to"
+
 }
