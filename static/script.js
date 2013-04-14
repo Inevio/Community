@@ -46,9 +46,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     
     var groups = function(){
                 
-        wz.user
-            
-            .groupList( function( error, list ){
+        wz.group.list( function( error, list ){
                 
                 // ToDo Error               
                 if( list.length === 0 ){
@@ -217,7 +215,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
             contactsInfo.children().not('.prototype').remove();
             location = 'user-info';
             
-            wz.user.getUser( $(this).data('id'), function( error, user ){
+            wz.user( $(this).data('id'), function( error, user ){
                 friendShowInfo( user, true );
             });
             
@@ -231,7 +229,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
             }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending' ) ){
                 
-                wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.acceptRequest( function(){
                         alert( user.fullName + lang.requestAccepted );                        
                     });             
@@ -275,7 +273,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
             
             location = 'blocked-users';
             
-            wz.user.blockedUsers( function( error, users ){
+            wz.user.blockedList( function( error, users ){
                 
                 if( users.length ){
                                 
@@ -301,7 +299,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
             
             if( $(this).parents( '.contacts-info-user' ).hasClass('friend') ){
                 
-                wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.removeFriend( function(){
                         alert( user.fullName + ' ' + lang.friendRemoved );                        
                     });             
@@ -309,7 +307,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
             }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending') ){
                 
-                wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
                         alert( user.fullName + lang.requestCancelled );                       
                     });             
@@ -317,7 +315,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
             }else{
                 
-                wz.user.getUser( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.addFriend( 'Hello dolly', function(){
                         alert( lang.requestSent + ' ' + user.fullName );                       
                     });             
@@ -434,7 +432,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 if( $(e.target).val() ){
 
-                    wz.user.searchUser( $(e.target).val(), function( error, users ){
+                    wz.user.search( $(e.target).val(), function( error, users ){
 
                         friendsShowInfo( users, true );
                     
