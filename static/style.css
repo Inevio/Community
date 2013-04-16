@@ -107,7 +107,8 @@
     float: left;
     margin-top: 17px;
     margin-left: 10px;
-    background: url("https://static.weezeel.com/app/2/gear.png") no-repeat;;    
+    background: url("https://staticbeta.weezeel.com/app/2/gear.png") no-repeat;
+    background-size: 20px 20px;    
     
 }
 
@@ -118,7 +119,8 @@
     float: left;
     margin-top: 17px;
     margin-left: 10px;
-    background: url("https://static.weezeel.com/app/2/request.png") no-repeat;;     
+    background: url("https://staticbeta.weezeel.com/app/2/request.png") no-repeat;
+    background-size: 20px 20px;     
     
 }
 
@@ -145,7 +147,8 @@
     float: left;
     margin-top: 17px;
     margin-left: 10px;
-    background: url("https://static.weezeel.com/app/2/blocked.png") no-repeat;;     
+    background: url("https://staticbeta.weezeel.com/app/2/blocked.png") no-repeat;
+    background-size: 20px 20px;
     
 }
 
@@ -236,7 +239,8 @@
 
     height: 18px;
     width: 18px;
-    background: url("https://static.weezeel.com/app/2/plus.png") no-repeat;
+    background: url("https://staticbeta.weezeel.com/app/2/plus.png") no-repeat;
+    background-size: 18px 18px;
     float: left;
     margin-top: 11px;
     margin-left: 11px;
@@ -395,7 +399,8 @@
     
     width: 15px;
     height: 15px;
-    background: url("https://static.weezeel.com/app/2/black_plus.png") no-repeat; 
+    background: url("https://staticbeta.weezeel.com/app/2/black_plus.png") no-repeat;
+    background-size: 15px 15px;
     display: inline-block;
     margin-bottom: -3px;
     margin-left: 10px;
