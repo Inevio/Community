@@ -4,11 +4,11 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     var contactsAsideUsers          = $( '.contacts-aside-users', win );
     var contactsAsideGroups         = $( '.contacts-aside-groups', win );
     var contactsInfo                = $( '.contacts-info', win );
-    var contactsAsideFilePrototype  = $( '.contacts-aside-file.prototype', win );
-    var friendInfo                  = $( '.contacts-info-user.prototype', win );
-    var friendData                  = $( '.contacts-info-profile.prototype', win );
-    var friendDataSection           = $( '.contacts-info-profile-section.prototype', win );
-    var friendDataSectionArticle    = $( '.contacts-info-profile-section .prototype', win );
+    var contactsAsideFilePrototype  = $( '.contacts-aside-file.wz-prototype', win );
+    var friendInfo                  = $( '.contacts-info-user.wz-prototype', win );
+    var friendData                  = $( '.contacts-info-profile.wz-prototype', win );
+    var friendDataSection           = $( '.contacts-info-profile-section.wz-prototype', win );
+    var friendDataSectionArticle    = $( '.contacts-info-profile-section .wz-prototype', win );
     var location                    = '';
     
     var friends = function(){
@@ -30,7 +30,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                                     
                     for( var i = 0; i < list.length; i++ ){
                                                 
-                        var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
+                        var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
                         userCard.data( 'id', list[i].id );
                         //userCard.children('img').attr('src')
                         userCard.children('span').text(list[i].fullName);
@@ -60,7 +60,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                                     
                     for( var i = 0; i < list.length; i++ ){
                                                 
-                        var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
+                        var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
                         //userCard.children('img').attr('src')
                         userCard.children('span').text(list[i].name);
                         contactsAsideGroups.append(userCard);
@@ -75,7 +75,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     
     var addToFriends = function( user ){
         
-        var userCard = contactsAsideFilePrototype.clone().removeClass('prototype');
+        var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
         userCard.data( 'id', user.id );
         //userCard.children('img').attr('src')
         userCard.children('span').text(user.fullName);
@@ -122,7 +122,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     
     var friendShowInfo = function( user, clean ){
         
-        var friendCard = friendInfo.clone().removeClass( 'prototype' );
+        var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
         
         if( user.relation === 'friend' ){
             friendCard.addClass( 'friend' );
@@ -145,7 +145,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         //friendCard.find( '.contacts-info-user-url' ).text( user.url );
         
         if( clean ){            
-            contactsInfo.children().not('prototype').remove();
+            contactsInfo.children().not('.wz-prototype').remove();
         }
         
         contactsInfo.append( friendCard );
@@ -158,7 +158,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         
         for( var i = 0 ; i < users.length ; i++ ){
                             
-                var friendCard = friendInfo.clone().removeClass( 'prototype' );
+                var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
 
                 if( users[i].relation === 'friend' ){
                     friendCard.addClass( 'friend' );
@@ -185,7 +185,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         }
         
         if( clean ){
-            contactsInfo.children().not('prototype').remove();
+            contactsInfo.children().not('.wz-prototype').remove();
         }
         
         contactsInfo.append( friendsList );
@@ -212,7 +212,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     
         .on( 'mousedown', '.contacts-aside-file', function(){
             
-            contactsInfo.children().not('.prototype').remove();
+            contactsInfo.children().not('.wz-prototype').remove();
             location = 'user-info';
             
             wz.user( $(this).data('id'), function( error, user ){
@@ -260,7 +260,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                     var friendCard = friendInfo.clone().removeClass();
                     friendCard.children().remove();
                     friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noRequests );
-                    contactsInfo.children().not('prototype').remove();      
+                    contactsInfo.children().not('.wz-prototype').remove();      
                     contactsInfo.append( friendCard );
                     
                 }
@@ -286,7 +286,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                     var friendCard = friendInfo.clone().removeClass();
                     friendCard.children().remove();
                     friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noBlocked );
-                    contactsInfo.children().not('prototype').remove();      
+                    contactsInfo.children().not('.wz-prototype').remove();      
                     contactsInfo.append( friendCard );
                     
                 }
