@@ -32,7 +32,7 @@
     bottom: 0;
     
     border-top: 1px solid #50BDFF;
-    border-radius: 5px;
+    border-radius: 2px;
     
     background-image: -moz-linear-gradient(50% 0% -90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%); 
     background-image: -webkit-linear-gradient(-90deg,rgb(60,181,255) 0%,rgb(44,153,255) 100%);
