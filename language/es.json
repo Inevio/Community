@@ -11,7 +11,7 @@
 	"acceptRequest" : "Aceptar",
 	"cancelRequest" : "Cancelar",
 	"addFriend" : "Enviar solicitud",
-	"notWorking" : "Lo siento pero debido a que weeMail no funciona no puedes mandar mensajes",
+	"notWorking" : "Lo siento pero esta funcionalidad todavía no está implementada",
 	"requestAccepted" : " ahora es amigo tuyo",
 	"noRequests" : "No tienes solicitudes de amistad pendientes",
 	"noBlocked" : "No tienes usuarios bloqueados",

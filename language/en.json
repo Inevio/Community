@@ -11,7 +11,7 @@
 	"acceptRequest" : "Accept",
 	"cancelRequest" : "Cancel",
 	"addFriend" : "Add as friend",
-	"notWorking" : "I'm sorry but due to weeMail not working this functionality neither does",
+	"notWorking" : "I'm sorry but this functionality doesn't work right now",
 	"requestAccepted" : "'s friend request has been accepted",
 	"noRequests" : "You've no pending friends requests",
 	"noBlocked" : "You've no blocked users",

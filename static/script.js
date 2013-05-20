@@ -220,6 +220,12 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
             });
             
         })
+
+        .on( 'mousedown', '.contacts-aside-groups-add', function(){
+            
+            alert( lang.notWorking );
+            
+        })
         
         .on( 'mousedown', '.friend-contact', function(){
             
