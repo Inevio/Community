@@ -32,7 +32,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                                                 
                         var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
                         userCard.data( 'id', list[i].id );
-                        //userCard.children('img').attr('src')
+                        userCard.children('img').attr( 'src', list[i].avatar.tiny )
                         userCard.children('span').text(list[i].fullName);
                         contactsAsideUsers.append(userCard);
 
@@ -61,7 +61,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                     for( var i = 0; i < list.length; i++ ){
                                                 
                         var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
-                        //userCard.children('img').attr('src')
+                        userCard.children('img').attr( 'src', list[i].avatar.tiny )
                         userCard.children('span').text(list[i].name);
                         contactsAsideGroups.append(userCard);
 
@@ -77,7 +77,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         
         var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
         userCard.data( 'id', user.id );
-        //userCard.children('img').attr('src')
+        userCard.children('img').attr( 'src', list[i].avatar.tiny )
         userCard.children('span').text(user.fullName);
         contactsAsideUsers.children().remove('.alone');
         contactsAsideUsers.append(userCard);
@@ -139,6 +139,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         }
         
         friendCard.data( 'id', user.id );
+        friendCard.find( 'img' ).attr( 'src', user.avatar.normal )
         friendCard.find( '.contacts-info-user-name' ).text( user.fullName );
         //friendCard.find( '.contacts-info-user-bio' ).text( user.bio );
         //friendCard.find( '.contacts-info-user-location' ).text( user.location );
@@ -175,6 +176,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 }
                 
                 friendCard.data( 'id', users[i].id );
+                friendCard.find( 'img' ).attr( 'src', users[i].avatar.normal )
                 friendCard.find( '.contacts-info-user-name' ).text( users[i].fullName );
                 //friendCard.find( '.contacts-info-user-bio' ).text( users[i].bio );
                 //friendCard.find( '.contacts-info-user-location' ).text( users[i].location );
