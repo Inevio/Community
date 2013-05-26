@@ -77,7 +77,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         
         var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
         userCard.data( 'id', user.id );
-        userCard.children('img').attr( 'src', list[i].avatar.tiny )
+        userCard.children('img').attr( 'src', user.avatar.tiny )
         userCard.children('span').text(user.fullName);
         contactsAsideUsers.children().remove('.alone');
         contactsAsideUsers.append(userCard);
