@@ -22,6 +22,39 @@
     
 }
 
+.wz-app-2 .wz-win-minimize, .wz-app-2 .wz-win-maximize, .wz-app-2 .wz-win-close{
+    width: 15px;
+    height: 15px;
+}
+
+.wz-app-2 .wz-win-close{
+    padding-right: 5px;
+    padding-left: 7px;
+}
+
+.wz-app-2 .wz-win-minimize i, .wz-app-2 .wz-win-maximize i, .wz-app-2 .wz-win-close i{
+    width: 15px;
+    height: 15px;
+    background: url("https://static.weezeel.com/app/2/buttons.png") no-repeat;
+    background-size: 43px 15px;
+}
+
+.wz-app-2 .wz-win-minimize i{
+    background-position: 0 0;
+}
+
+.wz-app-2 .wz-win-maximize i{
+    background-position: -15px 0;
+}
+
+.wz-app-2 .wz-win-close i{
+    background-position: -30px 0;
+}
+
+.wz-app-2 .wz-win-option{
+    margin-top: 10px;
+}
+
 .wz-app-2 .button{
     
     width: 90px;
@@ -76,13 +109,13 @@
 
 .wz-app-2 input{
     
-    width: 180px;
-    height: 17px;
+    width: 190px;
+    height: 23px;
     margin: 0 auto;
-    padding: 3px 0px 0px 20px;
+    padding: 2px 0px 0px 10px;
     
     background: #E9E9E9;
-    border-radius: 10px;
+    border-radius: 2px;
     font-size: 14px;
     color: #3A3D34;
     text-align: left;
@@ -93,9 +126,9 @@
 .wz-app-2 .contacts-top-finder{
     
     width: 200px;
-    height: 16px;
+    height: 25px;
     float: left;
-    padding: 18px 25px 15px;
+    padding: 14px 25px 10px;
     box-shadow: -1px 1px 1px #64656E;
     
 }
@@ -112,13 +145,11 @@
     
 }
 
-.wz-app-2 .contacts-top-request{
+.wz-app-2 .contacts-top-request-icon{
     
     width: 20px;
     height: 20px;
     float: left;
-    margin-top: 17px;
-    margin-left: 10px;
     background: url("https://static.weezeel.com/app/2/request.png") no-repeat;
     background-size: 20px 20px;     
     
@@ -140,13 +171,11 @@
     
 }
 
-.wz-app-2 .contacts-top-blocked{
+.wz-app-2 .contacts-top-blocked i{
     
     width: 20px;
     height: 20px;
     float: left;
-    margin-top: 17px;
-    margin-left: 10px;
     background: url("https://static.weezeel.com/app/2/blocked.png") no-repeat;
     background-size: 20px 20px;
     
@@ -154,9 +183,9 @@
 
 .wz-app-2 .contacts-top-options{
     
-    height: 16px;
+    height: 27px;
     float: right;
-    padding: 18px 23px 15px;
+    padding: 12px 23px 11px;
     
 }
 
