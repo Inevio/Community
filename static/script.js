@@ -111,9 +111,9 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         wz.user.pendingRequests( function( error, users ){
 
             if( users.length ){
-                $( '.contacts-top-request figure' ).addClass( 'contacts-top-request-notification' ).text( users.length );               
+                $( '.contacts-top-request-icon i' ).addClass( 'contacts-top-request-notification' ).text( users.length );               
             }else{
-                $( '.contacts-top-request figure' ).removeClass( 'contacts-top-request-notification' ).text( '' );
+                $( '.contacts-top-request-icon i' ).removeClass( 'contacts-top-request-notification' ).text( '' );
             }
             
         });
