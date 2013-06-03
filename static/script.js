@@ -121,17 +121,21 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     }
     
     var friendShowInfo = function( user, clean ){
-        
+
         var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
         
         if( user.relation === 'friend' ){
             friendCard.addClass( 'friend' );
             friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
             friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
-        }else if( user.relation === 'pending' ){
-            friendCard.addClass( 'pending' );
+        }else if( user.relation === 'pending' && ( user.id === user.sender ) ){
+            friendCard.addClass( 'pending-received' );
             friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
             friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
+        }else if( user.relation === 'pending' ){
+            friendCard.addClass( 'pending-sent' );
+            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequestTwo );
         }else{
             friendCard.addClass( 'stranger' );
             friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
@@ -159,30 +163,34 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
         
         for( var i = 0 ; i < users.length ; i++ ){
                             
-                var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
+            var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
 
-                if( users[i].relation === 'friend' ){
-                    friendCard.addClass( 'friend' );
-                    friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-                    friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
-                }else if( users[i].relation === 'pending' ){
-                    friendCard.addClass( 'pending' );
-                    friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
-                    friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
-                }else{
-                    friendCard.addClass( 'stranger' );
-                    friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-                    friendCard.find( '.friend-info span' ).text( lang.addFriend );
-                }
-                
-                friendCard.data( 'id', users[i].id );
-                friendCard.find( 'img' ).attr( 'src', users[i].avatar.normal )
-                friendCard.find( '.contacts-info-user-name' ).text( users[i].fullName );
-                //friendCard.find( '.contacts-info-user-bio' ).text( users[i].bio );
-                //friendCard.find( '.contacts-info-user-location' ).text( users[i].location );
-                //friendCard.find( '.contacts-info-user-url' ).text( users[i].url );
-                
-                friendsList = friendsList.add( friendCard );
+            if( users[i].relation === 'friend' ){
+                friendCard.addClass( 'friend' );
+                friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+                friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
+            }else if( users[i].relation === 'pending' && ( users[i].id === users[i].sender ) ){
+                friendCard.addClass( 'pending-received' );
+                friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
+                friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
+            }else if( users[i].relation === 'pending' ){
+                friendCard.addClass( 'pending-sent' );
+                friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+                friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequestTwo );
+            }else{
+                friendCard.addClass( 'stranger' );
+                friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
+                friendCard.find( '.friend-info span' ).text( lang.addFriend );
+            }
+            
+            friendCard.data( 'id', users[i].id );
+            friendCard.find( 'img' ).attr( 'src', users[i].avatar.normal )
+            friendCard.find( '.contacts-info-user-name' ).text( users[i].fullName );
+            //friendCard.find( '.contacts-info-user-bio' ).text( users[i].bio );
+            //friendCard.find( '.contacts-info-user-location' ).text( users[i].location );
+            //friendCard.find( '.contacts-info-user-url' ).text( users[i].url );
+            
+            friendsList = friendsList.add( friendCard );
         
         }
         
@@ -235,13 +243,17 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 alert( lang.notWorking );
                 
-            }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending' ) ){
+            }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-received' ) ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.acceptRequest( function(){
                         alert( user.fullName + lang.requestAccepted );                        
                     });             
                 });
+                
+            }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-sent' ) ){
+                
+                alert( lang.notWorking );
                 
             }else{
                 
@@ -313,7 +325,15 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                     });             
                 });
                 
-            }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending') ){
+            }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-received') ){
+                
+                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                    user.cancelRequest( function(){
+                        alert( user.fullName + lang.requestCancelled );                       
+                    });             
+                });
+                
+            }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-sent') ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
@@ -353,7 +373,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 if( userRequest.size() ){
                     
-                    userRequest.removeClass( 'stranger' ).addClass( 'pending' );
+                    userRequest.removeClass( 'stranger' ).addClass( 'pending-received' );
                     userRequest.find( '.friend-contact span' ).text( lang.acceptRequest );
                     userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
                 }
@@ -379,13 +399,11 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 if( userRequest.size() ){
                     
-                    userRequest.removeClass( 'pending' ).addClass( 'friend' );
+                    userRequest.removeClass( 'pending-received pending-sent stranger' ).addClass( 'friend' );
                     userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
                     userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
                 }
-                
-                
-                
+                      
             }
             
         })
@@ -406,11 +424,26 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 if( userRequest.size() ){
                     
-                    userRequest.removeClass( 'pending' ).addClass( 'stranger' );
+                    userRequest.removeClass( 'pending-received pending-sent' ).addClass( 'stranger' );
                     userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
                     userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( lang.addFriend );
                 }
                 
+            }
+            
+        })
+
+        .on( 'user-requestSent', function( e, user ){
+
+            var userRequest = contactsInfo.children().filter( function(){
+                return $(this).data( 'id' ) === user.id;
+            });
+            
+            if( userRequest.size() ){
+                
+                userRequest.removeClass( 'stranger' ).addClass( 'pending-sent' );
+                userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
+                userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequestTwo );
             }
             
         })

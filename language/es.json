@@ -10,6 +10,7 @@
 	"deleteFriend" : "Eliminar amigo",
 	"acceptRequest" : "Aceptar",
 	"cancelRequest" : "Cancelar",
+	"cancelRequestTwo" : "Cancelar Solicitud",
 	"addFriend" : "Enviar solicitud",
 	"notWorking" : "Lo siento pero esta funcionalidad todavía no está implementada",
 	"requestAccepted" : " ahora es amigo tuyo",

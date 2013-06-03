@@ -10,6 +10,7 @@
 	"deleteFriend" : "Delete friend",
 	"acceptRequest" : "Accept",
 	"cancelRequest" : "Cancel",
+	"cancelRequestTwo" : "Cancel Request",
 	"addFriend" : "Add as friend",
 	"notWorking" : "I'm sorry but this functionality doesn't work right now",
 	"requestAccepted" : "'s friend request has been accepted",
