@@ -5,6 +5,21 @@
     
 }
 
+.wz-app-2 .wz-scroll-bar{
+    width: 5px;
+    background: transparent;
+}
+
+.wz-app-2 .contacts-aside .wz-scroll-slider{
+    width: 5px;
+    background: #FFF;
+}
+
+.wz-app-2 .contacts-info .wz-scroll-slider{
+    width: 5px;
+    background: #4C4D55;
+}
+
 .wz-app-2 .wz-win-menu{
     
     height: 50px;
