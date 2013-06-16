@@ -1,26 +1,26 @@
 
-.wz-app-2{
+.wz-win{
     
     background: #27282C;
     
 }
 
-.wz-app-2 .wz-scroll-bar{
+.wz-scroll-bar{
     width: 5px;
     background: transparent;
 }
 
-.wz-app-2 .contacts-aside .wz-scroll-slider{
+.contacts-aside .wz-scroll-slider{
     width: 5px;
     background: #FFF;
 }
 
-.wz-app-2 .contacts-info .wz-scroll-slider{
+.contacts-info .wz-scroll-slider{
     width: 5px;
     background: #4C4D55;
 }
 
-.wz-app-2 .wz-win-menu{
+.wz-win-menu{
     
     height: 50px;
     
@@ -31,46 +31,46 @@
     
 }
 
-.wz-app-2 .wz-win-menu.dark{
+.wz-win-menu.dark{
     
     border-bottom: none;
     
 }
 
-.wz-app-2 .wz-win-minimize, .wz-app-2 .wz-win-maximize, .wz-app-2 .wz-win-close{
+.wz-win-minimize, .wz-win-maximize, .wz-win-close{
     width: 15px;
     height: 15px;
 }
 
-.wz-app-2 .wz-win-close{
+.wz-win-close{
     padding-right: 5px;
     padding-left: 7px;
 }
 
-.wz-app-2 .wz-win-minimize i, .wz-app-2 .wz-win-maximize i, .wz-app-2 .wz-win-close i{
+.wz-win-minimize i, .wz-win-maximize i, .wz-win-close i{
     width: 15px;
     height: 15px;
     background: url("https://static.weezeel.com/app/2/buttons.png") no-repeat;
     background-size: 43px 15px;
 }
 
-.wz-app-2 .wz-win-minimize i{
+.wz-win-minimize i{
     background-position: 0 0;
 }
 
-.wz-app-2 .wz-win-maximize i{
+.wz-win-maximize i{
     background-position: -15px 0;
 }
 
-.wz-app-2 .wz-win-close i{
+.wz-win-close i{
     background-position: -30px 0;
 }
 
-.wz-app-2 .wz-win-option{
+.wz-win-option{
     margin-top: 10px;
 }
 
-.wz-app-2 .button{
+.button{
     
     width: 90px;
     height: 19px;
@@ -89,7 +89,7 @@
     
 }
 
-.wz-app-2 .button:hover{
+.button:hover{
     
     border-top: 1px solid #60CBFF;
     
@@ -100,7 +100,7 @@
     
 }
 
-.wz-app-2 .button.warning{
+.button.warning{
     
     border-top: 1px solid #D96D60;
     
@@ -111,7 +111,7 @@
     
 }
 
-.wz-app-2 .button.warning:hover{
+.button.warning:hover{
     
     border-top: 1px solid #E18A80;
     
@@ -122,7 +122,7 @@
     
 }
 
-.wz-app-2 input{
+input{
     
     width: 190px;
     height: 23px;
@@ -138,7 +138,7 @@
     
 }
 
-.wz-app-2 .contacts-top-finder{
+.contacts-top-finder{
     
     width: 200px;
     height: 25px;
@@ -148,7 +148,7 @@
     
 }
 
-.wz-app-2 .contacts-top-settings{
+.contacts-top-settings{
     
     width: 20px;
     height: 20px;
@@ -160,7 +160,7 @@
     
 }
 
-.wz-app-2 .contacts-top-request-icon{
+.contacts-top-request-icon{
     
     width: 20px;
     height: 20px;
@@ -170,7 +170,7 @@
     
 }
 
-.wz-app-2 .contacts-top-request-notification{
+.contacts-top-request-notification{
     
     width: 16px;
     height: 15px;
@@ -187,7 +187,7 @@
     
 }
 
-.wz-app-2 .contacts-top-blocked i{
+.contacts-top-blocked i{
     
     width: 20px;
     height: 20px;
@@ -197,7 +197,7 @@
     
 }
 
-.wz-app-2 .contacts-top-options{
+.contacts-top-options{
     
     height: 27px;
     float: right;
@@ -205,7 +205,7 @@
     
 }
 
-.wz-app-2 .contacts-aside{
+.contacts-aside{
     
     width: 250px;
     height: 500px;
@@ -220,7 +220,7 @@
     
 }
 
-.wz-app-2 .contacts-aside span{
+.contacts-aside span{
     
     font-size: 16px;
     color: #E9E9E9;
@@ -229,7 +229,7 @@
     
 }
 
-.wz-app-2 .contacts-aside-file{
+.contacts-aside-file{
     
     width: 226px;
     height: 20px;
@@ -241,19 +241,19 @@
         
 }
 
-.wz-app-2 .contacts-aside-file:hover{
+.contacts-aside-file:hover{
     
     background: #33343A;
     
 }
 
-.wz-app-2 .contacts-aside-file img{
+.contacts-aside-file img{
     width: 25px;
     height: 25px;
     float: left;
 }
 
-.wz-app-2 .contacts-aside-file span{
+.contacts-aside-file span{
     width: 186px;
     height: 14px;
     float: left;
@@ -264,7 +264,7 @@
     overflow: hidden;
 }
 
-.wz-app-2 .contacts-aside-users{
+.contacts-aside-users{
     
     height: 300px;
     border-bottom: 1px solid #E9E9E9;
@@ -272,14 +272,14 @@
 
 }
 
-.wz-app-2 .contacts-aside-groups{
+.contacts-aside-groups{
     
     height: 150px;
     overflow: hidden;
 
 }
 
-.wz-app-2 .contacts-aside-groups figure{
+.contacts-aside-groups figure{
 
     height: 18px;
     width: 18px;
@@ -291,7 +291,7 @@
     
 }
 
-.wz-app-2 .contacts-info{
+.contacts-info{
     
     width: 500px;
     height: 500px;
@@ -301,7 +301,7 @@
     
 }
 
-.wz-app-2 .contacts-info-user{
+.contacts-info-user{
     
     width: 420px;
     height: 150px;
@@ -311,13 +311,13 @@
     
 }
 
-.wz-app-2 .contacts-info-user:last-child{
+.contacts-info-user:last-child{
     
     border-bottom: none;
     
 }
 
-.wz-app-2 .contacts-info-user img{
+.contacts-info-user img{
     
     width: 100px;
     height: 100px;
@@ -326,14 +326,14 @@
     
 }
 
-.wz-app-2 .contacts-info-user span{
+.contacts-info-user span{
     
     font-size: 13px;
     color: #404148;
     
 }
 
-.wz-app-2 .contacts-info-user-data{
+.contacts-info-user-data{
     
     width: 300px;
     height: 100px;
@@ -344,7 +344,7 @@
     
 }
 
-.wz-app-2 span.contacts-info-user-name{
+span.contacts-info-user-name{
     
     width: 300px;
     font-size: 14px;
@@ -352,7 +352,7 @@
     
 }
 
-.wz-app-2 .contacts-info-user-bio{
+.contacts-info-user-bio{
     
     width: 300px;
     height: 40px;
@@ -364,7 +364,7 @@
     
 }
 
-.wz-app-2 .contacts-info-user-location{
+.contacts-info-user-location{
     
     float: left;
     margin-top: 10px;
@@ -376,7 +376,7 @@
     
 }
 
-.wz-app-2 .contacts-info-user-url{
+.contacts-info-user-url{
     
     float: right;
     text-align: right;
@@ -388,26 +388,26 @@
 
 }
 
-.wz-app-2 .contacts-info-user-data figure:first-child{
+.contacts-info-user-data figure:first-child{
     
     left: 0px;
     
 }
 
-.wz-app-2 .contacts-info-user-data figure:last-child{
+.contacts-info-user-data figure:last-child{
     
     right: 0px;
     
 }
 
-.wz-app-2 .contacts-info-user-data figure span{
+.contacts-info-user-data figure span{
     
     font-size: 13px;
     color: #FFF;
     
 }
 
-.wz-app-2 .contacts-info-profile{
+.contacts-info-profile{
     
     width: 420px;
     height: 150px;
@@ -416,7 +416,7 @@
     
 }   
 
-.wz-app-2 .contacts-info-profile-section{
+.contacts-info-profile-section{
     
     width: 420px;
     margin-top: 15px;
@@ -424,21 +424,21 @@
     
 }
 
-.wz-app-2 .contacts-info-profile-section:last-child{
+.contacts-info-profile-section:last-child{
     
     margin-bottom: 30px;
     border-bottom: none;
     
 }
 
-.wz-app-2 .contacts-info-profile-section span{
+.contacts-info-profile-section span{
     
     font-size: 16px;
     color: #404148; 
         
 }
 
-.wz-app-2 .contacts-info span figure{
+.contacts-info span figure{
     
     width: 15px;
     height: 15px;
@@ -450,39 +450,39 @@
     
 }
 
-.wz-app-2 .contacts-info-profile-section article{
+.contacts-info-profile-section article{
     
     margin-bottom: 5px;
     margin-left: 5px;
     
 }
 
-.wz-app-2 .contacts-info-profile-section article:nth-child(2){
+.contacts-info-profile-section article:nth-child(2){
     
     margin-top: 10px;
     
 }
 
-.wz-app-2 .contacts-info-profile-section article:last-child{
+.contacts-info-profile-section article:last-child{
     
     margin-bottom: 10px;
     
 }
 
-.wz-app-2 span.contacts-info-profile-data{
+span.contacts-info-profile-data{
     
     font-size: 14px;
     color: #85858A;
     
 }
 
-.wz-app-2 span.contacts-info-profile-info{
+span.contacts-info-profile-info{
     
     font-size: 14px;
     
 }
 
-.wz-app-2 .contacts-info-group{
+.contacts-info-group{
     
     width: 420px;
     float: left;
@@ -491,14 +491,14 @@
     
 }
 
-.wz-app-2 .contacts-info-group span{
+.contacts-info-group span{
     
     float: left;
     color: #404148;
     
 }
 
-.wz-app-2 .contacts-info-group-member{
+.contacts-info-group-member{
     
     width: 226px;
     height: 20px;
@@ -510,19 +510,19 @@
     
 }
 
-.wz-app-2 .contacts-info-group-member:nth-child(2){
+.contacts-info-group-member:nth-child(2){
     
     margin-top: 15px;
     
 }
 
-.wz-app-2 .contacts-info-group-member img{
+.contacts-info-group-member img{
     width: 25px;
     height: 25px;
     float: left;
 }
 
-.wz-app-2 .contacts-info-group-member span{
+.contacts-info-group-member span{
     width: 186px;
     height: 14px;
     float: left;
