@@ -233,7 +233,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
 
         .on( 'mousedown', '.contacts-aside-groups-add', function(){
             
-            alert( lang.notWorking );
+            alert( lang.notWorking, null, win.data().win );
             
         })
         
@@ -241,23 +241,23 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
             
             if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
                 
-                alert( lang.notWorking );
+                alert( lang.notWorking, null, win.data().win );
                 
             }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-received' ) ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.acceptRequest( function(){
-                        alert( user.fullName + lang.requestAccepted );                        
+                        alert( user.fullName + lang.requestAccepted, null, win.data().win );                        
                     });             
                 });
                 
             }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-sent' ) ){
                 
-                alert( lang.notWorking );
+                alert( lang.notWorking, null, win.data().win );
                 
             }else{
                 
-                alert( lang.notWorking );
+                alert( lang.notWorking, null, win.data().win );
                 
             }           
             
@@ -321,7 +321,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.removeFriend( function(){
-                        alert( user.fullName + ' ' + lang.friendRemoved );                        
+                        alert( user.fullName + ' ' + lang.friendRemoved, null, win.data().win );                        
                     });             
                 });
                 
@@ -329,7 +329,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
-                        alert( user.fullName + lang.requestCancelled );                       
+                        alert( user.fullName + lang.requestCancelled, null, win.data().win );                       
                     });             
                 });
                 
@@ -337,7 +337,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
-                        alert( user.fullName + lang.requestCancelled );                       
+                        alert( user.fullName + lang.requestCancelled, null, win.data().win );                       
                     });             
                 });
                 
@@ -345,7 +345,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.addFriend( 'Hello dolly', function(){
-                        alert( lang.requestSent + ' ' + user.fullName );                       
+                        alert( lang.requestSent + ' ' + user.fullName, null, win.data().win );                       
                     });             
                 });
                 
