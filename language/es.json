@@ -13,11 +13,15 @@
 	"cancelRequestTwo" : "Cancelar Solicitud",
 	"addFriend" : "Enviar solicitud",
 	"notWorking" : "Lo siento pero esta funcionalidad todavía no está implementada",
-	"requestAccepted" : " ahora es amigo tuyo",
+	"requestAcceptedTitle" : "Solicitud aceptada",
+	"requestAccepted" : "ahora es amigo tuyo",
 	"noRequests" : "No tienes solicitudes de amistad pendientes",
 	"noBlocked" : "No tienes usuarios bloqueados",
+	"friendRemovedTitle" : "Amigo borrado",
 	"friendRemoved" : "ha dejado de ser tu amigo",
-	"requestCancelled" : " seguirá sin ser tu amigo",
+	"requestCancelledTitle" : "Solicitud cancelada",
+	"requestCancelled" : "seguirá sin ser tu amigo",
+	"requestSentTitle" : "Solicitud enviada",
 	"requestSent" : "La solicitud ha sido mandada a"
 	
 }

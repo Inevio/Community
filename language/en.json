@@ -13,11 +13,15 @@
 	"cancelRequestTwo" : "Cancel Request",
 	"addFriend" : "Add as friend",
 	"notWorking" : "I'm sorry but this functionality doesn't work right now",
-	"requestAccepted" : "'s friend request has been accepted",
+	"requestAcceptedTitle" : "Request Accepted",
+	"requestAccepted" : "is now your friend",
 	"noRequests" : "You've no pending friends requests",
 	"noBlocked" : "You've no blocked users",
+	"friendRemovedTitle" : "Friend removed",
 	"friendRemoved" : "is not your friend anymore!",
-	"requestCancelled" : "'s friend request has been cancelled",
+	"requestCancelledTitle" : "Request cancelled",
+	"requestCancelled" : "will continue not being your friend",
+	"requestSentTitle" : "Request sent",
 	"requestSent" : "A request has been sent to"
 
 }

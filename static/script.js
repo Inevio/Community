@@ -247,7 +247,13 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.acceptRequest( function(){
-                        alert( user.fullName + lang.requestAccepted, null, win.data().win );                        
+
+                        wz.banner()
+                            .title( lang.requestAcceptedTitle )
+                            .text( user.fullName + ' ' + lang.requestAccepted )
+                            .image( user.avatar.tiny )
+                            .render();
+
                     });             
                 });
                 
@@ -321,7 +327,13 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.removeFriend( function(){
-                        alert( user.fullName + ' ' + lang.friendRemoved, null, win.data().win );                        
+
+                        wz.banner()
+                            .title( lang.friendRemovedTitle )
+                            .text( user.fullName + ' ' + lang.friendRemoved )
+                            .image( user.avatar.tiny )
+                            .render();
+
                     });             
                 });
                 
@@ -329,7 +341,13 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
-                        alert( user.fullName + lang.requestCancelled, null, win.data().win );                       
+
+                        wz.banner()
+                            .title( lang.requestCancelledTitle )
+                            .text( user.fullName + ' ' + lang.requestCancelled )
+                            .image( user.avatar.tiny )
+                            .render();
+
                     });             
                 });
                 
@@ -337,7 +355,13 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.cancelRequest( function(){
-                        alert( user.fullName + lang.requestCancelled, null, win.data().win );                       
+                        
+                        wz.banner()
+                            .title( lang.requestCancelledTitle )
+                            .text( user.fullName + ' ' + lang.requestCancelled )
+                            .image( user.avatar.tiny )
+                            .render();
+
                     });             
                 });
                 
@@ -345,7 +369,13 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
                 
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.addFriend( 'Hello dolly', function(){
-                        alert( lang.requestSent + ' ' + user.fullName, null, win.data().win );                       
+
+                        wz.banner()
+                            .title( lang.requestSentTitle )
+                            .text( lang.requestSent + ' ' + user.fullName )
+                            .image( user.avatar.tiny )
+                            .render();
+
                     });             
                 });
                 
