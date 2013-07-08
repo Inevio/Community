@@ -395,7 +395,7 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
 
             imageUrl = imageUrl.join( '/' );
 
-            wz.app.createWindow( 6, [ 'url', imageUrl ] );
+            wz.app.createWindow( 6, [ imageUrl, 'url' ] );
 
         })
         
