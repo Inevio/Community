@@ -382,6 +382,22 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
             }
                                 
         })
+
+        .on( 'click', '.contacts-info-user img', function(){
+
+            var imageUrl = $( this ).attr( 'src' );
+
+            imageUrl = imageUrl.split( '/' );
+
+            imageUrl = imageUrl.slice( 0, -1 );
+
+            imageUrl.push( 512 );
+
+            imageUrl = imageUrl.join( '/' );
+
+            wz.app.createWindow( 6, [ 'url', imageUrl ] );
+
+        })
         
         .on( 'user-requestReceived', function( e, user ){
             
