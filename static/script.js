@@ -10,6 +10,16 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params ){
     var friendDataSection           = $( '.contacts-info-profile-section.wz-prototype', win );
     var friendDataSectionArticle    = $( '.contacts-info-profile-section .wz-prototype', win );
     var location                    = '';
+
+    wql.getConfig( function( error, result ){
+
+        if( result.length ){
+            console.log( 'hola' );
+        }else{
+            wql.insertConfig();
+        }
+
+    });
     
     var friends = function(){
                 
