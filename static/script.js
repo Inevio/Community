@@ -1,5 +1,5 @@
 
-wz.app.addScript( 2, 'common', function( win, app, lang, params ){
+wz.app.addScript( 2, 'common', function( win, app, lang, params, wql ){
     
     var contactsAsideUsers          = $( '.contacts-aside-users', win );
     var contactsAsideGroups         = $( '.contacts-aside-groups', win );
