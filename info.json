@@ -56,6 +56,17 @@
 
         }
 
+    },
+
+    "permissions" : {
+
+        "user" : {
+
+            "modify" : true,
+            "read"   : true
+            
+        }
+
     }
 
 }
