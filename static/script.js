@@ -1,5 +1,3 @@
-
-wz.app.addScript( 2, 'common', function( win, app, lang, params, wql ){
     
     var contactsAsideUsers          = $( '.contacts-aside-users', win );
     var contactsAsideGroups         = $( '.contacts-aside-groups', win );
@@ -544,5 +542,3 @@ wz.app.addScript( 2, 'common', function( win, app, lang, params, wql ){
     $( '.contacts-aside-users-title', contactsAsideUsers ).text( lang.usersTitle );
     $( '.contacts-aside-groups-title', contactsAsideGroups ).text( lang.groupsTitle );
     $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
-    
-});
