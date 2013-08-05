@@ -537,8 +537,6 @@
 
         if( result.length ){
 
-            console.log( result[0].width, win.width(), result[0].height, win.height() );
-
             if( result[0].width !== win.width() && result[0].height !== win.height() ){
                 wz.fit( win, result[0].width - win.width(), result[0].height - win.height() );
             }else if( result[0].width !== win.width() ){
