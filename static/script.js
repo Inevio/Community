@@ -8,16 +8,6 @@
     var friendDataSection           = $( '.contacts-info-profile-section.wz-prototype', win );
     var friendDataSectionArticle    = $( '.contacts-info-profile-section .wz-prototype', win );
     var location                    = '';
-
-    wql.getConfig( function( error, result ){
-
-        if( result.length ){
-            console.log( 'hola' );
-        }else{
-            wql.insertConfig();
-        }
-
-    });
     
     var friends = function(){
                 
@@ -538,6 +528,32 @@
             }
             
         })
+
+        .on( 'wz-resize', function(){
+            wql.changeSize( [ win.width(), win.height() ] );
+        });
+
+    wql.getConfig( function( error, result ){
+
+        if( result.length ){
+
+            console.log( result[0].width, win.width(), result[0].height, win.height() );
+
+            if( result[0].width !== win.width() && result[0].height !== win.height() ){
+                wz.fit( win, result[0].width - win.width(), result[0].height - win.height() );
+            }else if( result[0].width !== win.width() ){
+                wz.fit( win, result[0].width - win.width(), 0 );
+            }else if( result[0].height !== win.height() ){
+                wz.fit( win, 0, result[0].height - win.height() );
+            }
+
+        }else{
+
+            wql.insertConfig();
+
+        }
+
+    });
 
     $( '.contacts-aside-users-title', contactsAsideUsers ).text( lang.usersTitle );
     $( '.contacts-aside-groups-title', contactsAsideGroups ).text( lang.groupsTitle );
