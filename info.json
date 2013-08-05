@@ -65,6 +65,13 @@
             "modify" : true,
             "read"   : true
             
+        },
+
+        "group" : {
+
+            "modify" : true,
+            "read"   : true
+            
         }
 
     }

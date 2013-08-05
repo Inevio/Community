@@ -1,9 +1,8 @@
 
 {
 
+	"insertConfig" : "INSERT INTO config SET user = @userId",
     "getConfig"    : "SELECT * FROM config WHERE user = @userId LIMIT 1",
-    "changeWidth"  : "UPDATE config SET width = ? WHERE user = @userId LIMIT 1",
-    "changeHeight" : "UPDATE config SET height = ? WHERE user = @userId LIMIT 1",
-    "insertConfig" : "INSERT INTO config SET user = @userId",
-
+    "changeSize"   : "UPDATE config SET width = ?, height = ? WHERE user = @userId LIMIT 1"
+    
 }

@@ -37,35 +37,6 @@
     
 }
 
-.wz-win-minimize, .wz-win-maximize, .wz-win-close{
-    width: 15px;
-    height: 15px;
-}
-
-.wz-win-close{
-    padding-right: 5px;
-    padding-left: 7px;
-}
-
-.wz-win-minimize i, .wz-win-maximize i, .wz-win-close i{
-    width: 15px;
-    height: 15px;
-    background: url("https://static.weezeel.com/app/2/buttons.png") no-repeat;
-    background-size: 43px 15px;
-}
-
-.wz-win-minimize i{
-    background-position: 0 0;
-}
-
-.wz-win-maximize i{
-    background-position: -15px 0;
-}
-
-.wz-win-close i{
-    background-position: -30px 0;
-}
-
 .wz-win-option{
     margin-top: 10px;
 }
@@ -199,9 +170,9 @@ input{
 
 .contacts-top-options{
     
-    height: 27px;
+    height: 23px;
     float: right;
-    padding: 12px 23px 11px;
+    padding: 16px 23px 11px;
     
 }
 
