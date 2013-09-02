@@ -249,7 +249,7 @@
                         wz.banner()
                             .title( lang.requestAcceptedTitle )
                             .text( user.fullName + ' ' + lang.requestAccepted )
-                            .image( user.avatar.tiny )
+                            .icon( user.avatar.tiny )
                             .render();
 
                     });             
@@ -329,7 +329,7 @@
                         wz.banner()
                             .title( lang.friendRemovedTitle )
                             .text( user.fullName + ' ' + lang.friendRemoved )
-                            .image( user.avatar.tiny )
+                            .icon( user.avatar.tiny )
                             .render();
 
                     });             
@@ -343,7 +343,7 @@
                         wz.banner()
                             .title( lang.requestCancelledTitle )
                             .text( user.fullName + ' ' + lang.requestCancelled )
-                            .image( user.avatar.tiny )
+                            .icon( user.avatar.tiny )
                             .render();
 
                     });             
@@ -357,7 +357,7 @@
                         wz.banner()
                             .title( lang.requestCancelledTitle )
                             .text( user.fullName + ' ' + lang.requestCancelled )
-                            .image( user.avatar.tiny )
+                            .icon( user.avatar.tiny )
                             .render();
 
                     });             
@@ -371,7 +371,7 @@
                         wz.banner()
                             .title( lang.requestSentTitle )
                             .text( lang.requestSent + ' ' + user.fullName )
-                            .image( user.avatar.tiny )
+                            .icon( user.avatar.tiny )
                             .render();
 
                     });             
