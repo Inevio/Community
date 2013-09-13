@@ -246,11 +246,11 @@
                 wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
                     user.acceptRequest( function(){
 
-                        wz.banner()
+                        /*wz.banner()
                             .title( lang.requestAcceptedTitle )
                             .text( user.fullName + ' ' + lang.requestAccepted )
                             .icon( user.avatar.tiny )
-                            .render();
+                            .render();*/
 
                     });             
                 });
