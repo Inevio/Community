@@ -1,7 +1,14 @@
 
 {
 
-    "name"    : "Contactos",
+    "name"    : {
+
+        "main" : "Contacts",
+        "en"   : "Contacts",
+        "es"   : "Contactos"
+
+    },
+
     "version" : "1.0",
     "state"   : "beta",
 
