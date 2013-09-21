@@ -218,320 +218,320 @@
         
     win
     
-        .on( 'mousedown', '.contacts-aside-file', function(){
-            
-            contactsInfo.children().not('.wz-prototype').remove();
-            location = 'user-info';
-            
-            wz.user( $(this).data('id'), function( error, user ){
-                friendShowInfo( user, true );
-            });
-            
-        })
+    .on( 'mousedown', '.contacts-aside-file', function(){
+        
+        contactsInfo.children().not('.wz-prototype').remove();
+        location = 'user-info';
+        
+        wz.user( $(this).data('id'), function( error, user ){
+            friendShowInfo( user, true );
+        });
+        
+    })
 
-        .on( 'mousedown', '.contacts-aside-groups-add', function(){
+    .on( 'mousedown', '.contacts-aside-groups-add', function(){
+        
+        alert( lang.notWorking, null, win.data().win );
+        
+    })
+    
+    .on( 'mousedown', '.friend-contact', function(){
+        
+        if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
             
             alert( lang.notWorking, null, win.data().win );
             
-        })
-        
-        .on( 'mousedown', '.friend-contact', function(){
+        }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-received' ) ){
             
-            if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
-                
-                alert( lang.notWorking, null, win.data().win );
-                
-            }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-received' ) ){
-                
-                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
-                    user.acceptRequest( function(){
+            wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                user.acceptRequest( function(){
 
-                        /*wz.banner()
-                            .title( lang.requestAcceptedTitle )
-                            .text( user.fullName + ' ' + lang.requestAccepted )
-                            .icon( user.avatar.tiny )
-                            .render();*/
+                    /*wz.banner()
+                        .title( lang.requestAcceptedTitle )
+                        .text( user.fullName + ' ' + lang.requestAccepted )
+                        .icon( user.avatar.tiny )
+                        .render();*/
 
-                    });             
-                });
-                
-            }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-sent' ) ){
-                
-                alert( lang.notWorking, null, win.data().win );
-                
-            }else{
-                
-                alert( lang.notWorking, null, win.data().win );
-                
-            }           
-            
-        })
-        
-        .on( 'mousedown', '.contacts-top-request', function(){
-            
-            location = 'pending-requests';
-            
-            wz.user.pendingRequests( function( error, users ){
-                
-                if( users.length ){
-                                
-                    friendsShowInfo( users, true );
-                
-                }else{
-                    
-                    location = 'empty-pending-requests';
-                    
-                    var friendCard = friendInfo.clone().removeClass();
-                    friendCard.children().remove();
-                    friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noRequests );
-                    contactsInfo.children().not('.wz-prototype').remove();      
-                    contactsInfo.append( friendCard );
-                    
-                }
-                
+                });             
             });
             
-        })
+        }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-sent' ) ){
+            
+            alert( lang.notWorking, null, win.data().win );
+            
+        }else{
+            
+            alert( lang.notWorking, null, win.data().win );
+            
+        }           
         
-        .on( 'mousedown', '.contacts-top-blocked', function(){
+    })
+    
+    .on( 'mousedown', '.contacts-top-request', function(){
+        
+        location = 'pending-requests';
+        
+        wz.user.pendingRequests( function( error, users ){
             
-            location = 'blocked-users';
+            if( users.length ){
+                            
+                friendsShowInfo( users, true );
             
-            wz.user.blockedList( function( error, users ){
+            }else{
                 
-                if( users.length ){
-                                
-                    friendsShowInfo( users, true );
+                location = 'empty-pending-requests';
                 
-                }else{
-                    
-                    location = 'empty-blocked-users';
-                    
-                    var friendCard = friendInfo.clone().removeClass();
-                    friendCard.children().remove();
-                    friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noBlocked );
-                    contactsInfo.children().not('.wz-prototype').remove();      
-                    contactsInfo.append( friendCard );
-                    
-                }
+                var friendCard = friendInfo.clone().removeClass();
+                friendCard.children().remove();
+                friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noRequests );
+                contactsInfo.children().not('.wz-prototype').remove();      
+                contactsInfo.append( friendCard );
                 
+            }
+            
+        });
+        
+    })
+    
+    .on( 'mousedown', '.contacts-top-blocked', function(){
+        
+        location = 'blocked-users';
+        
+        wz.user.blockedList( function( error, users ){
+            
+            if( users.length ){
+                            
+                friendsShowInfo( users, true );
+            
+            }else{
+                
+                location = 'empty-blocked-users';
+                
+                var friendCard = friendInfo.clone().removeClass();
+                friendCard.children().remove();
+                friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noBlocked );
+                contactsInfo.children().not('.wz-prototype').remove();      
+                contactsInfo.append( friendCard );
+                
+            }
+            
+        });
+        
+    })
+    
+    .on( 'mousedown', '.friend-info', function(){
+        
+        if( $(this).parents( '.contacts-info-user' ).hasClass('friend') ){
+            
+            wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                user.removeFriend( function(){
+
+                    wz.banner()
+                        .title( lang.friendRemovedTitle )
+                        .text( user.fullName + ' ' + lang.friendRemoved )
+                        .icon( user.avatar.tiny )
+                        .render();
+
+                });             
             });
             
-        })
-        
-        .on( 'mousedown', '.friend-info', function(){
+        }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-received') ){
             
-            if( $(this).parents( '.contacts-info-user' ).hasClass('friend') ){
-                
-                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
-                    user.removeFriend( function(){
+            wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                user.cancelRequest( function(){
 
-                        wz.banner()
-                            .title( lang.friendRemovedTitle )
-                            .text( user.fullName + ' ' + lang.friendRemoved )
-                            .icon( user.avatar.tiny )
-                            .render();
+                    wz.banner()
+                        .title( lang.requestCancelledTitle )
+                        .text( user.fullName + ' ' + lang.requestCancelled )
+                        .icon( user.avatar.tiny )
+                        .render();
 
-                    });             
-                });
-                
-            }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-received') ){
-                
-                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
-                    user.cancelRequest( function(){
-
-                        wz.banner()
-                            .title( lang.requestCancelledTitle )
-                            .text( user.fullName + ' ' + lang.requestCancelled )
-                            .icon( user.avatar.tiny )
-                            .render();
-
-                    });             
-                });
-                
-            }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-sent') ){
-                
-                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
-                    user.cancelRequest( function(){
-                        
-                        wz.banner()
-                            .title( lang.requestCancelledTitle )
-                            .text( user.fullName + ' ' + lang.requestCancelled )
-                            .icon( user.avatar.tiny )
-                            .render();
-
-                    });             
-                });
-                
-            }else{
-                
-                wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
-                    user.addFriend( 'Hello dolly', function(){
-
-                        wz.banner()
-                            .title( lang.requestSentTitle )
-                            .text( lang.requestSent + ' ' + user.fullName )
-                            .icon( user.avatar.tiny )
-                            .render();
-
-                    });             
-                });
-                
-            }
-                                
-        })
-
-        .on( 'click', '.contacts-info-user img', function(){
-
-            var imageUrl = $( this ).attr( 'src' );
-
-            imageUrl = imageUrl.split( '/' );
-
-            imageUrl = imageUrl.slice( 0, -1 );
-
-            imageUrl.push( 512 );
-
-            imageUrl = imageUrl.join( '/' );
-
-            wz.app.createWindow( 6, [ imageUrl, 'url' ] );
-
-        })
-        
-        .on( 'user-requestReceived', function( e, user ){
+                });             
+            });
             
-            pendingRequests();
+        }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-sent') ){
             
-            if( location === 'pending-requests' ){
-                
-                friendShowInfo( user );
-                
-            }else if( location === 'empty-pending-requests' ){
-                
-                friendShowInfo( user, true );
-                
-            }else{
-            
-                var userRequest = contactsInfo.children().filter( function(){
-                    return $(this).data( 'id' ) === user.id;
-                });
-                
-                if( userRequest.size() ){
+            wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                user.cancelRequest( function(){
                     
-                    userRequest.removeClass( 'stranger' ).addClass( 'pending-received' );
-                    userRequest.find( '.friend-contact span' ).text( lang.acceptRequest );
-                    userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
-                }
-                
-            }
+                    wz.banner()
+                        .title( lang.requestCancelledTitle )
+                        .text( user.fullName + ' ' + lang.requestCancelled )
+                        .icon( user.avatar.tiny )
+                        .render();
+
+                });             
+            });
             
-        })
+        }else{
+            
+            wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+                user.addFriend( 'Hello dolly', function(){
+
+                    wz.banner()
+                        .title( lang.requestSentTitle )
+                        .text( lang.requestSent + ' ' + user.fullName )
+                        .icon( user.avatar.tiny )
+                        .render();
+
+                });             
+            });
+            
+        }
+                            
+    })
+
+    .on( 'click', '.contacts-info-user img', function(){
+
+        var imageUrl = $( this ).attr( 'src' );
+
+        imageUrl = imageUrl.split( '/' );
+
+        imageUrl = imageUrl.slice( 0, -1 );
+
+        imageUrl.push( 512 );
+
+        imageUrl = imageUrl.join( '/' );
+
+        wz.app.createWindow( 6, [ imageUrl, 'url' ] );
+
+    })
+    
+    .on( 'user-requestReceived', function( e, user ){
         
-        .on( 'user-requestAccepted', function( e, user ){
-
-            pendingRequests();
-            addToFriends( user );
-            
-            if( location === 'pending-requests' ){
-                
-                removeFriendInfo( user );
-                
-            }else{
-            
-                var userRequest = contactsInfo.children().filter( function(){
-                    return $(this).data( 'id' ) === user.id;
-                });
-                
-                if( userRequest.size() ){
-                    
-                    userRequest.removeClass( 'pending-received pending-sent stranger' ).addClass( 'friend' );
-                    userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
-                    userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
-                }
-                      
-            }
-            
-        })
+        pendingRequests();
         
-        .on( 'user-requestRefused', function( e, user ){
-
-            pendingRequests();
+        if( location === 'pending-requests' ){
             
-            if( location === 'pending-requests' ){
-                
-                removeFriendInfo( user );
-                
-            }else{
+            friendShowInfo( user );
             
-                var userRequest = contactsInfo.children().filter( function(){
-                    return $(this).data( 'id' ) === user.id;
-                });
-                
-                if( userRequest.size() ){
-                    
-                    userRequest.removeClass( 'pending-received pending-sent' ).addClass( 'stranger' );
-                    userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
-                    userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( lang.addFriend );
-                }
-                
-            }
+        }else if( location === 'empty-pending-requests' ){
             
-        })
-
-        .on( 'user-requestSent', function( e, user ){
-
+            friendShowInfo( user, true );
+            
+        }else{
+        
             var userRequest = contactsInfo.children().filter( function(){
                 return $(this).data( 'id' ) === user.id;
             });
             
             if( userRequest.size() ){
                 
-                userRequest.removeClass( 'stranger' ).addClass( 'pending-sent' );
+                userRequest.removeClass( 'stranger' ).addClass( 'pending-received' );
+                userRequest.find( '.friend-contact span' ).text( lang.acceptRequest );
+                userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
+            }
+            
+        }
+        
+    })
+    
+    .on( 'user-requestAccepted', function( e, user ){
+
+        pendingRequests();
+        addToFriends( user );
+        
+        if( location === 'pending-requests' ){
+            
+            removeFriendInfo( user );
+            
+        }else{
+        
+            var userRequest = contactsInfo.children().filter( function(){
+                return $(this).data( 'id' ) === user.id;
+            });
+            
+            if( userRequest.size() ){
+                
+                userRequest.removeClass( 'pending-received pending-sent stranger' ).addClass( 'friend' );
                 userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
-                userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequestTwo );
+                userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
             }
-            
-        })
+                  
+        }
         
-        .on( 'user-friendRemoved', function( e, user ){
+    })
+    
+    .on( 'user-requestRefused', function( e, user ){
 
-            removeFromFriends( user );
+        pendingRequests();
+        
+        if( location === 'pending-requests' ){
             
+            removeFriendInfo( user );
+            
+        }else{
+        
             var userRequest = contactsInfo.children().filter( function(){
                 return $(this).data( 'id' ) === user.id;
             });
-                
+            
             if( userRequest.size() ){
-                    
-                userRequest.removeClass( 'friend' ).addClass( 'stranger' );
+                
+                userRequest.removeClass( 'pending-received pending-sent' ).addClass( 'stranger' );
                 userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
                 userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( lang.addFriend );
             }
             
-        })
+        }
         
-        .key( 'enter', function( e ){
-            
-            location = 'user-seeker';
-            
-            if( $(e.target).is( '.contacts-top-finder input' ) ){
-                
-                if( $(e.target).val() ){
+    })
 
-                    wz.user.search( $(e.target).val(), function( error, users ){
+    .on( 'user-requestSent', function( e, user ){
 
-                        friendsShowInfo( users, true );
-                    
-                    });
+        var userRequest = contactsInfo.children().filter( function(){
+            return $(this).data( 'id' ) === user.id;
+        });
+        
+        if( userRequest.size() ){
+            
+            userRequest.removeClass( 'stranger' ).addClass( 'pending-sent' );
+            userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
+            userRequest.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequestTwo );
+        }
+        
+    })
+    
+    .on( 'user-friendRemoved', function( e, user ){
+
+        removeFromFriends( user );
+        
+        var userRequest = contactsInfo.children().filter( function(){
+            return $(this).data( 'id' ) === user.id;
+        });
+            
+        if( userRequest.size() ){
                 
-                }
+            userRequest.removeClass( 'friend' ).addClass( 'stranger' );
+            userRequest.find( '.friend-contact span' ).text( lang.sendMessage );
+            userRequest.find( '.friend-info' ).removeClass( 'warning' ).find( 'span' ).text( lang.addFriend );
+        }
+        
+    })
+    
+    .key( 'enter', function( e ){
+        
+        location = 'user-seeker';
+        
+        if( $(e.target).is( '.contacts-top-finder input' ) ){
+            
+            if( $(e.target).val() ){
+
+                wz.user.search( $(e.target).val(), function( error, users ){
+
+                    friendsShowInfo( users, true );
                 
+                });
+            
             }
             
-        })
+        }
+        
+    })
 
-        .on( 'wz-resize-end', function(){
-            wql.changeSize( [ win.width(), win.height() ] );
-        });
+    .on( 'wz-resize-end', function(){
+        wql.changeSize( [ win.width(), win.height() ] );
+    });
 
     $( '.contacts-aside-users-title', contactsAsideUsers ).text( lang.usersTitle );
     $( '.contacts-aside-groups-title', contactsAsideGroups ).text( lang.groupsTitle );
