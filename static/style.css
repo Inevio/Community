@@ -235,33 +235,6 @@ input{
     overflow: hidden;
 }
 
-.contacts-aside-users{
-    
-    height: 300px;
-    border-bottom: 1px solid #E9E9E9;
-    overflow: hidden;
-
-}
-
-.contacts-aside-groups{
-    
-    height: 150px;
-    overflow: hidden;
-
-}
-
-.contacts-aside-groups figure{
-
-    height: 18px;
-    width: 18px;
-    background: url("https://static.weezeel.com/app/2/plus.png") no-repeat;
-    background-size: 18px 18px;
-    float: left;
-    margin-top: 11px;
-    margin-left: 11px;
-    
-}
-
 .contacts-info{
     
     width: 500px;
@@ -333,30 +306,6 @@ span.contacts-info-user-name{
     overflow: hidden;
     word-wrap: break-word;
     
-}
-
-.contacts-info-user-location{
-    
-    float: left;
-    margin-top: 10px;
-    margin-right: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 95px;
-    
-}
-
-.contacts-info-user-url{
-    
-    float: right;
-    text-align: right;
-    margin-top: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 200px;
-
 }
 
 .contacts-info-user-data figure:first-child{
