@@ -126,7 +126,7 @@ input{
     float: left;
     margin-top: 17px;
     margin-left: 10px;
-    background: url("https://static.weezeel.com/app/2/gear.png") no-repeat;
+    background: url("@static/gear.png") no-repeat;
     background-size: 20px 20px;    
     
 }
@@ -136,7 +136,7 @@ input{
     width: 20px;
     height: 20px;
     float: left;
-    background: url("https://static.weezeel.com/app/2/request.png") no-repeat;
+    background: url("@static/request.png") no-repeat;
     background-size: 20px 20px;     
     
 }
@@ -163,7 +163,7 @@ input{
     width: 20px;
     height: 20px;
     float: left;
-    background: url("https://static.weezeel.com/app/2/blocked.png") no-repeat;
+    background: url("@static/blocked.png") no-repeat;
     background-size: 20px 20px;
     
 }
@@ -362,7 +362,7 @@ span.contacts-info-user-name{
     
     width: 15px;
     height: 15px;
-    background: url("https://static.weezeel.com/app/2/black_plus.png") no-repeat;
+    background: url("@static/black_plus.png") no-repeat;
     background-size: 15px 15px;
     display: inline-block;
     margin-bottom: -3px;
