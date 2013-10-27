@@ -1,7 +1,7 @@
 
 {
 
-    "name"    : {
+    "name" : {
 
         "main" : "Contacts",
         "en"   : "Contacts",
@@ -10,10 +10,8 @@
     },
 
     "version" : "1.0",
-    "state"   : "beta",
-
-    "developer" : "wz",
-    "authKey"   : "wz",
+    "stage"   : "beta",
+    "api"     : "a100d2",
 
     "language" : {
 
@@ -22,52 +20,58 @@
 
     },
 
-    "common" : {
+    "device" : {
 
-        "css"    : ["style.css"],
-        "script" : ["script.js"],
-        "start"  : []
+        "desktop" : {
 
-    },
+            "primary" : "main",
+            "service" : [],
+            "common" : {
 
-    "primary" : "main",
-
-    "window" : {
-
-        "main" : {
-
-            "description" : "",
-            
-            "template" : "main.html",
-
-            "maxizable" : true,
-            "resizable" : true,
-
-            "width"  : {
-
-                "default" : 750,
-                "min"     : 750,
-                "max"     : 0
+                "css"    : [],
+                "script" : [],
+                "start"  : []
 
             },
 
-            "height" : {
+            "view" : {
 
-                "default" : 550,
-                "min"     : 550,
-                "max"     : 0
+                "main" : {
+                    
+                    "template" : "main.html",
 
-            },
+                    "maxizable" : true,
+                    "resizable" : true,
 
-            "css"    : [],
-            "script" : [],
-            "start"  : ["start.js"]
+                    "width"  : {
+
+                        "default" : 750,
+                        "min"     : 750,
+                        "max"     : 0
+
+                    },
+
+                    "height" : {
+
+                        "default" : 550,
+                        "min"     : 550,
+                        "max"     : 0
+
+                    },
+
+                    "css"    : ["style.css"],
+                    "script" : ["script.js"],
+                    "start"  : ["start.js"]
+
+                }
+
+            }
 
         }
 
     },
 
-    "permissions" : {
+    "permission" : {
 
         "user" : {
 

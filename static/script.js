@@ -1,12 +1,13 @@
     
-    var contactsAside               = $( '.contacts-aside', win );
-    var contactsInfo                = $( '.contacts-info', win );
-    var contactsAsideFilePrototype  = $( '.contacts-aside-file.wz-prototype', win );
-    var friendInfo                  = $( '.contacts-info-user.wz-prototype', win );
-    var friendData                  = $( '.contacts-info-profile.wz-prototype', win );
-    var friendDataSection           = $( '.contacts-info-profile-section.wz-prototype', win );
-    var friendDataSectionArticle    = $( '.contacts-info-profile-section .wz-prototype', win );
-    var location                    = '';
+    var win                        = $( this );
+    var contactsAside              = $( '.contacts-aside', win );
+    var contactsInfo               = $( '.contacts-info', win );
+    var contactsAsideFilePrototype = $( '.contacts-aside-file.wz-prototype', win );
+    var friendInfo                 = $( '.contacts-info-user.wz-prototype', win );
+    var friendData                 = $( '.contacts-info-profile.wz-prototype', win );
+    var friendDataSection          = $( '.contacts-info-profile-section.wz-prototype', win );
+    var friendDataSectionArticle   = $( '.contacts-info-profile-section .wz-prototype', win );
+    var location                   = '';
     
     var friends = function(){
                 
@@ -331,7 +332,8 @@
                         .icon( user.avatar.tiny )
                         .render();
 
-                });             
+                });
+                
             });
             
         }
@@ -350,7 +352,7 @@
 
         imageUrl = imageUrl.join( '/' );
 
-        wz.app.createWindow( 6, [ imageUrl, 'url' ] );
+        wz.app.createWindow( [ imageUrl, 'url' ] );
 
     })
     
