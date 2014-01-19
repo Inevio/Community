@@ -488,7 +488,7 @@
         
     })
 
-    .on( 'wz-resize-end', function(){
+    .on( 'ui-view-resize-end', function(){
         wql.changeSize( [ win.width(), win.height() ] );
     });
 
