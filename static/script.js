@@ -352,7 +352,7 @@
 
         imageUrl = imageUrl.join( '/' );
 
-        wz.app.createWindow( [ imageUrl, 'url' ] );
+        wz.app.createView( [ imageUrl, 'url' ] );
 
     })
     
