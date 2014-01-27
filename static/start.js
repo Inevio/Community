@@ -1,4 +1,6 @@
 
+var win = $( this );
+
 wql.getConfig( function( error, result ){
 
     if( result.length ){
