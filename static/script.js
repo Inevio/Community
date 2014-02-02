@@ -187,7 +187,7 @@
     
     // WZ Events
     wz.user
-    .on( 'requestReceived', function( e, user ){
+    .on( 'requestReceived', function( user ){
         
         pendingRequests();
         
@@ -216,7 +216,7 @@
         
     })
     
-    .on( 'requestAccepted', function( e, user ){
+    .on( 'requestAccepted', function( user ){
 
         pendingRequests();
         addToFriends( user );
@@ -242,7 +242,7 @@
         
     })
     
-    .on( 'requestRefused', function( e, user ){
+    .on( 'requestRefused', function( user ){
 
         pendingRequests();
         
@@ -267,7 +267,7 @@
         
     })
 
-    .on( 'requestSent', function( e, user ){
+    .on( 'requestSent', function( user ){
 
         var userRequest = contactsInfo.children().filter( function(){
             return $(this).data( 'id' ) === user.id;
@@ -282,7 +282,7 @@
         
     })
     
-    .on( 'friendRemoved', function( e, user ){
+    .on( 'friendRemoved', function( user ){
 
         removeFromFriends( user );
         
@@ -462,6 +462,7 @@
                             
     })
 
+    /*
     .on( 'click', '.contacts-info-user img', function(){
 
         var imageUrl = $( this ).attr( 'src' );
@@ -477,6 +478,7 @@
         wz.app.createView( [ imageUrl, 'url' ] );
 
     })
+    */
     
     .key( 'enter', function( e ){
         
