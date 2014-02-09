@@ -1,5 +1,5 @@
 
-.wz-win{
+.wz-view{
     
     background: #27282C;
     
@@ -20,7 +20,7 @@
     background: #4C4D55;
 }
 
-.wz-win-menu{
+.wz-view-menu{
     
     height: 50px;
     
@@ -31,13 +31,13 @@
     
 }
 
-.wz-win-menu.dark{
+.wz-view-menu.dark{
     
     border-bottom: none;
     
 }
 
-.wz-win-option{
+.wz-view-option{
     margin-top: 10px;
 }
 
