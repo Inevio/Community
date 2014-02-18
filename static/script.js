@@ -117,7 +117,7 @@
         //friendCard.find( '.contacts-info-user-location' ).text( user.location );
         //friendCard.find( '.contacts-info-user-url' ).text( user.url );
         
-        if( clean ){            
+        if( clean ){
             contactsInfo.children().not('.wz-prototype').remove();
         }
         
