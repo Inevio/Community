@@ -315,9 +315,7 @@
     .on( 'mousedown', '.friend-contact', function(){
         
         if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
-            
-            alert( lang.notWorking, null, win.data().win );
-            
+            alert( lang.notWorking );
         }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-received' ) ){
             
             wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
@@ -335,12 +333,9 @@
             });
             
         }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-sent' ) ){
-            
-            alert( lang.notWorking, null, win.data().win );
-            
+            alert( lang.notWorking );
         }else{
-            
-            alert( lang.notWorking, null, win.data().win );
+            alert( lang.notWorking );
             
         }
         
@@ -352,10 +347,8 @@
         
         wz.user.pendingRequests( function( error, users ){
             
-            if( users.length ){
-                            
+            if( users.length ){ 
                 friendsShowInfo( users, true );
-            
             }else{
                 
                 location = 'empty-pending-requests';
