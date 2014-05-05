@@ -3,7 +3,7 @@ var win = $( this );
 
 wql.getConfig( function( error, result ){
 
-    if( result.length ){
+    if( !error && result.length ){
 
         if( result[0].width !== win.width() && result[0].height !== win.height() ){
             wz.fit( win, result[0].width - win.width(), result[0].height - win.height() );
