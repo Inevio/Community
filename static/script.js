@@ -11,38 +11,37 @@
     
     var friends = function(){
                 
-        wz.user
+        wz.user.friendList( false, function( error, list ){
+
+            // To Do -> Error
             
-            .friendList( function( error, list ){
-                                
-                // To Do -> Error
-                
-                var userCard = null;
+            var userCard = null;
 
-                if( list.length === 0 ){
-                                        
-                    userCard = contactsAsideFilePrototype.clone().removeClass();
-
-                    userCard.children('img').remove();
-                    userCard.addClass('alone').css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text( lang.noFriends );
-                    contactsAside.append(userCard);
-                
-                }else{
+            if( list.length === 0 ){
                                     
-                    for( var i = 0; i < list.length; i++ ){
-                                                
-                        userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
-                        
-                        userCard.data( 'id', list[i].id );
-                        userCard.children('img').attr( 'src', list[i].avatar.tiny );
-                        userCard.children('span').text(list[i].fullName);
-                        contactsAside.append(userCard);
+                userCard = contactsAsideFilePrototype.clone().removeClass();
 
-                    }
-                
+                userCard.children('img').remove();
+                // To Do -> Quitar estos estilos de aqui
+                userCard.addClass('alone').css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text( lang.noFriends );
+                contactsAside.append(userCard);
+            
+            }else{
+                                
+                for( var i = 0; i < list.length; i++ ){
+                                            
+                    userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
+                    
+                    userCard.data( 'id', list[i].id );
+                    userCard.children('img').attr( 'src', list[i].avatar.tiny );
+                    userCard.children('span').text(list[i].fullName);
+                    contactsAside.append(userCard);
+
                 }
-                
-            });
+            
+            }
+            
+        });
         
     };
     
@@ -345,7 +344,7 @@
         
         location = 'pending-requests';
         
-        wz.user.pendingRequests( function( error, users ){
+        wz.user.pendingRequests( false, function( error, users ){
             
             if( users.length ){ 
                 friendsShowInfo( users, true );
@@ -355,6 +354,7 @@
                 
                 var friendCard = friendInfo.clone().removeClass();
                 friendCard.children().remove();
+                // To Do -> Quitar estilos de aqui
                 friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noRequests );
                 contactsInfo.children().not('.wz-prototype').remove();
                 contactsInfo.append( friendCard );
@@ -369,7 +369,7 @@
         
         location = 'blocked-users';
         
-        wz.user.blockedList( function( error, users ){
+        wz.user.blockedList( false, function( error, users ){
             
             if( users.length ){
                             
