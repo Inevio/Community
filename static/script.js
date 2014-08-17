@@ -10,7 +10,7 @@
     var location                   = '';
     
     var friends = function(){
-                
+        
         wz.user.friendList( false, function( error, list ){
 
             // To Do -> Error
@@ -399,9 +399,9 @@
                 user.removeFriend( function(){
 
                     wz.banner()
-                        .title( lang.friendRemovedTitle )
-                        .text( user.fullName + ' ' + lang.friendRemoved )
-                        .icon( user.avatar.tiny )
+                        .setTitle( lang.friendRemovedTitle )
+                        .setText( user.fullName + ' ' + lang.friendRemoved )
+                        .setIcon( user.avatar.tiny )
                         .render();
 
                 });
@@ -414,12 +414,13 @@
                 user.cancelRequest( function(){
 
                     wz.banner()
-                        .title( lang.requestCancelledTitle )
-                        .text( user.fullName + ' ' + lang.requestCancelled )
-                        .icon( user.avatar.tiny )
+                        .setTitle( lang.requestCancelledTitle )
+                        .setText( user.fullName + ' ' + lang.requestCancelled )
+                        .setIcon( user.avatar.tiny )
                         .render();
 
-                });             
+                });
+
             });
             
         }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-sent') ){
@@ -428,12 +429,13 @@
                 user.cancelRequest( function(){
                     
                     wz.banner()
-                        .title( lang.requestCancelledTitle )
-                        .text( user.fullName + ' ' + lang.requestCancelled )
-                        .icon( user.avatar.tiny )
+                        .setTitle( lang.requestCancelledTitle )
+                        .setText( user.fullName + ' ' + lang.requestCancelled )
+                        .setIcon( user.avatar.tiny )
                         .render();
 
-                });             
+                });
+                
             });
             
         }else{
@@ -442,9 +444,9 @@
                 user.addFriend( 'Hello dolly', function(){
 
                     wz.banner()
-                        .title( lang.requestSentTitle )
-                        .text( lang.requestSent + ' ' + user.fullName )
-                        .icon( user.avatar.tiny )
+                        .setTitle( lang.requestSentTitle )
+                        .setText( lang.requestSent + ' ' + user.fullName )
+                        .setIcon( user.avatar.tiny )
                         .render();
 
                 });
