@@ -13,6 +13,10 @@
         
         wz.user.friendList( false, function( error, list ){
 
+            list = list.sort( function( a, b ){
+                return a.fullName.localeCompare( b.fullName );
+            });
+
             // To Do -> Error
             
             var userCard = null;
@@ -345,6 +349,10 @@
         location = 'pending-requests';
         
         wz.user.pendingRequests( false, function( error, users ){
+
+            users = users.sort( function( a, b ){
+                return a.fullName.localeCompare( b.fullName );
+            });
             
             if( users.length ){ 
                 friendsShowInfo( users, true );
@@ -370,6 +378,10 @@
         location = 'blocked-users';
         
         wz.user.blockedList( false, function( error, users ){
+
+            users = users.sort( function( a, b ){
+                return a.fullName.localeCompare( b.fullName );
+            });
             
             if( users.length ){
                             
@@ -484,6 +496,10 @@
             if( $(e.target).val() ){
 
                 wz.user.search( $(e.target).val(), function( error, users ){
+
+                    users = users.sort( function( a, b ){
+                        return a.fullName.localeCompare( b.fullName );
+                    });
 
                     friendsShowInfo( users, true );
                 
