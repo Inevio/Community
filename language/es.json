@@ -1,6 +1,7 @@
 
 {
 
+    "appName" : "Contactos",
     "usersTitle" : "Usuarios",
     "groupsTitle" : "Grupos",
     "userBio" : "Aquí va una pequeña descripción de la persona para reconocer quién es con facilidad",
@@ -15,13 +16,12 @@
     "notWorking" : "Lo siento pero esta funcionalidad todavía no está implementada",
     "requestAcceptedTitle" : "Solicitud aceptada",
     "requestAccepted" : "ahora es contacto tuyo",
-    "noRequests" : "No tienes solicitudes de amistad pendientes",
-    "noBlocked" : "No tienes usuarios bloqueados",
     "friendRemovedTitle" : "Contacto borrado",
     "friendRemoved" : "ha dejado de ser tu contacto",
     "requestCancelledTitle" : "Solicitud cancelada",
     "requestCancelled" : "seguirá sin ser tu contacto",
     "requestSentTitle" : "Solicitud enviada",
-    "requestSent" : "La solicitud ha sido mandada a"
+    "requestSent" : "La solicitud ha sido mandada a",
+    "noMessage" : [ "", "Búsqueda sin resultados", "No tienes solicitudes de amistad pendientes", "No tienes usuarios bloqueados" ]
     
 }

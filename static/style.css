@@ -426,3 +426,11 @@ span.contacts-info-profile-info{
     color: #404148; 
     overflow: hidden;
 }
+
+.list-status{
+    color: #767776;
+    font-size: 36px;
+    font-family: Lato;
+    font-weight: 200;
+    text-align: center;
+}

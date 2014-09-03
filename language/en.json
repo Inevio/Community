@@ -1,6 +1,7 @@
 
 {
     
+    "appName" : "Contacts",
     "usersTitle" : "Users",
     "groupsTitle" : "Groups",
     "userBio" : "Here goes a short bio about the user so you can easily know if he is who you're looking for",
@@ -15,13 +16,12 @@
     "notWorking" : "I'm sorry but this functionality doesn't work right now",
     "requestAcceptedTitle" : "Request Accepted",
     "requestAccepted" : "is now your contact",
-    "noRequests" : "You've no pending contact requests",
-    "noBlocked" : "You've no blocked users",
     "friendRemovedTitle" : "Contact removed",
     "friendRemoved" : "is not your contact anymore!",
     "requestCancelledTitle" : "Request cancelled",
     "requestCancelled" : "will continue not being your contact",
     "requestSentTitle" : "Request sent",
-    "requestSent" : "A request has been sent to"
+    "requestSent" : "A request has been sent to",
+    "noMessage" : [ "", "No search results", "You've no pending contact requests", "You've no blocked users" ]
 
 }

@@ -1,13 +1,19 @@
     
     var win                        = $( this );
-    var contactsAside              = $( '.contacts-aside', win );
-    var contactsInfo               = $( '.contacts-info', win );
-    var contactsAsideFilePrototype = $( '.contacts-aside-file.wz-prototype', win );
-    var friendInfo                 = $( '.contacts-info-user.wz-prototype', win );
-    var friendData                 = $( '.contacts-info-profile.wz-prototype', win );
-    var friendDataSection          = $( '.contacts-info-profile-section.wz-prototype', win );
-    var friendDataSectionArticle   = $( '.contacts-info-profile-section .wz-prototype', win );
+    var contactsAside              = $('.contacts-aside');
+    var contactsInfo               = $('.contacts-info');
+    var contactsAsideFilePrototype = $('.contacts-aside-file.wz-prototype');
+    var friendInfo                 = $('.contacts-info-user.wz-prototype');
+    var friendData                 = $('.contacts-info-profile.wz-prototype');
+    var friendDataSection          = $('.contacts-info-profile-section.wz-prototype');
+    var friendDataSectionArticle   = $('.contacts-info-profile-section .wz-prototype');
+    var listStatus                 = $('.list-status');
     var location                   = '';
+
+    var LIST_NORMAL   = 0;
+    var LIST_SEARCH   = 1;
+    var LIST_REQUESTS = 2;
+    var LIST_BLOCKED  = 3;
     
     var friends = function(){
         
@@ -60,6 +66,10 @@
         contactsAside.append(userCard);
         
     };
+
+    var centerListStatus = function(){
+        listStatus.css( 'margin-top', ( contactsInfo.height() - 36 /*listStatus.height()*/ ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
+    };
     
     var removeFromFriends = function( user ){
         
@@ -91,44 +101,7 @@
         
     };
     
-    var friendShowInfo = function( user, clean ){
-
-        var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
-        
-        if( user.relation === 'friend' ){
-            friendCard.addClass( 'friend' );
-            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.deleteFriend );
-        }else if( user.relation === 'pending' && ( user.id === user.sender ) ){
-            friendCard.addClass( 'pending-received' );
-            friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
-            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequest );
-        }else if( user.relation === 'pending' ){
-            friendCard.addClass( 'pending-sent' );
-            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-            friendCard.find( '.friend-info' ).addClass( 'warning' ).find( 'span' ).text( lang.cancelRequestTwo );
-        }else{
-            friendCard.addClass( 'stranger' );
-            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-            friendCard.find( '.friend-info span' ).text( lang.addFriend );
-        }
-        
-        friendCard.data( 'id', user.id );
-        friendCard.find( 'img' ).attr( 'src', user.avatar.normal );
-        friendCard.find( '.contacts-info-user-name' ).text( user.fullName );
-        //friendCard.find( '.contacts-info-user-bio' ).text( user.bio );
-        //friendCard.find( '.contacts-info-user-location' ).text( user.location );
-        //friendCard.find( '.contacts-info-user-url' ).text( user.url );
-        
-        if( clean ){
-            contactsInfo.children().not('.wz-prototype').remove();
-        }
-        
-        contactsInfo.append( friendCard );
-    
-    };
-    
-    var friendsShowInfo = function( users, clean ){
+    var friendsShowInfo = function( users, clean, type ){
         
         var friendsList = $();
         
@@ -166,7 +139,15 @@
         }
         
         if( clean ){
-            contactsInfo.children().not('.wz-prototype').remove();
+
+            contactsInfo.children().not('.wz-prototype').not( listStatus ).remove();
+
+            if( users.length ){
+                listStatus.css( 'display', 'none' );
+            }else{
+                listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
+            }
+
         }
         
         contactsInfo.append( friendsList );
@@ -187,6 +168,7 @@
     
     friends();
     pendingRequests();
+    centerListStatus();
     
     // WZ Events
     wz.user
@@ -195,13 +177,9 @@
         pendingRequests();
         
         if( location === 'pending-requests' ){
-            
-            friendShowInfo( user );
-            
-        }else if( location === 'empty-pending-requests' ){
-            
-            friendShowInfo( user, true );
-            
+            friendsShowInfo( [ user ], false, LIST_NORMAL );
+        }else if( location === 'pending-requests' ){
+            friendsShowInfo( [ user ], true, LIST_NORMAL );
         }else{
         
             var userRequest = contactsInfo.children().filter( function(){
@@ -306,11 +284,10 @@
     win
     .on( 'mousedown', '.contacts-aside-file', function(){
         
-        contactsInfo.children().not('.wz-prototype').remove();
         location = 'user-info';
         
         wz.user( $(this).data('id'), function( error, user ){
-            friendShowInfo( user, true );
+            friendsShowInfo( [ user ], true, LIST_NORMAL );
         });
         
     })
@@ -354,20 +331,7 @@
                 return a.fullName.localeCompare( b.fullName );
             });
             
-            if( users.length ){ 
-                friendsShowInfo( users, true );
-            }else{
-                
-                location = 'empty-pending-requests';
-                
-                var friendCard = friendInfo.clone().removeClass();
-                friendCard.children().remove();
-                // To Do -> Quitar estilos de aqui
-                friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noRequests );
-                contactsInfo.children().not('.wz-prototype').remove();
-                contactsInfo.append( friendCard );
-                
-            }
+            friendsShowInfo( users, true, LIST_REQUESTS );
             
         });
         
@@ -382,22 +346,8 @@
             users = users.sort( function( a, b ){
                 return a.fullName.localeCompare( b.fullName );
             });
-            
-            if( users.length ){
-                            
-                friendsShowInfo( users, true );
-            
-            }else{
-                
-                location = 'empty-blocked-users';
-                
-                var friendCard = friendInfo.clone().removeClass();
-                friendCard.children().remove();
-                friendCard.css({ 'width' : '300px', 'text-align' : 'center', 'margin' : '100px auto', 'color' : '#404148', 'font-size' : '16px' }).text( lang.noBlocked );
-                contactsInfo.children().not('.wz-prototype').remove();
-                contactsInfo.append( friendCard );
-                
-            }
+                                        
+            friendsShowInfo( users, true, LIST_BLOCKED );
             
         });
         
@@ -408,6 +358,7 @@
         if( $(this).parents( '.contacts-info-user' ).hasClass('friend') ){
             
             wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+
                 user.removeFriend( function(){
 
                     wz.banner()
@@ -423,6 +374,7 @@
         }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-received') ){
             
             wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+
                 user.cancelRequest( function(){
 
                     wz.banner()
@@ -438,6 +390,7 @@
         }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-sent') ){
             
             wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+
                 user.cancelRequest( function(){
                     
                     wz.banner()
@@ -453,6 +406,7 @@
         }else{
             
             wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+
                 user.addFriend( 'Hello dolly', function(){
 
                     wz.banner()
@@ -501,7 +455,7 @@
                         return a.fullName.localeCompare( b.fullName );
                     });
 
-                    friendsShowInfo( users, true );
+                    friendsShowInfo( users, true, LIST_SEARCH );
                 
                 });
             
@@ -511,9 +465,14 @@
         
     })
 
+    .on( 'ui-view-resize', function(){
+        centerListStatus();
+    })
+
     .on( 'ui-view-resize-end', function(){
         wql.changeSize( [ win.width(), win.height() ] );
     });
 
     $( '.contacts-aside-title', contactsAside ).text( lang.usersTitle );
     $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
+    listStatus.text( lang.appName );
