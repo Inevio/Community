@@ -473,6 +473,7 @@
         wql.changeSize( [ win.width(), win.height() ] );
     });
 
+    $('input').attr( 'placeholder', lang.search );
     $( '.contacts-aside-title', contactsAside ).text( lang.usersTitle );
     $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
     listStatus.text( lang.appName );
