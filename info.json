@@ -3,9 +3,9 @@
 
     "name" : {
 
-        "main" : "Contacts",
-        "en"   : "Contacts",
-        "es"   : "Contactos"
+        "main" : "Community",
+        "en"   : "Community",
+        "es"   : "Comunidad"
 
     },
 
@@ -37,7 +37,7 @@
             "view" : {
 
                 "main" : {
-                    
+
                     "template" : "main.html",
 
                     "maxizable" : true,
@@ -77,14 +77,14 @@
 
             "modify" : true,
             "read"   : true
-            
+
         },
 
         "group" : {
 
             "modify" : true,
             "read"   : true
-            
+
         }
 
     }
