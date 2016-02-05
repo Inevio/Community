@@ -2,8 +2,10 @@
 {
 
     "appName" : "Comunidad",
+    "profileTitle" : "Mi perfil",
     "usersTitle" : "Usuarios",
     "groupsTitle" : "Grupos",
+    "interestsTitle" : "Intereses",
     "search" : "Buscar...",
     "userBio" : "Aquí va una pequeña descripción de la persona para reconocer quién es con facilidad",
     "noFriends" : "No tienes contactos todavía, búscalos en Inevio usando el buscador que hay arriba",

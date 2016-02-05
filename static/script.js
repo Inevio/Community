@@ -1,11 +1,13 @@
 
-var win                        = $( this );
-var contactsAside              = $('.aside-users');
-var contactsInfo               = $('.contacts-info');
-var contactsAsideFilePrototype = $('.aside-users-user.wz-prototype');
-var friendInfo                 = $('.contacts-info-user.wz-prototype');
-var listStatus                 = $('.list-status');
-var location                   = '';
+var win                            = $( this );
+var contactsAside                  = $('.aside-users');
+var interestsAside                 = $('.aside-interests');
+var contactsInfo                   = $('.contacts-info');
+var contactsAsideFilePrototype     = $('.aside-users-user.wz-prototype');
+var contactsAsideInterestPrototype = $('.aside-interests-interest.wz-prototype');
+var friendInfo                     = $('.contacts-info-user.wz-prototype');
+var listStatus                     = $('.list-status');
+var location                       = '';
 
 var LIST_NORMAL   = 0;
 var LIST_SEARCH   = 1;
@@ -61,6 +63,18 @@ var addToFriends = function( user ){
     userCard.children('span').text(user.fullName);
     contactsAside.children().remove('.alone');
     contactsAside.append(userCard);
+
+};
+
+var addToInterests = function( interest ){
+
+    var interestCard = contactsAsideInterestPrototype.clone().removeClass('wz-prototype');
+
+    interestCard.data( 'id', interest.id );
+    interestCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/smiley.png' );
+    interestCard.children('span').text( interest.name );
+    interestsAside.children().remove('.alone');
+    interestsAside.append( interestCard );
 
 };
 
@@ -163,13 +177,39 @@ var removeFriendInfo = function( user ){
 
 };
 
+var profile = function(){
+
+    var user    = wz.system.user();
+    var profile = $('.aside-profile-user');
+
+    $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
+    $( 'img', profile ).attr( 'src', user.avatar.tiny );
+
+};
+
+var interests = function(){
+
+    wql.searchInterest( [ '%%' ], function( error, list ){
+
+        if( error ){ return; }
+
+        for( var i = 0; i < list.length; i++ ){
+            addToInterests( list[ i ] );
+        }
+
+    });
+
+};
+
 var translate = function(){
 
     $('input').attr( 'placeholder', lang.search );
     $('.aside-profile-title').text( lang.profileTitle );
     $( '.aside-users-title', contactsAside ).text( lang.usersTitle );
+    $( '.aside-interests-title', interestsAside ).text( lang.interestsTitle );
     $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
     $( '.ui-header-brand span' ).text( lang.appName );
+    $('.contacts-info-interests h3').text( lang.interestsTitle );
     listStatus.text( lang.appName );
 
 };
@@ -471,15 +511,13 @@ win
 
 .on( 'ui-view-resize', function(){
     centerListStatus();
-})
-
-.on( 'ui-view-resize-end', function(){
-    wql.changeSize( [ win.width(), win.height() ] );
 });
 
 // Start app
 win.addClass('dark');
 translate();
+profile();
 friends();
+interests();
 pendingRequests();
 centerListStatus();

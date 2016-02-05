@@ -72,15 +72,15 @@
     background-size: 20px 20px;
 }
 
-.contacts-aside-title{
+.ui-navgroup-title-txt{
     text-transform: uppercase;
 }
 
-.contacts-aside-file{
+.ui-navgroup-element{
     height: 28px;
 }
 
-.contacts-aside-file img{
+.ui-navgroup-element img{
     width: 24px;
     height: 24px;
     float: left;
@@ -88,7 +88,7 @@
     border-radius: 50%;
 }
 
-.contacts-aside-file span{
+.ui-navgroup-element span{
     padding: 9px 0 6px;
 }
 
@@ -100,12 +100,14 @@
     text-align: center;
 }
 
+.contacts-info{
+    text-align: center;
+}
+
 .contacts-info-user{
-    width: 420px;
-    height: 150px;
+    width: 520px;
     border-bottom: 1px solid #66676D;
-    float: left;
-    margin-left: 75px;
+    display: inline-block;
 }
 
 .contacts-info-user:last-child{
@@ -121,27 +123,27 @@
 }
 
 .contacts-info-user-data{
-    width: 300px;
+    width: 400px;
     height: 100px;
     float: left;
     margin-left: 20px;
     margin-top: 20px;
-    position: relative;
 }
 
 .contacts-info-user-name{
-    color: #fefefe;
-    width: 300px;
-    font-size: 14px;
+    color: #fff;
+    width: 400px;
+    font-size: 19px;
     font-weight: bold;
     float: left;
     margin-top: 5px;
+    text-align: left;
 }
 
 .contacts-info-user-bio{
     font-size: 13px;
-    color: #fefefe;
-    width: 300px;
+    color: #d2dce2;
+    width: 400px;
     height: 40px;
     float: left;
     text-align: justify;
@@ -166,4 +168,60 @@
 .contacts-info-user-data .friend-info span{
     max-width: none;
     white-space: nowrap;
+}
+
+.contacts-info-interests{
+    text-align: left;
+    float: left;
+    width: 460px;
+    margin: 30px 30px 0;
+    height: 100px;
+}
+
+.contacts-info-interests h3{
+    font-size: 18px;
+    font-weight: bold;
+    color: #d2dce2;
+}
+
+.contacts-info-interest{
+    float: left;
+}
+
+.contacts-info-interest figure{
+    width: 57px;
+    height: 57px;
+    background: url(@static/add_interest.png);
+    background-size: 57px 57px;
+    border-radius: 50%;
+    margin: 15px 0 0;
+    float: left;
+}
+
+.contacts-info-interest-data{
+    width: 383px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.contacts-info-interest-name{
+    color: #d2dce2;
+    width: 383px;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.contacts-info-interest-info{
+    font-size: 13px;
+    color: #d2dce2;
+    width: 383px;
+    float: left;
+    text-align: justify;
+    margin-top: 8px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
