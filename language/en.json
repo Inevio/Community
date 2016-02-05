@@ -2,8 +2,10 @@
 {
 
     "appName" : "Community",
+    "profileTitle" : "My profile",
     "usersTitle" : "Users",
     "groupsTitle" : "Groups",
+    "interestsTitle" : "Interests",
     "search" : "Search...",
     "userBio" : "Here goes a short bio about the user so you can easily know if he is who you're looking for",
     "noFriends" : "You don't have any contact yet, look for them in Inevio using the search engine at the top",
