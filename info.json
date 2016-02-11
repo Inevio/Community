@@ -40,8 +40,8 @@
 
                     "template" : "main.html",
 
-                    "maxizable" : true,
-                    "resizable" : true,
+                    "maxizable" : false,
+                    "resizable" : false,
 
                     "width"  : {
 
@@ -61,7 +61,7 @@
 
                     "css"    : ["style.css"],
                     "script" : ["script.js"],
-                    "start"  : ["start.js"]
+                    "start"  : []
 
                 }
 

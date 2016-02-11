@@ -2,11 +2,12 @@
 {
 
     "appName" : "Comunidad",
+    "profileTitle" : "Mi perfil",
     "usersTitle" : "Usuarios",
     "groupsTitle" : "Grupos",
     "search" : "Buscar...",
     "userBio" : "Aquí va una pequeña descripción de la persona para reconocer quién es con facilidad",
-    "noFriends" : "No tienes contactos todavía, búscalos en Inevio usando el buscador que hay arriba",
+    "noFriends" : "No tienes contactos.<hr/>Búscalos en Inevio usando el buscador que hay arriba",
     "noGroups" : "No estás metido en ningún grupo, haz click en + para crear uno",
     "sendMessage" : "Enviar mensaje",
     "deleteFriend" : "Eliminar contacto",
