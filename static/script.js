@@ -1,13 +1,16 @@
 
-var win                            = $( this );
-var contactsAside                  = $('.aside-users');
-var interestsAside                 = $('.aside-interests');
-var contactsInfo                   = $('.contacts-info');
-var contactsAsideFilePrototype     = $('.aside-users-user.wz-prototype');
-var contactsAsideInterestPrototype = $('.aside-interests-interest.wz-prototype');
-var friendInfo                     = $('.contacts-info-user.wz-prototype');
-var listStatus                     = $('.list-status');
-var location                       = '';
+var win                         = $( this );
+var aside                       = $('.ui-navbar');
+var contactsAside               = $('.aside-users');
+var groupsAside                 = $('.aside-groups');
+var contactsInfo                = $('.contacts-info');
+var contactsAsideFilePrototype  = $('.aside-users-user.wz-prototype');
+var contactsAsidegroupPrototype = $('.aside-groups-group.wz-prototype');
+var friendInfo                  = $('.contacts-info-user.wz-prototype');
+var listStatus                  = $('.list-status');
+var requestsTopButton           = $('.contacts-top-request');
+var blockedTopButton            = $('.contacts-top-blocked');
+var location                    = '';
 
 var LIST_NORMAL   = 0;
 var LIST_SEARCH   = 1;
@@ -32,8 +35,8 @@ var friends = function(){
 
             userCard.children('img').remove();
             // To Do -> Quitar estos estilos de aqui
-            userCard.addClass('alone').css({'padding-left':'5px','padding-right':'20px','text-align':'justify'}).children('span').css({'font-size':'13px'}).text( lang.noFriends );
-            contactsAside.append(userCard);
+            userCard.addClass('alone').children('span').html( lang.noFriends );
+            contactsAside.append( userCard );
 
         }else{
 
@@ -41,6 +44,7 @@ var friends = function(){
 
                 userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
 
+                userCard.addClass( 'user-' + list[i].id );
                 userCard.data( 'id', list[i].id );
                 userCard.children('img').attr( 'src', list[i].avatar.tiny );
                 userCard.children('span').text(list[i].fullName);
@@ -66,20 +70,20 @@ var addToFriends = function( user ){
 
 };
 
-var addToInterests = function( interest ){
+var addTogroups = function( group ){
 
-    var interestCard = contactsAsideInterestPrototype.clone().removeClass('wz-prototype');
+    var groupCard = contactsAsidegroupPrototype.clone().removeClass('wz-prototype');
 
-    interestCard.data( 'id', interest.id );
-    interestCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/smiley.png' );
-    interestCard.children('span').text( interest.name );
-    interestsAside.children().remove('.alone');
-    interestsAside.append( interestCard );
+    groupCard.data( 'id', group.id );
+    groupCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags.png' );
+    groupCard.children('span').text( group.name );
+    groupsAside.children().remove('.alone');
+    groupsAside.append( groupCard );
 
 };
 
 var centerListStatus = function(){
-    listStatus.css( 'margin-top', ( contactsInfo.height() - 36 /*listStatus.height()*/ ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
+    listStatus.css( 'margin-top', ( contactsInfo.height() - listStatus.height() ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
 };
 
 var removeFromFriends = function( user ){
@@ -132,6 +136,9 @@ var friendsShowInfo = function( users, clean, type ){
             friendCard.addClass( 'pending-sent' );
             friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
             friendCard.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
+        }else if( users[i].id === wz.system.user().id ){
+            friendCard.addClass( 'self' );
+            friendCard.find( '.friend-info' ).remove();
         }else{
             friendCard.addClass( 'stranger' );
             friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
@@ -159,9 +166,17 @@ var friendsShowInfo = function( users, clean, type ){
             listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
         }
 
+        centerListStatus();
+
     }
 
     contactsInfo.append( friendsList );
+
+    aside.find('.active').removeClass('active');
+
+    if( users.length === 1 ){
+        aside.find( '.user-' + users[ 0 ].id ).addClass('active');
+    }
 
 };
 
@@ -182,22 +197,23 @@ var profile = function(){
     var user    = wz.system.user();
     var profile = $('.aside-profile-user');
 
+    profile.addClass( 'user-' + user.id );
     $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
     $( 'img', profile ).attr( 'src', user.avatar.tiny );
 
 };
 
-var interests = function(){
+var groups = function(){
 
-    wql.searchInterest( [ '%%' ], function( error, list ){
+    /*wql.searchgroup( [ '%%' ], function( error, list ){
 
         if( error ){ return; }
 
         for( var i = 0; i < list.length; i++ ){
-            addToInterests( list[ i ] );
+            addTogroups( list[ i ] );
         }
 
-    });
+    });*/
 
 };
 
@@ -206,10 +222,10 @@ var translate = function(){
     $('input').attr( 'placeholder', lang.search );
     $('.aside-profile-title').text( lang.profileTitle );
     $( '.aside-users-title', contactsAside ).text( lang.usersTitle );
-    $( '.aside-interests-title', interestsAside ).text( lang.interestsTitle );
+    $( '.aside-groups-title', groupsAside ).text( lang.groupsTitle );
     $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
     $( '.ui-header-brand span' ).text( lang.appName );
-    $('.contacts-info-interests h3').text( lang.interestsTitle );
+    $('.contacts-info-groups h3').text( lang.groupsTitle );
     listStatus.text( lang.appName );
 
 };
@@ -330,9 +346,22 @@ win
 
     location = 'user-info';
 
+    requestsTopButton.removeClass('active');
+    blockedTopButton.removeClass('active');
+
     wz.user( $(this).data('id'), function( error, user ){
         friendsShowInfo( [ user ], true, LIST_NORMAL );
     });
+
+})
+
+.on( 'mousedown', '.aside-profile-user', function(){
+
+    location = 'user-info';
+
+    requestsTopButton.removeClass('active');
+    blockedTopButton.removeClass('active');
+    friendsShowInfo( [ wz.system.user() ], true, LIST_NORMAL );
 
 })
 
@@ -489,7 +518,11 @@ win
 
     location = 'user-seeker';
 
-    if( $(e.target).is( '.contacts-top-finder input' ) ){
+    aside.find('.active').removeClass('active');
+    requestsTopButton.removeClass('active');
+    blockedTopButton.removeClass('active');
+
+    if( $(e.target).is('.ui-input-search input') ){
 
         if( $(e.target).val() ){
 
@@ -518,6 +551,6 @@ win.addClass('dark');
 translate();
 profile();
 friends();
-interests();
+groups();
 pendingRequests();
 centerListStatus();

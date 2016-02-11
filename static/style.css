@@ -26,15 +26,19 @@
 
 .ui-icons-ungrouped{
   float: left;
-  margin: 4px 0 0 10px;
+  margin: 3px 0 0 10px;
 }
 
 .contacts-top-request i{
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 21px;
     float: left;
-    background: url("@static/request.png") no-repeat;
-    background-size: 20px 20px;
+    background: url("@static/new.png") no-repeat;
+    background-size: 22px 21px;
+}
+
+.contacts-top-request.active i{
+    background-image: url("@static/new-active.png");
 }
 
 .ui-alignment-btn{
@@ -43,7 +47,7 @@
 }
 
 .ui-alignment-btn i{
-  margin: 6px;
+  margin: 6px 4px 4px 7px;
 }
 
 /*
@@ -61,15 +65,18 @@
     font-size: 14px;
     color: #E9E9E9;
 }
-
 */
 
 .contacts-top-blocked i{
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 21px;
     float: left;
     background: url("@static/blocked.png") no-repeat;
-    background-size: 20px 20px;
+    background-size: 22px 21px;
+}
+
+.contacts-top-blocked.active i{
+    background-image: url("@static/blocked-active.png");
 }
 
 .ui-navgroup-title-txt{
@@ -92,6 +99,21 @@
     padding: 9px 0 6px;
 }
 
+.alone{
+    padding: 0 20px;
+}
+
+.alone .ui-navgroup-element-txt{
+    font-size: 13px;
+    text-align: center;
+    line-height: 14px;
+}
+
+.alone hr{
+    border: none;
+    margin-bottom: 10px;
+}
+
 .list-status{
     color: #767776;
     font-size: 36px;
@@ -108,6 +130,7 @@
     width: 520px;
     border-bottom: 1px solid #66676D;
     display: inline-block;
+    padding-bottom: 20px;
 }
 
 .contacts-info-user:last-child{
@@ -115,11 +138,13 @@
 }
 
 .contacts-info-user img{
-    width: 100px;
-    height: 100px;
+    width: 98px;
+    height: 98px;
     float: left;
     margin-top: 20px;
     border-radius: 50%;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.3);
+    border: solid 1px rgba(44,50,56,.5);
 }
 
 .contacts-info-user-data{
@@ -170,7 +195,7 @@
     white-space: nowrap;
 }
 
-.contacts-info-interests{
+.contacts-info-groups{
     text-align: left;
     float: left;
     width: 460px;
@@ -178,34 +203,34 @@
     height: 100px;
 }
 
-.contacts-info-interests h3{
+.contacts-info-groups h3{
     font-size: 18px;
     font-weight: bold;
     color: #d2dce2;
 }
 
-.contacts-info-interest{
+.contacts-info-group{
     float: left;
 }
 
-.contacts-info-interest figure{
+.contacts-info-group figure{
     width: 57px;
     height: 57px;
-    background: url(@static/add_interest.png);
+    background: url(@static/add_group.png);
     background-size: 57px 57px;
     border-radius: 50%;
     margin: 15px 0 0;
     float: left;
 }
 
-.contacts-info-interest-data{
+.contacts-info-group-data{
     width: 383px;
     float: left;
     margin-left: 20px;
     margin-top: 20px;
 }
 
-.contacts-info-interest-name{
+.contacts-info-group-name{
     color: #d2dce2;
     width: 383px;
     font-size: 16px;
@@ -215,7 +240,7 @@
     text-align: left;
 }
 
-.contacts-info-interest-info{
+.contacts-info-group-info{
     font-size: 13px;
     color: #d2dce2;
     width: 383px;
