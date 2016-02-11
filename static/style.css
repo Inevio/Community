@@ -97,6 +97,10 @@
 
 .ui-navgroup-element span{
     padding: 9px 0 6px;
+    width: 132px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .alone{
