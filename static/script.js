@@ -5,7 +5,7 @@ var contactsAside               = $('.aside-users');
 var groupsAside                 = $('.aside-groups');
 var contactsInfo                = $('.contacts-info');
 var contactsAsideFilePrototype  = $('.aside-users-user.wz-prototype');
-var contactsAsidegroupPrototype = $('.aside-groups-group.wz-prototype');
+var contactsAsideGroupPrototype = $('.aside-groups-group.wz-prototype');
 var friendInfo                  = $('.contacts-info-user.wz-prototype');
 var listStatus                  = $('.list-status');
 var requestsTopButton           = $('.contacts-top-request');
@@ -67,18 +67,6 @@ var addToFriends = function( user ){
     userCard.children('span').text(user.fullName);
     contactsAside.children().remove('.alone');
     contactsAside.append(userCard);
-
-};
-
-var addTogroups = function( group ){
-
-    var groupCard = contactsAsidegroupPrototype.clone().removeClass('wz-prototype');
-
-    groupCard.data( 'id', group.id );
-    groupCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags.png' );
-    groupCard.children('span').text( group.name );
-    groupsAside.children().remove('.alone');
-    groupsAside.append( groupCard );
 
 };
 
@@ -205,15 +193,36 @@ var profile = function(){
 
 var groups = function(){
 
-    /*wql.searchgroup( [ '%%' ], function( error, list ){
+  wz.user.listGroups( function( error, list ){
 
-        if( error ){ return; }
+    var groupCard = null;
 
-        for( var i = 0; i < list.length; i++ ){
-            addTogroups( list[ i ] );
-        }
+    if( list.length === 0 ){
 
-    });*/
+      groupCard = contactsAsideGroupPrototype.clone().removeClass();
+
+      groupCard.children('img').remove();
+      // To Do -> Quitar estos estilos de aqui
+      groupCard.addClass('alone').children('span').html( lang.noGroups );
+      contactsAside.append( groupCard );
+
+    }else{
+
+      for( var i = 0; i < list.length; i++ ){
+
+        groupCard = contactsAsideGroupPrototype.clone().removeClass('wz-prototype');
+
+        groupCard.data( 'id', group.id );
+        groupCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags.png' );
+        groupCard.children('span').text( group.name );
+        groupsAside.children().remove('.alone');
+        groupsAside.append( groupCard );
+
+      }
+
+    }
+
+  });
 
 };
 
