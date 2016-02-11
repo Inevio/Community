@@ -1,7 +1,0 @@
-
-{
-
-    "searchInterest" : "SELECT * FROM interest WHERE name LIKE ?",
-    "aaa" : " user = @userId"
-
-}
