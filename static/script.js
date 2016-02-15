@@ -142,6 +142,7 @@ var createCard = function( info ){
 
         card.find('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags@2x.png' );
         card.find('.card-data .name').text( info.name );
+        card.find('.group-members').show();
 
         var found  = false;
         var userId = wz.system.user().id;
@@ -163,7 +164,9 @@ var createCard = function( info ){
         for( var i = 0; i < memberList.length; i++ ){
 
             tmp = memberPrototype.clone().removeClass('wz-prototype');
+            tmp.data( 'id', memberList[ i ].id );
             tmp.find('img').attr( 'src', memberList[ i ].avatar.normal );
+            tmp.find('figcaption').text( memberList[ i ].name );
             memberList[ i ] = tmp;
 
         }
@@ -197,7 +200,6 @@ var cardsShowInfo = function( list, type ){
 
     aside.find('.active').removeClass('active');
 
-    console.log( list );
     if( list.length ){
 
         listStatus.css( 'display', 'none' );
@@ -240,11 +242,11 @@ var groups = function(){
 
   wz.user.listGroups( function( error, list ){
 
-    console.log( list );
-
     var groupCard = null;
 
     if( list.length === 0 ){
+
+    return;
 
       groupCard = contactsAsideGroupPrototype.clone().removeClass();
 
@@ -254,6 +256,8 @@ var groups = function(){
       groupsAside.append( groupCard );
 
     }else{
+
+      groupsAside.show();
 
       for( var i = 0; i < list.length; i++ ){
 
@@ -397,7 +401,7 @@ wz.user
 
 // DOM Events
 win
-.on( 'mousedown', '.users-user', function(){
+.on( 'mousedown', '.users-user, .member', function(){
 
     location = 'user-info';
 
