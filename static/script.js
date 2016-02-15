@@ -1,15 +1,15 @@
 
 var win                         = $( this );
 var aside                       = $('.ui-navbar');
-var contactsAside               = $('.aside-users');
-var groupsAside                 = $('.aside-groups');
-var contactsInfo                = $('.contacts-info');
-var contactsAsideFilePrototype  = $('.aside-users-user.wz-prototype');
-var contactsAsideGroupPrototype = $('.aside-groups-group.wz-prototype');
-var friendInfo                  = $('.contacts-info-user.wz-prototype');
+var contactsAside               = $('.users', aside);
+var groupsAside                 = $('.groups', aside);
+var content                     = $('.ui-window-content');
+var contactsAsideFilePrototype  = $('.users-user.wz-prototype');
+var contactsAsideGroupPrototype = $('.groups-group.wz-prototype');
+var cardPrototype               = $('.card.wz-prototype');
 var listStatus                  = $('.list-status');
-var requestsTopButton           = $('.contacts-top-request');
-var blockedTopButton            = $('.contacts-top-blocked');
+var requestsTopButton           = $('.requests');
+var blockedTopButton            = $('.blocked');
 var location                    = '';
 
 var LIST_NORMAL   = 0;
@@ -71,7 +71,7 @@ var addToFriends = function( user ){
 };
 
 var centerListStatus = function(){
-    listStatus.css( 'margin-top', ( contactsInfo.height() - listStatus.height() ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
+    listStatus.css( 'margin-top', ( content.height() - listStatus.height() ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
 };
 
 var removeFromFriends = function( user ){
@@ -95,82 +95,127 @@ var pendingRequests = function(){
     wz.user.pendingRequests( function( error, users ){
 
         if( users.length ){
-            $( '.contacts-top-request-icon i' ).addClass( 'contacts-top-request-notification' ).text( users.length );
+            $( '.requests-icon i' ).addClass( 'requests-notification' ).text( users.length );
         }else{
-            $( '.contacts-top-request-icon i' ).removeClass( 'contacts-top-request-notification' ).text( '' );
+            $( '.requests-icon i' ).removeClass( 'requests-notification' ).text( '' );
         }
 
     });
 
 };
 
-var friendsShowInfo = function( users, clean, type ){
+var createCard = function( info ){
 
-    var friendsList = $();
+    var card   = cardPrototype.clone().removeClass( 'wz-prototype' );
+    var isUser = !!info.avatar;
 
-    for( var i = 0 ; i < users.length ; i++ ){
+    card.data( 'id', info.id );
+    //card.find( '.info' ).text( info.bio );
 
-        var friendCard = friendInfo.clone().removeClass( 'wz-prototype' );
+    if( isUser ){
 
-        if( users[i].relation === 'friend' ){
-            friendCard.addClass( 'friend' );
-            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-            friendCard.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
-        }else if( users[i].relation === 'pending' && ( users[i].id === users[i].sender ) ){
-            friendCard.addClass( 'pending-received' );
-            friendCard.find( '.friend-contact span' ).text( lang.acceptRequest );
-            friendCard.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
-        }else if( users[i].relation === 'pending' ){
-            friendCard.addClass( 'pending-sent' );
-            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-            friendCard.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
-        }else if( users[i].id === wz.system.user().id ){
-            friendCard.addClass( 'self' );
-            friendCard.find( '.friend-info' ).remove();
+        card.find('.card-data .name').text( info.fullName );
+        card.find('img').attr( 'src', info.avatar.normal );
+
+        if( info.relation === 'friend' ){
+            card.addClass( 'friend' );
+            //card.find( '.friend-contact span' ).text( lang.sendMessage );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
+        }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
+            card.addClass( 'pending-received' );
+            //card.find( '.friend-contact span' ).text( lang.acceptRequest );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
+        }else if( info.relation === 'pending' ){
+            card.addClass( 'pending-sent' );
+            //card.find( '.friend-contact span' ).text( lang.sendMessage );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
+        }else if( info.id === wz.system.user().id ){
+            card.addClass( 'self' );
+            card.find( '.friend-info' ).remove();
         }else{
-            friendCard.addClass( 'stranger' );
-            friendCard.find( '.friend-contact span' ).text( lang.sendMessage );
-            friendCard.find( '.friend-info span' ).text( lang.addFriend );
+            card.addClass( 'stranger' );
+            //card.find( '.friend-contact span' ).text( lang.sendMessage );
+            card.find( '.friend-info span' ).text( lang.addFriend );
         }
 
-        friendCard.data( 'id', users[i].id );
-        friendCard.find( 'img' ).attr( 'src', users[i].avatar.normal );
-        friendCard.find( '.contacts-info-user-name' ).text( users[i].fullName );
-        //friendCard.find( '.contacts-info-user-bio' ).text( users[i].bio );
-        //friendCard.find( '.contacts-info-user-location' ).text( users[i].location );
-        //friendCard.find( '.contacts-info-user-url' ).text( users[i].url );
+    }else{
 
-        friendsList = friendsList.add( friendCard );
+        card.find('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags@2x.png' );
+        card.find('.card-data .name').text( info.name );
+
+        var found  = false;
+        var userId = wz.system.user().id;
+
+        for( var i = 0; i < info.list.length; i++ ){
+
+            if( info.list[ i ].id === userId ){
+                found = true;
+                break;
+            }
+
+        }
+
+        var members         = card.find('.group-members');
+        var memberList      = info.list.slice( 0, 7 );
+        var memberPrototype = card.find('.member.wz-prototype');
+        var tmp;
+
+        for( var i = 0; i < memberList.length; i++ ){
+
+            tmp = memberPrototype.clone().removeClass('wz-prototype');
+            tmp.find('img').attr( 'src', memberList[ i ].avatar.normal );
+            memberList[ i ] = tmp;
+
+        }
+
+        members.append( memberList );
+
+        if( found ){
+            card.addClass( 'friend' );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.leaveGroup );
+        }else{
+            card.addClass('stranger');
+            card.find( '.friend-info span' ).text( lang.addFriend );
+        }
 
     }
 
-    if( clean ){
+    return card;
 
-        contactsInfo.children().not('.wz-prototype').not( listStatus ).remove();
+};
 
-        if( users.length ){
-            listStatus.css( 'display', 'none' );
-        }else{
-            listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
-        }
+var cardsShowInfo = function( list, type ){
 
-        centerListStatus();
+    var cardList = [];
 
+    for( var i = 0 ; i < list.length ; i++ ){
+        cardList.push( createCard( list[ i ] ) );
     }
 
-    contactsInfo.append( friendsList );
+    content.children().not('.wz-prototype').not( listStatus ).remove();
+    content.append( cardList );
 
     aside.find('.active').removeClass('active');
 
-    if( users.length === 1 ){
-        aside.find( '.user-' + users[ 0 ].id ).addClass('active');
+    console.log( list );
+    if( list.length ){
+
+        listStatus.css( 'display', 'none' );
+
+        if( list.length === 1 ){
+            aside.find( ( list[ 0 ].avatar ? '.user-' : '.group' ) + list[ 0 ].id ).addClass('active');
+        }
+
+    }else{
+        listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
+        centerListStatus();
     }
 
 };
 
 var removeFriendInfo = function( user ){
 
-    var userRequest = contactsInfo.children().filter( function(){
+    var userRequest = content.children().filter( function(){
         return $(this).data( 'id' ) === user.id;
     });
 
@@ -183,7 +228,7 @@ var removeFriendInfo = function( user ){
 var profile = function(){
 
     var user    = wz.system.user();
-    var profile = $('.aside-profile-user');
+    var profile = $('.profile-user');
 
     profile.addClass( 'user-' + user.id );
     $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
@@ -195,6 +240,8 @@ var groups = function(){
 
   wz.user.listGroups( function( error, list ){
 
+    console.log( list );
+
     var groupCard = null;
 
     if( list.length === 0 ){
@@ -204,7 +251,7 @@ var groups = function(){
       groupCard.children('img').remove();
       // To Do -> Quitar estos estilos de aqui
       groupCard.addClass('alone').children('span').html( lang.noGroups );
-      contactsAside.append( groupCard );
+      groupsAside.append( groupCard );
 
     }else{
 
@@ -212,9 +259,9 @@ var groups = function(){
 
         groupCard = contactsAsideGroupPrototype.clone().removeClass('wz-prototype');
 
-        groupCard.data( 'id', group.id );
+        groupCard.data( 'id', list[ 0 ].id );
         groupCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags.png' );
-        groupCard.children('span').text( group.name );
+        groupCard.children('span').text( list[ 0 ].name );
         groupsAside.children().remove('.alone');
         groupsAside.append( groupCard );
 
@@ -229,12 +276,13 @@ var groups = function(){
 var translate = function(){
 
     $('input').attr( 'placeholder', lang.search );
-    $('.aside-profile-title').text( lang.profileTitle );
-    $( '.aside-users-title', contactsAside ).text( lang.usersTitle );
-    $( '.aside-groups-title', groupsAside ).text( lang.groupsTitle );
-    $( '.contacts-info-user-bio', friendInfo ).text( lang.userBio );
+    $('.profile-title').text( lang.profileTitle );
+    $( '.users-title', contactsAside ).text( lang.usersTitle );
+    $( '.groups-title', groupsAside ).text( lang.groupsTitle );
+    $( '.card-data .info', cardPrototype ).text( lang.userBio );
     $( '.ui-header-brand span' ).text( lang.appName );
-    $('.contacts-info-groups h3').text( lang.groupsTitle );
+    $('.user-groups h3').text( lang.groupsTitle );
+    $('.group-members h3').text( lang.membersTitle );
     listStatus.text( lang.appName );
 
 };
@@ -246,12 +294,10 @@ wz.user
     pendingRequests();
 
     if( location === 'pending-requests' ){
-        friendsShowInfo( [ user ], false, LIST_NORMAL );
-    }else if( location === 'pending-requests' ){
-        friendsShowInfo( [ user ], true, LIST_NORMAL );
+        // To Do -> friendsShowInfo( [ user ], false, LIST_NORMAL );
     }else{
 
-        var userRequest = contactsInfo.children().filter( function(){
+        var userRequest = content.children().filter( function(){
             return $(this).data( 'id' ) === user.id;
         });
 
@@ -277,7 +323,7 @@ wz.user
 
     }else{
 
-        var userRequest = contactsInfo.children().filter( function(){
+        var userRequest = content.children().filter( function(){
             return $(this).data( 'id' ) === user.id;
         });
 
@@ -302,7 +348,7 @@ wz.user
 
     }else{
 
-        var userRequest = contactsInfo.children().filter( function(){
+        var userRequest = content.children().filter( function(){
             return $(this).data( 'id' ) === user.id;
         });
 
@@ -319,7 +365,7 @@ wz.user
 
 .on( 'requestSent', function( user ){
 
-    var userRequest = contactsInfo.children().filter( function(){
+    var userRequest = content.children().filter( function(){
         return $(this).data( 'id' ) === user.id;
     });
 
@@ -336,7 +382,7 @@ wz.user
 
     removeFromFriends( user );
 
-    var userRequest = contactsInfo.children().filter( function(){
+    var userRequest = content.children().filter( function(){
         return $(this).data( 'id' ) === user.id;
     });
 
@@ -351,7 +397,7 @@ wz.user
 
 // DOM Events
 win
-.on( 'mousedown', '.aside-users-user', function(){
+.on( 'mousedown', '.users-user', function(){
 
     location = 'user-info';
 
@@ -359,28 +405,41 @@ win
     blockedTopButton.removeClass('active');
 
     wz.user( $(this).data('id'), function( error, user ){
-        friendsShowInfo( [ user ], true, LIST_NORMAL );
+        cardsShowInfo( [ user ], LIST_NORMAL );
     });
 
 })
 
-.on( 'mousedown', '.aside-profile-user', function(){
+.on( 'mousedown', '.profile-user', function(){
 
     location = 'user-info';
 
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
-    friendsShowInfo( [ wz.system.user() ], true, LIST_NORMAL );
+    cardsShowInfo( [ wz.system.user() ], LIST_NORMAL );
+
+})
+
+.on( 'mousedown', '.groups-group', function(){
+
+    location = 'info';
+
+    requestsTopButton.removeClass('active');
+    blockedTopButton.removeClass('active');
+
+    wz.user.group( $(this).data('id'), function( error, group ){
+        cardsShowInfo( [ group ], LIST_NORMAL );
+    });
 
 })
 
 .on( 'mousedown', '.friend-contact', function(){
 
-    if( $(this).parents( '.contacts-info-user' ).hasClass( 'friend' ) ){
+    if( $(this).parents( '.user' ).hasClass( 'friend' ) ){
         alert( lang.notWorking );
-    }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-received' ) ){
+    }else if( $(this).parents( '.user' ).hasClass( 'pending-received' ) ){
 
-        wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.acceptRequest( function(){
 
@@ -394,7 +453,7 @@ win
 
         });
 
-    }else if( $(this).parents( '.contacts-info-user' ).hasClass( 'pending-sent' ) ){
+    }else if( $(this).parents( '.user' ).hasClass( 'pending-sent' ) ){
         alert( lang.notWorking );
     }else{
         alert( lang.notWorking );
@@ -403,7 +462,7 @@ win
 
 })
 
-.on( 'mousedown', '.contacts-top-request', function(){
+.on( 'mousedown', '.requests', function(){
 
     location = 'pending-requests';
 
@@ -413,13 +472,13 @@ win
             return a.fullName.localeCompare( b.fullName );
         });
 
-        friendsShowInfo( users, true, LIST_REQUESTS );
+        cardsShowInfo( users, LIST_REQUESTS );
 
     });
 
 })
 
-.on( 'mousedown', '.contacts-top-blocked', function(){
+.on( 'mousedown', '.blocked', function(){
 
     location = 'blocked-users';
 
@@ -429,7 +488,7 @@ win
             return a.fullName.localeCompare( b.fullName );
         });
 
-        friendsShowInfo( users, true, LIST_BLOCKED );
+        cardsShowInfo( users, LIST_BLOCKED );
 
     });
 
@@ -437,9 +496,9 @@ win
 
 .on( 'mousedown', '.friend-info', function(){
 
-    if( $(this).parents( '.contacts-info-user' ).hasClass('friend') ){
+    if( $(this).parents( '.user' ).hasClass('friend') ){
 
-        wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.removeFriend( function(){
 
@@ -453,9 +512,9 @@ win
 
         });
 
-    }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-received') ){
+    }else if( $(this).parents( '.user' ).hasClass('pending-received') ){
 
-        wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.cancelRequest( function(){
 
@@ -469,9 +528,9 @@ win
 
         });
 
-    }else if( $(this).parents( '.contacts-info-user' ).hasClass('pending-sent') ){
+    }else if( $(this).parents( '.user' ).hasClass('pending-sent') ){
 
-        wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.cancelRequest( function(){
 
@@ -487,7 +546,7 @@ win
 
     }else{
 
-        wz.user( $(this).parents( '.contacts-info-user' ).data( 'id' ), function( error, user ){
+        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.addFriend( 'Hello dolly', function(){
 
@@ -506,7 +565,7 @@ win
 })
 
 /*
-.on( 'click', '.contacts-info-user img', function(){
+.on( 'click', '.user img', function(){
 
     var imageUrl = $( this ).attr( 'src' );
 
@@ -541,7 +600,7 @@ win
                     return a.fullName.localeCompare( b.fullName );
                 });
 
-                friendsShowInfo( users, true, LIST_SEARCH );
+                cardsShowInfo( users, LIST_SEARCH );
 
             });
 
