@@ -19,7 +19,7 @@ var LIST_BLOCKED  = 3;
 
 var friends = function(){
 
-    wz.user.friendList( false, function( error, list ){
+    api.user.friendList( false, function( error, list ){
 
         list = list.sort( function( a, b ){
             return a.fullName.localeCompare( b.fullName );
@@ -92,7 +92,7 @@ var removeFromFriends = function( user ){
 
 var pendingRequests = function(){
 
-    wz.user.pendingRequests( function( error, users ){
+    api.user.pendingRequests( function( error, users ){
 
         if( users.length ){
             $( '.requests-icon i' ).addClass( 'requests-notification' ).text( users.length );
@@ -129,7 +129,7 @@ var createCard = function( info ){
             card.addClass( 'pending-sent' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
-        }else if( info.id === wz.system.user().id ){
+        }else if( info.id === api.system.user().id ){
             card.addClass( 'self' );
             card.find( '.friend-info' ).remove();
         }else{
@@ -145,7 +145,7 @@ var createCard = function( info ){
         card.find('.group-members').show();
 
         var found  = false;
-        var userId = wz.system.user().id;
+        var userId = api.system.user().id;
 
         for( var i = 0; i < info.list.length; i++ ){
 
@@ -229,7 +229,7 @@ var removeFriendInfo = function( user ){
 
 var profile = function(){
 
-    var user    = wz.system.user();
+    var user    = api.system.user();
     var profile = $('.profile-user');
 
     profile.addClass( 'user-' + user.id );
@@ -240,7 +240,7 @@ var profile = function(){
 
 var groups = function(){
 
-  wz.user.listGroups( function( error, list ){
+  api.user.listGroups( function( error, list ){
 
     var groupCard = null;
 
@@ -292,7 +292,7 @@ var translate = function(){
 };
 
 // WZ Events
-wz.user
+api.user
 .on( 'requestReceived', function( user ){
 
     pendingRequests();
@@ -408,7 +408,7 @@ win
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
 
-    wz.user( $(this).data('id'), function( error, user ){
+    api.user( $(this).data('id'), function( error, user ){
         cardsShowInfo( [ user ], LIST_NORMAL );
     });
 
@@ -420,7 +420,7 @@ win
 
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
-    cardsShowInfo( [ wz.system.user() ], LIST_NORMAL );
+    cardsShowInfo( [ api.system.user() ], LIST_NORMAL );
 
 })
 
@@ -431,7 +431,7 @@ win
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
 
-    wz.user.group( $(this).data('id'), function( error, group ){
+    api.user.group( $(this).data('id'), function( error, group ){
         cardsShowInfo( [ group ], LIST_NORMAL );
     });
 
@@ -443,11 +443,11 @@ win
         alert( lang.notWorking );
     }else if( $(this).parents( '.user' ).hasClass( 'pending-received' ) ){
 
-        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.acceptRequest( function(){
 
-                /*wz.banner()
+                /*api.banner()
                     .title( lang.requestAcceptedTitle )
                     .text( user.fullName + ' ' + lang.requestAccepted )
                     .icon( user.avatar.tiny )
@@ -470,7 +470,7 @@ win
 
     location = 'pending-requests';
 
-    wz.user.pendingRequests( false, function( error, users ){
+    api.user.pendingRequests( false, function( error, users ){
 
         users = users.sort( function( a, b ){
             return a.fullName.localeCompare( b.fullName );
@@ -486,7 +486,7 @@ win
 
     location = 'blocked-users';
 
-    wz.user.blockedList( false, function( error, users ){
+    api.user.blockedList( false, function( error, users ){
 
         users = users.sort( function( a, b ){
             return a.fullName.localeCompare( b.fullName );
@@ -502,11 +502,11 @@ win
 
     if( $(this).parents( '.user' ).hasClass('friend') ){
 
-        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.removeFriend( function(){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.friendRemovedTitle )
                     .setText( user.fullName + ' ' + lang.friendRemoved )
                     .setIcon( user.avatar.tiny )
@@ -518,11 +518,11 @@ win
 
     }else if( $(this).parents( '.user' ).hasClass('pending-received') ){
 
-        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.cancelRequest( function(){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.requestCancelledTitle )
                     .setText( user.fullName + ' ' + lang.requestCancelled )
                     .setIcon( user.avatar.tiny )
@@ -534,11 +534,11 @@ win
 
     }else if( $(this).parents( '.user' ).hasClass('pending-sent') ){
 
-        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.cancelRequest( function(){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.requestCancelledTitle )
                     .setText( user.fullName + ' ' + lang.requestCancelled )
                     .setIcon( user.avatar.tiny )
@@ -550,11 +550,11 @@ win
 
     }else{
 
-        wz.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
 
             user.addFriend( 'Hello dolly', function(){
 
-                wz.banner()
+                api.banner()
                     .setTitle( lang.requestSentTitle )
                     .setText( lang.requestSent + ' ' + user.fullName )
                     .setIcon( user.avatar.tiny )
@@ -581,7 +581,7 @@ win
 
     imageUrl = imageUrl.join( '/' );
 
-    wz.app.createView( [ imageUrl, 'url' ] );
+    api.app.createView( [ imageUrl, 'url' ] );
 
 })
 */
@@ -598,7 +598,7 @@ win
 
         if( $(e.target).val() ){
 
-            wz.user.search( $(e.target).val(), function( error, users ){
+            api.user.search( $(e.target).val(), function( error, users ){
 
                 users = users.sort( function( a, b ){
                     return a.fullName.localeCompare( b.fullName );
