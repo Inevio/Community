@@ -123,7 +123,7 @@ var createCard = function( info ){
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
         }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
             card.addClass( 'pending-received' );
-            //card.find( '.friend-contact span' ).text( lang.acceptRequest );
+            card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
         }else if( info.relation === 'pending' ){
             card.addClass( 'pending-sent' );
@@ -144,6 +144,13 @@ var createCard = function( info ){
         card.find('.card-data .name').text( info.name );
         card.find('.group-members').show();
 
+        if( info.fsnodeId ){
+
+            card.find('.group-folder').show();
+            card.find('.group-folder-button').data( 'id', info.fsnodeId );
+
+        }
+
         var found  = false;
         var userId = api.system.user().id;
 
@@ -157,7 +164,7 @@ var createCard = function( info ){
         }
 
         var members         = card.find('.group-members');
-        var memberList      = info.list.slice( 0, 7 );
+        var memberList      = info.list;//.slice( 0, 7 );
         var memberPrototype = card.find('.member.wz-prototype');
         var tmp;
 
@@ -263,9 +270,9 @@ var groups = function(){
 
         groupCard = contactsAsideGroupPrototype.clone().removeClass('wz-prototype');
 
-        groupCard.data( 'id', list[ 0 ].id );
+        groupCard.data( 'id', list[ i ].id );
         groupCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags.png' );
-        groupCard.children('span').text( list[ 0 ].name );
+        groupCard.children('span').text( list[ i ].name );
         groupsAside.children().remove('.alone');
         groupsAside.append( groupCard );
 
@@ -439,11 +446,11 @@ win
 
 .on( 'mousedown', '.friend-contact', function(){
 
-    if( $(this).parents( '.user' ).hasClass( 'friend' ) ){
+    if( $(this).parents('.card').hasClass( 'friend' ) ){
         alert( lang.notWorking );
-    }else if( $(this).parents( '.user' ).hasClass( 'pending-received' ) ){
+    }else if( $(this).parents('.card').hasClass( 'pending-received' ) ){
 
-        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
             user.acceptRequest( function(){
 
@@ -457,7 +464,7 @@ win
 
         });
 
-    }else if( $(this).parents( '.user' ).hasClass( 'pending-sent' ) ){
+    }else if( $(this).parents('.card').hasClass( 'pending-sent' ) ){
         alert( lang.notWorking );
     }else{
         alert( lang.notWorking );
@@ -500,9 +507,9 @@ win
 
 .on( 'mousedown', '.friend-info', function(){
 
-    if( $(this).parents( '.user' ).hasClass('friend') ){
+    if( $(this).parents('.card').hasClass('friend') ){
 
-        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
             user.removeFriend( function(){
 
@@ -516,9 +523,9 @@ win
 
         });
 
-    }else if( $(this).parents( '.user' ).hasClass('pending-received') ){
+    }else if( $(this).parents('.card').hasClass('pending-received') ){
 
-        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
             user.cancelRequest( function(){
 
@@ -532,9 +539,9 @@ win
 
         });
 
-    }else if( $(this).parents( '.user' ).hasClass('pending-sent') ){
+    }else if( $(this).parents('.card').hasClass('pending-sent') ){
 
-        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
             user.cancelRequest( function(){
 
@@ -550,7 +557,8 @@ win
 
     }else{
 
-        api.user( $(this).parents( '.user' ).data( 'id' ), function( error, user ){
+        console.log( this, $(this).parents('.card'), $(this).parents('.card').data() );
+        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
             user.addFriend( 'Hello dolly', function(){
 
@@ -565,6 +573,16 @@ win
         });
 
     }
+
+})
+
+.on( 'mousedown', '.group-folder-button', function(){
+
+    console.log( $(this).data('id') );
+
+    wz.fs( $(this).data('id'), function( error, fsnode ){
+        fsnode.open();
+    });
 
 })
 

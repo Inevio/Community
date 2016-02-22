@@ -85,6 +85,12 @@
             "modify" : true,
             "read"   : true
 
+        },
+
+        "fs" : {
+
+            "read" : true
+
         }
 
     }

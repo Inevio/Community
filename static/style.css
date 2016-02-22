@@ -187,6 +187,7 @@
                 float: left;
                 padding: 0 7px;
                 width: auto;
+                display: none;
             }
 
             .friend-info{
@@ -263,6 +264,36 @@
 
         }
 
+        .group-folder{
+
+            display: none;
+            text-align: left;
+            float: left;
+            width: 460px;
+            margin: 30px 30px 0;
+
+            h3{
+                font-size: 18px;
+                font-weight: bold;
+                color: #d2dce2;
+            }
+
+            .group-folder-button{
+
+                width: auto;
+                padding: 0 14px;
+                margin: 25px auto 0;
+                display: block;
+
+                span{
+                    width: auto;
+                    max-width: none;
+                }
+
+            }
+
+        }
+
         .group-members{
 
             display: none;
@@ -314,6 +345,12 @@
 
         }
 
+    }
+
+    .card.pending-received{
+        .friend-contact{
+            display: block;
+        }
     }
 
 }
