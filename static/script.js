@@ -92,15 +92,17 @@ var removeFromFriends = function( user ){
 
 var pendingRequests = function(){
 
-    api.user.pendingRequests( function( error, users ){
+  api.user.pendingRequests( function( error, users ){
 
-        if( users.length ){
-            $( '.requests-icon i' ).addClass( 'requests-notification' ).text( users.length );
-        }else{
-            $( '.requests-icon i' ).removeClass( 'requests-notification' ).text( '' );
-        }
+    if( users.length ){
+      $( '.ui-header .requests span' ).addClass( 'requests-notification' ).text( users.length );
+    }else{
+      $( '.ui-header .requests span' ).removeClass( 'requests-notification' ).text( '' );
+    }
 
-    });
+    wz.app.setBadge( list.length || '' );
+    
+  });
 
 };
 

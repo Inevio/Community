@@ -25,7 +25,8 @@
         "desktop" : {
 
             "primary" : "main",
-            "service" : [],
+            "unique"  : true,
+            "service" : ["service.js"],
             "common" : {
 
                 "css"    : [],
@@ -91,7 +92,9 @@
 
             "read" : true
 
-        }
+        },
+
+        "service" : true
 
     }
 

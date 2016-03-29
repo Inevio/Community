@@ -34,6 +34,7 @@
     .ui-alignment-btn{
       width: 32px;
       height: 32px;
+      position: relative;
     }
 
     .ui-alignment-btn i{
@@ -50,6 +51,25 @@
 
     .requests.active i{
         background-image: url("@static/new-active.png");
+    }
+
+    .requests span{
+      color: #fff;
+      position: absolute;
+      right: 0;
+      border-radius: 50%;
+      background: #7EBE30;
+      text-align: center;
+      height: 14px;
+      min-width: 8px;
+      padding: 0 3px;
+      font-size: 13px;
+      line-height: 14px;
+      border: 1px solid #eee;
+    }
+
+    .requests span:empty{
+      display: none;
     }
 
     .blocked i{
@@ -354,4 +374,3 @@
     }
 
 }
-
