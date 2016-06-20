@@ -11,6 +11,8 @@ var listStatus                  = $('.list-status');
 var requestsTopButton           = $('.requests');
 var blockedTopButton            = $('.blocked');
 var location                    = '';
+var condicion                   = true;
+
 
 var LIST_NORMAL   = 0;
 var LIST_SEARCH   = 1;
@@ -100,8 +102,8 @@ var pendingRequests = function(){
       $( '.ui-header .requests span' ).removeClass( 'requests-notification' ).text( '' );
     }
 
-    wz.app.setBadge( list.length || '' );
-    
+    wz.app.setBadge( users.length || '' );
+
   });
 
 };
@@ -113,6 +115,8 @@ var createCard = function( info ){
 
     card.data( 'id', info.id );
     //card.find( '.info' ).text( info.bio );
+    card.find( '.text-edit').css( 'display', 'none');
+    card.find( '.edit-info').css( 'display', 'none');
 
     if( isUser ){
 
@@ -123,6 +127,7 @@ var createCard = function( info ){
             card.addClass( 'friend' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
+            card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
         }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
             card.addClass( 'pending-received' );
             card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
@@ -134,6 +139,9 @@ var createCard = function( info ){
         }else if( info.id === api.system.user().id ){
             card.addClass( 'self' );
             card.find( '.friend-info' ).remove();
+            card.find( '.edit-info').css( 'display', 'block');
+            card.find( '.edit-info').addClass('right');
+            card.find( '.edit-info').find('span').text('Editar');
         }else{
             card.addClass( 'stranger' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
@@ -191,7 +199,13 @@ var createCard = function( info ){
         }
 
     }
+    var valor = Math.random()*100%10;
+    var urlCabecera = 'url(https:/';
+    var urlCuerpo1 = '/download.inevio.com/avatar/';
+    var urlCuerpo2 = '/normal) no-repeat';
+    var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
 
+    card.css('background' , urlFinal);
     return card;
 
 };
@@ -203,6 +217,7 @@ var cardsShowInfo = function( list, type ){
     for( var i = 0 ; i < list.length ; i++ ){
         cardList.push( createCard( list[ i ] ) );
     }
+
 
     content.children().not('.wz-prototype').not( listStatus ).remove();
     content.append( cardList );
@@ -296,8 +311,8 @@ var translate = function(){
     $( '.ui-header-brand span' ).text( lang.appName );
     $('.user-groups h3').text( lang.groupsTitle );
     $('.group-members h3').text( lang.membersTitle );
+    $('.ui-content-top span').text(lang.friendRequests);
     listStatus.text( lang.appName );
-
 };
 
 // WZ Events
@@ -324,6 +339,7 @@ api.user
     }
 
 })
+
 
 .on( 'requestAccepted', function( user ){
 
@@ -412,8 +428,12 @@ api.user
 win
 .on( 'mousedown', '.users-user, .member', function(){
 
+
     location = 'user-info';
 
+    if(content.hasClass('list')){
+      content.removeClass('list');
+    }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
 
@@ -427,6 +447,9 @@ win
 
     location = 'user-info';
 
+    if(content.hasClass('list')){
+      content.removeClass('list');
+    }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
     cardsShowInfo( [ api.system.user() ], LIST_NORMAL );
@@ -437,6 +460,9 @@ win
 
     location = 'info';
 
+    if(content.hasClass('list')){
+      content.removeClass('list');
+    }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
 
@@ -477,7 +503,11 @@ win
 
 .on( 'mousedown', '.requests', function(){
 
+
     location = 'pending-requests';
+    if(content.hasClass('list')){
+      content.removeClass('list');
+    }
 
     api.user.pendingRequests( false, function( error, users ){
 
@@ -525,7 +555,8 @@ win
 
         });
 
-    }else if( $(this).parents('.card').hasClass('pending-received') ){
+    }
+    else if( $(this).parents('.card').hasClass('pending-received') ){
 
         api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
@@ -555,7 +586,7 @@ win
 
             });
 
-        });
+        }); 
 
     }else{
 
@@ -588,6 +619,7 @@ win
 
 })
 
+
 /*
 .on( 'click', '.user img', function(){
 
@@ -606,6 +638,31 @@ win
 })
 */
 
+.on( 'click', '.edit-info', function(){
+
+    var card = $('.card-data');
+    if(condicion){
+      card.find( '.info').css( 'display', 'none');
+      card.find( '.text-edit').css( 'display', 'inline-block');
+
+      var buttonSave = $('.button').eq(1).clone();
+      buttonSave.removeClass('edit-info');
+      buttonSave.addClass('saveChanges').find('span').text('Save');
+      card.append(buttonSave);
+      condicion=false;
+    }
+})
+
+.on( 'click', '.saveChanges' , function () {
+
+    var card = $('.card-data');
+    card.find( '.info').css( 'display', 'inline-block');
+    card.find( '.text-edit').css( 'display', 'none');
+    condicion=true;
+    card.find('.saveChanges').remove();
+
+
+})
 .key( 'enter', function( e ){
 
     location = 'user-seeker';
@@ -623,8 +680,8 @@ win
                 users = users.sort( function( a, b ){
                     return a.fullName.localeCompare( b.fullName );
                 });
-
                 cardsShowInfo( users, LIST_SEARCH );
+                content.addClass( 'list');
 
             });
 
