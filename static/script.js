@@ -4,10 +4,13 @@ var aside                       = $('.ui-navbar');
 var contactsAside               = $('.users', aside);
 var groupsAside                 = $('.groups', aside);
 var content                     = $('.ui-window-content');
+var ntContent                   = $('.ui-content-bottom');
 var contactsAsideFilePrototype  = $('.users-user.wz-prototype');
 var contactsAsideGroupPrototype = $('.groups-group.wz-prototype');
 var cardPrototype               = $('.card.wz-prototype');
+var ntCardPrototype             = $('.notification-card.wz-prototype');
 var listStatus                  = $('.list-status');
+var ntListStatus                = $('.nt-list-status');
 var requestsTopButton           = $('.requests');
 var blockedTopButton            = $('.blocked');
 var location                    = '';
@@ -75,6 +78,9 @@ var addToFriends = function( user ){
 var centerListStatus = function(){
     listStatus.css( 'margin-top', ( content.height() - listStatus.height() ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
 };
+var centerNtListStatus = function(){
+    ntListStatus.css( 'margin-top', ( ntContent.height() - ntListStatus.height() ) / 2 ); // To Do -> Hacer que el alto de listStatus sea automático
+};
 
 var removeFromFriends = function( user ){
 
@@ -97,9 +103,13 @@ var pendingRequests = function(){
   api.user.pendingRequests( function( error, users ){
 
     if( users.length ){
-      $( '.ui-header .requests span' ).addClass( 'requests-notification' ).text( users.length );
+      $( 'notification-icon i').addClass('active');
+      $( '.nt-badge').text(users.length);
+      //$( '.ui-header .requests span' ).addClass( 'requests-notification' ).text( users.length );
     }else{
-      $( '.ui-header .requests span' ).removeClass( 'requests-notification' ).text( '' );
+      //$( '.ui-header .requests span' ).removeClass( 'requests-notification' ).text( '' );
+      $( 'notification-icon i').removeClass('active');
+      $( '.nt-badge').text('');
     }
 
     wz.app.setBadge( users.length || '' );
@@ -210,6 +220,111 @@ var createCard = function( info ){
 
 };
 
+var createNtCard = function( info ){
+
+    var card   = ntCardPrototype.clone().removeClass( 'wz-prototype' );
+    var isUser = !!info.avatar;
+
+    card.data( 'id', info.id );
+    //card.find( '.info' ).text( info.bio );
+    card.find( '.text-edit').css( 'display', 'none');
+    card.find( '.edit-info').css( 'display', 'none');
+
+    if( isUser ){
+
+        card.find('.card-data .name').text( info.fullName );
+        card.find('img').attr( 'src', info.avatar.normal );
+
+        if( info.relation === 'friend' ){
+            card.addClass( 'friend' );
+            //card.find( '.friend-contact span' ).text( lang.sendMessage );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
+            card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
+        }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
+            card.addClass( 'pending-received' );
+            card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
+        }else if( info.relation === 'pending' ){
+            card.addClass( 'pending-sent' );
+            //card.find( '.friend-contact span' ).text( lang.sendMessage );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
+        }else if( info.id === api.system.user().id ){
+            card.addClass( 'self' );
+            card.find( '.friend-info' ).remove();
+            card.find( '.edit-info').css( 'display', 'block');
+            card.find( '.edit-info').addClass('right');
+            card.find( '.edit-info').find('span').text('Editar');
+        }else{
+            card.addClass( 'stranger' );
+            //card.find( '.friend-contact span' ).text( lang.sendMessage );
+            card.find( '.friend-info span' ).text( lang.addFriend );
+        }
+
+    }else{
+
+        card.find('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags@2x.png' );
+        card.find('.card-data .name').text( info.name );
+        card.find('.group-members').show();
+
+        if( info.fsnodeId ){
+
+            card.find('.group-folder').show();
+            card.find('.group-folder-button').data( 'id', info.fsnodeId );
+
+        }
+
+        var found  = false;
+        var userId = api.system.user().id;
+
+        for( var i = 0; i < info.list.length; i++ ){
+
+            if( info.list[ i ].id === userId ){
+                found = true;
+                break;
+            }
+
+        }
+
+        var members         = card.find('.group-members');
+        var memberList      = info.list;//.slice( 0, 7 );
+        var memberPrototype = card.find('.member.wz-prototype');
+        var tmp;
+
+        for( var i = 0; i < memberList.length; i++ ){
+
+            tmp = memberPrototype.clone().removeClass('wz-prototype');
+            tmp.data( 'id', memberList[ i ].id );
+            tmp.find('img').attr( 'src', memberList[ i ].avatar.normal );
+            tmp.find('figcaption').text( memberList[ i ].name );
+            memberList[ i ] = tmp;
+
+        }
+
+        members.append( memberList );
+
+        if( found ){
+            card.addClass( 'friend' );
+            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.leaveGroup );
+        }else{
+            card.addClass('stranger');
+            card.find( '.friend-info span' ).text( lang.addFriend );
+        }
+
+    }
+    var valor = Math.random()*100%10;
+    var urlCabecera = 'url(https:/';
+    var urlCuerpo1 = '/download.inevio.com/avatar/';
+    var urlCuerpo2 = '/normal) no-repeat';
+    var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
+
+    card.css('background' , urlFinal);
+    return card;
+
+};
+
+
+
+
 var cardsShowInfo = function( list, type ){
 
     var cardList = [];
@@ -235,6 +350,36 @@ var cardsShowInfo = function( list, type ){
     }else{
         listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
         centerListStatus();
+    }
+
+};
+
+
+var ntCardsShowInfo = function( list, type ){
+
+    var cardList = [];
+
+    for( var i = 0 ; i < list.length ; i++ ){
+        cardList.push(createNtCard( list[ i ] ) );
+    }
+
+
+    ntContent.children().not('.wz-prototype').not( ntListStatus ).remove();
+    ntContent.append( cardList );
+
+    aside.find('.active').removeClass('active');
+
+    if( list.length ){
+
+        ntListStatus.css( 'display', 'none' );
+
+        if( list.length === 1 ){
+            aside.find( ( list[ 0 ].avatar ? '.user-' : '.group' ) + list[ 0 ].id ).addClass('active');
+        }
+
+    }else{
+        ntListStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
+        centerNtListStatus();
     }
 
 };
@@ -308,7 +453,7 @@ var translate = function(){
     $( '.users-title', contactsAside ).text( lang.usersTitle );
     $( '.groups-title', groupsAside ).text( lang.groupsTitle );
     $( '.card-data .info', cardPrototype ).text( lang.userBio );
-    $( '.ui-header-brand span' ).text( lang.appName );
+    $( '.tittleApp' ).text( lang.appName );
     $('.user-groups h3').text( lang.groupsTitle );
     $('.group-members h3').text( lang.membersTitle );
     $('.ui-content-top span').text(lang.friendRequests);
@@ -501,26 +646,29 @@ win
 
 })
 
-.on( 'mousedown', '.requests', function(){
+.on( 'mousedown', '.notification-icon', function(){
 
 
-    location = 'pending-requests';
-    if(content.hasClass('list')){
-      content.removeClass('list');
-    }
+    if($('.notification-icon').hasClass('active')){
+      location = 'pending-requests';
+      if(content.hasClass('list')){
+        content.removeClass('list');
+      }
 
-    api.user.pendingRequests( false, function( error, users ){
+      api.user.pendingRequests( false, function( error, users ){
 
-        users = users.sort( function( a, b ){
-            return a.fullName.localeCompare( b.fullName );
-        });
+          users = users.sort( function( a, b ){
+              return a.fullName.localeCompare( b.fullName );
+          });
 
-        cardsShowInfo( users, LIST_REQUESTS );
+          ntCardsShowInfo( users, LIST_REQUESTS );
 
-    });
+      });
+    }else
 
 })
 
+/*
 .on( 'mousedown', '.blocked', function(){
 
     location = 'blocked-users';
@@ -536,6 +684,7 @@ win
     });
 
 })
+*/
 
 .on( 'mousedown', '.friend-info', function(){
 
