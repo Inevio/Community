@@ -9,13 +9,17 @@
   width: 198px;
 }
 
-
 .notification{
+  display: none;
+}
+
+.notification.active{
   width: 330px;
   height: 200px;
   position: absolute;
   left: 28px;
   top: 39px;
+  display: inherit;
 
   .ui-triangle{
     width: 0px;
@@ -28,15 +32,12 @@
 
   .ui-content{
     width: 330px;
-    height: 180px;
+    height: auto;
     border-radius: 6px;
     background: #ffffff;
 
     .ui-content-top{
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-top: none;
-      border-left: none;
-      border-right: none;
+      border-bottom: 1px solid #66676D;
       text-align: center;
       font-size: 17px;
       height: 28px;
@@ -54,19 +55,123 @@
 
     .ui-content-bottom{
       height: auto;
-      
+      width: 310px;
+      margin-left: 9px;
+      padding-bottom: 5px;
+
+      .notification-card{
+        height: 106px;
+        border-bottom: 1px solid #66676D;
+        display: inline-block !important;
+        width: 310px;
+      }
+      .notification-card:last-child{
+        border-bottom: none;
+      }
+      .nt-content{
+        width: 310px;
+        margin-top: 10px;
+        display: flex;
+        .nt-avatar{
+          width: 40px;
+          height: 40px;
+          border-radius: 40px;
+        }
+        .nt-info{
+          width: 267px;
+          height: 40px;
+          margin-left: 3px;
+
+          .nt-info-name{
+            width: 267px;
+            height: 20px;
+            padding-top: 3px;
+            .info-name{
+              font-weight: bold;
+              width: 100px;
+              font-size: 17px;
+              margin-left: 6px;
+            }
+            .info-friend{
+              color: grey;
+            }
+          }
+          .nt-info-time{
+            width: 267px;
+            height: 14px;
+            font-size: 14px;
+            padding-top: 3px;
+            font-weight: 300;
+
+            span{
+              margin-left: 6px;
+              color: grey;
+            }
+          }
+
+        }
+      }
+      .nt-buttons{
+        width: 310px;
+        height: 40px;
+        margin-top: 7px;
+
+        article{
+          float: right;
+          margin-right: 16px;
+          margin-top: 6px;
+          height: 28px;
+          border-radius: 18px;
+          text-align: center;
+
+          span{
+            margin-top: 4px;
+          }
+        }
+      }
     }
 
   }
 
 }
 .notification-icon{
-  width: 21px;
-  height: 21px;
+  width: 32px;
+  height: 32px;
   float: right;
-  margin-top: -2px;
-  margin-right: 12px;
-  background: #FFFFFF;
+  margin-right: 6px;
+  margin-top: -8px;
+
+  i{
+    width: 22px;
+    height: 21px;
+    float: left;
+    margin-left: 5px;
+    background: url("@static/notification.png") no-repeat;
+    background-size: 22px 21px;
+    margin-top: 5px;
+    }
+
+    .active i{
+        background-image: url("@static/notification-active.png");
+    }
+
+    span{
+      color: #fff;
+      position: absolute;
+      right: 540px;
+      border-radius: 60%;
+      background: #f45756;
+      text-align: center;
+      height: 16px;
+      min-width: 8px;
+      padding: 0px 4px;
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    span:empty{
+      display: none;
+    }
 }
 
 .ui-input-search{
@@ -238,7 +343,6 @@
 
     .card:last-child{
         border-bottom: none;
-        /*background: url('https://download.inevio.com/avatar/716/normal') no-repeat; */
         height: inherit;
         background-size: 534px 190px;
     }
