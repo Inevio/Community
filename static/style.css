@@ -3,6 +3,9 @@
     border-radius: 6px;
     background-color: #3f4750;
 }
+.wz-scroll-bottom{
+  display: none !important;
+}
 
 /* START - Header */
 .ui-header-brand{
@@ -15,7 +18,6 @@
 
 .notification.active{
   width: 330px;
-  height: 200px;
   position: absolute;
   left: 28px;
   top: 39px;
@@ -31,8 +33,8 @@
   }
 
   .ui-content{
-    width: 330px;
-    height: auto;
+    width: 338px;
+    max-height: 253px !important;
     border-radius: 6px;
     background: #ffffff;
 
@@ -42,7 +44,7 @@
       font-size: 17px;
       height: 28px;
       padding-top: 11px;
-      width: 310px;
+      width: 316px;
       margin-left: 10px;
 
       span{
@@ -52,35 +54,49 @@
         text-overflow: ellipsis;
       }
     }
-
     .ui-content-bottom{
-      height: auto;
-      width: 310px;
+      height: inherit !important;
+      max-height: 208px;
+      width: 325px;
       margin-left: 9px;
-      padding-bottom: 5px;
+      padding-bottom: 5px !important;
+
+      .nt-list-status{
+        margin-top: 15px !important;
+        text-align: center;
+        margin-bottom: 14px !important;
+      }
+
+
+
 
       .notification-card{
         height: 106px;
         border-bottom: 1px solid #66676D;
-        display: inline-block !important;
-        width: 310px;
+        display: inline-block;
+        width: 317px;
       }
-      .notification-card:last-child{
-        border-bottom: none;
+      .notification-card:last-of-type{
+        border-bottom: none !important;
       }
       .nt-content{
-        width: 310px;
+
         margin-top: 10px;
         display: flex;
         .nt-avatar{
           width: 40px;
           height: 40px;
           border-radius: 40px;
+
+          img{
+            width: inherit;
+            height: inherit;
+          }
         }
         .nt-info{
           width: 267px;
           height: 40px;
-          margin-left: 3px;
+          margin-left: 10px;
 
           .nt-info-name{
             width: 267px;
@@ -90,7 +106,7 @@
               font-weight: bold;
               width: 100px;
               font-size: 17px;
-              margin-left: 6px;
+
             }
             .info-friend{
               color: grey;
@@ -112,7 +128,7 @@
         }
       }
       .nt-buttons{
-        width: 310px;
+
         height: 40px;
         margin-top: 7px;
 
@@ -130,48 +146,50 @@
         }
       }
     }
-
   }
-
 }
 .notification-icon{
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   float: right;
-  margin-right: 6px;
+  margin-right: 9px;
   margin-top: -8px;
 
   i{
-    width: 22px;
-    height: 21px;
+    width: 17px;
+    height: 17px;
     float: left;
-    margin-left: 5px;
-    background: url("@static/notification.png") no-repeat;
-    background-size: 22px 21px;
-    margin-top: 5px;
+    margin-left: 13px;
+    background: url('@static/campana.png') no-repeat;
+    background-position: 0px 0px;
+    background-size: 34px 17px;
+    margin-top: 6px;
     }
 
-    .active i{
-        background-image: url("@static/notification-active.png");
-    }
 
     span{
       color: #fff;
       position: absolute;
-      right: 540px;
+      right: 541px;
       border-radius: 60%;
       background: #f45756;
       text-align: center;
       height: 16px;
+      top: 2px;
       min-width: 8px;
       padding: 0px 4px;
       font-size: 11px;
       line-height: 16px;
     }
 
+
     span:empty{
       display: none;
     }
+}
+
+.notification-icon.active i{
+    background-position: -17px 0px;
 }
 
 .ui-input-search{
@@ -356,7 +374,7 @@
         background-size: 534px 190px !important;
 
         .ui-header-btn{
-          height: 69px;
+          height: 120px;
           width: 534px;
           background: transparent;
 
@@ -398,9 +416,48 @@
           .options{
             float: right;
             border-radius: 100%;
-            background: rgba(0, 0, 0,0.2);
-            width: 33px;
-            height: 33px;
+            background: url('@static/more.png') no-repeat;
+            width: 34px;
+            height: 34px;
+            background-position: 15px 7px;
+            background-size: 3px 17px;
+          }
+
+          .ui-header-btn-bottom{
+
+            float: right;
+            height: auto;
+            width: inherit;
+            margin-top: 8px;
+
+            .more-options.active{
+              display: inherit;
+            }
+            .more-options{
+              display: none;
+              max-width: 110px;
+              height: auto;
+              padding: 2px 5px 2px 5px;
+              float: right;
+              text-align: right;
+              margin-right: 16px;
+              background: white;
+              border-radius: 3px;
+            }
+            .more-options article{
+              display: none;
+              padding-top: 5px;
+              padding-bottom: 5px;
+            }
+            .rm-friend.active{
+              display: inherit !important;
+            }
+            .block-friend.active{
+              display: inherit !important;
+            }
+            .edit-me.active{
+              display: inherit !important;
+            }
           }
         }
 
@@ -412,8 +469,8 @@
           .card-data{
 
             width: 482px;
-            margin-top: 51px;
             margin-left: 18px;
+            position: absolute;
 
               .card-data-top{
                 width: 480px;
@@ -654,7 +711,7 @@
 
 
         .ui-header-btn{
-          height: 69px;
+          height: 120px;
           width: 534px;
           background: transparent;
 
@@ -667,6 +724,7 @@
             height: 33px;
             border-radius: 18px;
           }
+
 
           .friend-msg{
               float: right;
@@ -693,12 +751,39 @@
               max-width: none;
               white-space: nowrap;
           }
-          .options{
+          .ui-header-btn-bottom{
+
             float: right;
-            border-radius: 100%;
-            background: rgba(0, 0, 0,0.2);
-            width: 33px;
-            height: 33px;
+            height: auto;
+            width: inherit;
+            margin-top: 8px;
+            .more-options.active{
+              display: inherit;
+            }
+            .more-options{
+              display: none;
+              max-width: 110px;
+              height: auto;
+              padding: 2px 8px 2px 8px;
+              float: right;
+              text-align: right;
+              margin-right: 16px;
+              background: white;
+              border-radius: 3px;
+            }
+
+            .more-options article{
+              padding-top: 5px;
+              padding-bottom: 5px;
+              display: none;
+            }
+            .rm-friend.active{
+              display: inherit !important;
+            }
+            .block-friend.active{
+              display: inherit !important;
+            }
+
           }
         }
 
@@ -710,8 +795,8 @@
           .card-data{
 
             width: 482px;
-            margin-top: 51px;
             margin-left: 18px;
+            position: absolute;
 
               .card-data-top{
                 width: 480px;

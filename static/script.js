@@ -13,6 +13,7 @@ var listStatus                  = $('.list-status');
 var ntListStatus                = $('.nt-list-status');
 var requestsTopButton           = $('.requests');
 var blockedTopButton            = $('.blocked');
+var notificationCenter          = $('.notification');
 var location                    = '';
 var condicion                   = true;
 
@@ -103,15 +104,15 @@ var pendingRequests = function(){
   api.user.pendingRequests( function( error, users ){
 
     if( users.length ){
-      $( 'notification-icon i').addClass('active');
+      $( '.notification-icon').addClass('active');
       $( '.nt-badge').text(users.length);
+
       //$( '.ui-header .requests span' ).addClass( 'requests-notification' ).text( users.length );
     }else{
       //$( '.ui-header .requests span' ).removeClass( 'requests-notification' ).text( '' );
-      $( 'notification-icon i').removeClass('active');
+      $( '.notification-icon').removeClass('active');
       $( '.nt-badge').text('');
     }
-
     wz.app.setBadge( users.length || '' );
 
   });
@@ -124,7 +125,7 @@ var createCard = function( info ){
     var isUser = !!info.avatar;
 
     card.data( 'id', info.id );
-    //card.find( '.info' ).text( info.bio );
+    card.find( '.info' ).text( info.description);
     card.find( '.text-edit').css( 'display', 'none');
     card.find( '.edit-info').css( 'display', 'none');
 
@@ -138,16 +139,31 @@ var createCard = function( info ){
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
             card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
+            card.find( '.rm-friend').find('span').text(lang.rmFriend);
+            card.find( '.block-friend').find('span').text(lang.blockFriend);
+            card.find( '.block-friend').addClass('active');
+            card.find( '.rm-friend').addClass('active');
         }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
             card.addClass( 'pending-received' );
             card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
+            card.find( '.block-friend').find('span').text(lang.blockFriend);
+            card.find( '.block-friend').addClass('active');
         }else if( info.relation === 'pending' ){
             card.addClass( 'pending-sent' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
             card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
+            card.find( '.block-friend').find('span').text(lang.blockFriend);
+            card.find( '.block-friend').addClass('active');
+
         }else if( info.id === api.system.user().id ){
             card.addClass( 'self' );
+            card.find( '.edit-me').find('span').text(lang.editMe);
+            card.find( '.edit-me').addClass('active');
+            api.user.setDescription( 'Esto es un texto de prueba', function(){
+
+
+            });
             card.find( '.friend-info' ).remove();
             card.find( '.edit-info').css( 'display', 'block');
             card.find( '.edit-info').addClass('right');
@@ -156,6 +172,9 @@ var createCard = function( info ){
             card.addClass( 'stranger' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
             card.find( '.friend-info span' ).text( lang.addFriend );
+            card.find( '.block-friend').find('span').text(lang.blockFriend);
+            card.find( '.block-friend').addClass('active');
+
         }
 
     }else{
@@ -226,40 +245,14 @@ var createNtCard = function( info ){
     var isUser = !!info.avatar;
 
     card.data( 'id', info.id );
-    //card.find( '.info' ).text( info.bio );
-    card.find( '.text-edit').css( 'display', 'none');
-    card.find( '.edit-info').css( 'display', 'none');
+    card.find('.accept span').text(lang.acceptRequest);
+    card.find('.cancel span').text(lang.cancelRequest);
+    card.find('.info-friend').text(lang.wantToBeFriend);
 
     if( isUser ){
 
-        card.find('.card-data .name').text( info.fullName );
+        card.find('.info-name').text( info.fullName );
         card.find('img').attr( 'src', info.avatar.normal );
-
-        if( info.relation === 'friend' ){
-            card.addClass( 'friend' );
-            //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
-            card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
-        }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
-            card.addClass( 'pending-received' );
-            card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
-        }else if( info.relation === 'pending' ){
-            card.addClass( 'pending-sent' );
-            //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
-        }else if( info.id === api.system.user().id ){
-            card.addClass( 'self' );
-            card.find( '.friend-info' ).remove();
-            card.find( '.edit-info').css( 'display', 'block');
-            card.find( '.edit-info').addClass('right');
-            card.find( '.edit-info').find('span').text('Editar');
-        }else{
-            card.addClass( 'stranger' );
-            //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            card.find( '.friend-info span' ).text( lang.addFriend );
-        }
-
     }else{
 
         card.find('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags@2x.png' );
@@ -311,13 +304,7 @@ var createNtCard = function( info ){
         }
 
     }
-    var valor = Math.random()*100%10;
-    var urlCabecera = 'url(https:/';
-    var urlCuerpo1 = '/download.inevio.com/avatar/';
-    var urlCuerpo2 = '/normal) no-repeat';
-    var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
 
-    card.css('background' , urlFinal);
     return card;
 
 };
@@ -452,7 +439,7 @@ var translate = function(){
     $('.profile-title').text( lang.profileTitle );
     $( '.users-title', contactsAside ).text( lang.usersTitle );
     $( '.groups-title', groupsAside ).text( lang.groupsTitle );
-    $( '.card-data .info', cardPrototype ).text( lang.userBio );
+    //$( '.card-data .info', cardPrototype ).text( lang.userBio );
     $( '.tittleApp' ).text( lang.appName );
     $('.user-groups h3').text( lang.groupsTitle );
     $('.group-members h3').text( lang.membersTitle );
@@ -616,7 +603,7 @@ win
     });
 
 })
-
+/*
 .on( 'mousedown', '.friend-contact', function(){
 
     if( $(this).parents('.card').hasClass( 'friend' ) ){
@@ -632,7 +619,7 @@ win
                     .text( user.fullName + ' ' + lang.requestAccepted )
                     .icon( user.avatar.tiny )
                     .render();*/
-
+                    /*
             });
 
         });
@@ -643,28 +630,75 @@ win
         alert( lang.notWorking );
 
     }
+})
+*/
 
+.on('mousedown', '.nt-accept', function(){
+
+  api.user( $(this).parents('.nt-buttons').parents('.notification-card').data( 'id' ), function( error, user ){
+
+      user.acceptRequest( function(){
+
+
+        api.banner()
+            .setTitle( lang.requestCancelledTitle )
+            .setText( user.fullName + ' ' + lang.requestCancelled )
+            .setIcon( user.avatar.tiny )
+            .render();
+
+
+
+            if($(this).parents('.nt-buttons').parents('.notification-card').find('.notification-card').size() < 3){
+              $(this).parents('.nt-buttons').parents('.notification-card').remove();
+              $('.notification').removeClass('active');
+              $('.notification-icon').removeClass('active');
+            }else{
+              $(this).parents('.nt-buttons').parents('.notification-card').remove();
+            }
+
+
+      });
+
+  });
+})
+
+.on('mousedown', '.nt-cancel', function(){
+
+  api.user( $(this).parents('.nt-buttons').parents('.notification-card').data( 'id' ), function( error, user ){
+
+    user.cancelRequest( function(){
+
+        api.banner()
+            .setTitle( lang.requestCancelledTitle )
+            .setText( user.fullName + ' ' + lang.requestCancelled )
+            .setIcon( user.avatar.tiny )
+            .render();
+
+            if($(this).parents('.nt-buttons').parents('.notification-card').find('.notification-card').size() < 3){
+              $(this).parents('.nt-buttons').parents('.notification-card').remove();
+              $('.notification').removeClass('active');
+              $('.notification-icon').removeClass('active');
+            }else{
+              $(this).parents('.nt-buttons').parents('.notification-card').remove();
+            }
+
+    });
+
+  });
 })
 
 .on( 'mousedown', '.notification-icon', function(){
 
 
-    if($('.notification-icon').hasClass('active')){
-      location = 'pending-requests';
-      if(content.hasClass('list')){
-        content.removeClass('list');
-      }
+
 
       api.user.pendingRequests( false, function( error, users ){
 
           users = users.sort( function( a, b ){
               return a.fullName.localeCompare( b.fullName );
           });
-
           ntCardsShowInfo( users, LIST_REQUESTS );
-
       });
-    }else
 
 })
 
@@ -809,9 +843,53 @@ win
     card.find( '.text-edit').css( 'display', 'none');
     condicion=true;
     card.find('.saveChanges').remove();
+})
 
+.on( 'click', '.notification-icon' ,function(){
+
+    var ntIcon = $('.notification-icon');
+
+      if (notificationCenter.hasClass('active')) {
+        notificationCenter.removeClass('active');
+      }else {
+        notificationCenter.addClass('active');
+      }
+})
+.on( 'click', '.ui-window-content' ,function(){
+
+      if (notificationCenter.hasClass('active')) {
+        notificationCenter.removeClass('active');
+      }
+})
+
+
+.on( 'click', '.ui-input-search' ,function(){
+      if (notificationCenter.hasClass('active')) {
+        notificationCenter.removeClass('active');
+      }
+})
+.on( 'click', '.tittleApp' ,function(){
+      if (notificationCenter.hasClass('active')) {
+        notificationCenter.removeClass('active');
+      }
+})
+
+.on( 'click', '.ui-navbar' ,function(){
+      if (notificationCenter.hasClass('active')) {
+        notificationCenter.removeClass('active');
+      }
+})
+
+.on( 'click', '.options' ,function(){
+  var options = $(this).parents('.ui-header-btn-top').parents('.ui-header-btn').find('.ui-header-btn-bottom').find('.more-options');
+  if(options.hasClass('active')){
+    options.removeClass('active');
+  }else {
+    options.addClass('active');
+  }
 
 })
+
 .key( 'enter', function( e ){
 
     location = 'user-seeker';
@@ -819,6 +897,7 @@ win
     aside.find('.active').removeClass('active');
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
+
 
     if( $(e.target).is('.ui-input-search input') ){
 
@@ -833,9 +912,7 @@ win
                 content.addClass( 'list');
 
             });
-
         }
-
     }
 
 })
