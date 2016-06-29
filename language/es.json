@@ -13,6 +13,9 @@
     "noGroups" : "No estás metido en ningún grupo<hr/>Búscalos en Inevio usando el buscador que hay arriba",
     "sendMessage" : "Enviar mensaje",
     "deleteFriend" : "Eliminar contacto",
+    "rmFriend" : "Borrar amigo",
+    "blockFriend": "Bloquear amigo",
+    "editMe"      : "Editar mi perfil",
     "acceptRequest" : "Aceptar",
     "cancelRequest" : "Cancelar",
     "cancelRequestTwo" : "Cancelar",
@@ -27,6 +30,7 @@
     "requestCancelled" : "seguirá sin ser tu contacto",
     "requestSentTitle" : "Solicitud enviada",
     "requestSent" : "La solicitud ha sido mandada a",
+    "wantToBeFriend" : "quiere ser tu amigo",
     "noMessage" : [ "", "Búsqueda sin resultados", "No tienes solicitudes de amistad pendientes", "No tienes usuarios bloqueados" ]
 
 }
