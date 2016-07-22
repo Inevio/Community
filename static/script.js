@@ -121,16 +121,26 @@ var pendingRequests = function(){
 
 var createCard = function( info ){
 
+    console.log(info);
     var card   = cardPrototype.clone().removeClass( 'wz-prototype' );
     var isUser = !!info.avatar;
 
     card.data( 'id', info.id );
-    card.find( '.info' ).text( info.description);
+    var descript ='';
+    api.user( info.id, function( error, user ){
+      descript = user.description;
+    });
+    card.find( '.info' ).html(descript.replace(/\n/g, "<br />"));
+    card.find( '.info-tittle').text(lang.description);
+    card.find( '.edition-description').find('textarea').attr('placeholder', descript);
+
+    //card.find( '.info' ).text( info.fullName);
     card.find( '.text-edit').css( 'display', 'none');
     card.find( '.edit-info').css( 'display', 'none');
 
     if( isUser ){
 
+        card.find('.edition-name').find('section').find('span').text(info.fullName);
         card.find('.card-data .name').text( info.fullName );
         card.find('img').attr( 'src', info.avatar.normal );
 
@@ -160,14 +170,14 @@ var createCard = function( info ){
             card.addClass( 'self' );
             card.find( '.edit-me').find('span').text(lang.editMe);
             card.find( '.edit-me').addClass('active');
-            api.user.setDescription( 'Esto es un texto de prueba', function(){
-
-
-            });
             card.find( '.friend-info' ).remove();
             card.find( '.edit-info').css( 'display', 'block');
             card.find( '.edit-info').addClass('right');
-            card.find( '.edit-info').find('span').text('Editar');
+            card.find( '.edit-info').find('span').text(lang.edit);
+            card.find( '.save-changes').find('span').text(lang.saveChanges);
+            card.find( '.cancel-changes').find('span').text(lang.cancelChanges);
+            card.find( '.edition-name').find('.tittle').text(lang.name);
+            card.find( '.edition-description').find('.tittle').text(lang.description);
         }else{
             card.addClass( 'stranger' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
@@ -228,10 +238,18 @@ var createCard = function( info ){
         }
 
     }
-    var valor = Math.random()*100%10;
-    var urlCabecera = 'url(https:/';
-    var urlCuerpo1 = '/download.inevio.com/avatar/';
-    var urlCuerpo2 = '/normal) no-repeat';
+
+    /*
+      Quitar la imagen y asignar una aleatoria a los usuarios cuando se crea un usuario nuevo?
+      o que cada vez que se cree la tarjeta de un usuario ponerle una img de fondo.
+    */
+
+    var valor = Math.floor((Math.random()*(5.999999-0.999999))+0.999999);
+
+    /*var url = 'url('+'@static/f'+valor+'.png'+') no-repeat';*/
+    var urlCabecera = 'url(/app';
+    var urlCuerpo1 = '/380/f';
+    var urlCuerpo2 = '.png) no-repeat';
     var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
 
     card.css('background' , urlFinal);
@@ -250,7 +268,6 @@ var createNtCard = function( info ){
     card.find('.info-friend').text(lang.wantToBeFriend);
 
     if( isUser ){
-
         card.find('.info-name').text( info.fullName );
         card.find('img').attr( 'src', info.avatar.normal );
     }else{
@@ -641,8 +658,8 @@ win
 
 
         api.banner()
-            .setTitle( lang.requestCancelledTitle )
-            .setText( user.fullName + ' ' + lang.requestCancelled )
+            .setTitle( lang.requestAcceptedTitle )
+            .setText( user.fullName + ' ' + lang.requestAccepted )
             .setIcon( user.avatar.tiny )
             .render();
 
@@ -881,7 +898,7 @@ win
 })
 
 .on( 'click', '.options' ,function(){
-  var options = $(this).parents('.ui-header-btn-top').parents('.ui-header-btn').find('.ui-header-btn-bottom').find('.more-options');
+  var options = $(this).parents('.ui-header-btn-top').parents('.ui-header-btn').parents('.card').find('.more-options');
   if(options.hasClass('active')){
     options.removeClass('active');
   }else {
@@ -903,6 +920,10 @@ win
 
         if( $(e.target).val() ){
 
+          /*
+            Cambiar los parametros, poner la paginacion en el parametro del medio (valor, pagina, callback)
+          */
+
             api.user.search( $(e.target).val(), function( error, users ){
 
                 users = users.sort( function( a, b ){
@@ -914,6 +935,44 @@ win
             });
         }
     }
+
+})
+
+.on('click', '.edit-me', function(){
+
+  // Activamos la ventana de edicion
+  if(content.hasClass('list')){
+    console.error('Error se supone que eso no puede ocurrir');
+  }
+
+  $(this).removeClass('active');
+  content.addClass('edit-mode');
+
+
+
+})
+
+.on('click', '.cancel-changes', function(){
+
+  // Activamos la ventana por defecto
+
+  $('.ui-window-content').removeClass('edit-mode');
+  $('.edit-me').addClass('active');
+  $('.more-options').removeClass('active');
+
+})
+
+.on('click', '.save-changes', function(){
+
+
+
+      var texto = $(this).parents('.card').find('textarea').val();
+
+              api.user.setDescription( texto , function(){
+
+                console.log('Se coge este texto: '+texto);
+
+              });
 
 })
 
