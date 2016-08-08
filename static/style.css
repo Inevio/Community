@@ -883,6 +883,10 @@
 
                 }
                 .info-bottom{
+                  max-width: 342px;
+                  max-height: 67px;
+                  overflow: hidden;
+
 
                   .info{
                       font-size: 13px;
@@ -892,6 +896,7 @@
                       overflow: hidden;
                       word-wrap: break-word;
                   }
+
 
                 }
               }
@@ -1152,7 +1157,7 @@
               }
 
               .name{
-                display: none !important;
+                display: none;
                 /*
                 color: #fff;
                 width: 345px;
@@ -1224,12 +1229,12 @@
                     margin-top: 14px;
                   }
                   .wz-scroll-textarea{
-                    padding-top: 0px !important;
-                    padding-bottom: 0px !important;
-                    top: 360px !important;
-                    left: 488px !important;
-                    height: 100px !important;
-                    width: 9px !important;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    top: 360px;
+                    left: 488px;
+                    height: 100px;
+                    width: 9px;
                   }
                 }
 
