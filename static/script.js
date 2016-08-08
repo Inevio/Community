@@ -397,7 +397,6 @@ var removeFriendInfo = function( user ){
     if( userRequest.size() ){
         userRequest.remove();
     }
-
 };
 
 var profile = function(){
@@ -583,6 +582,11 @@ win
     if(content.hasClass('list')){
       content.removeClass('list');
     }
+    if(content.hasClass('edit-mode')){
+      $('.ui-window-content').removeClass('edit-mode');
+      $('.edit-me').addClass('active');
+      $('.more-options').removeClass('active');
+    }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
 
@@ -595,6 +599,12 @@ win
 .on( 'mousedown', '.profile-user', function(){
 
     location = 'user-info';
+
+    if(content.hasClass('edit-mode')){
+      $('.ui-window-content').removeClass('edit-mode');
+      $('.edit-me').addClass('active');
+      $('.more-options').removeClass('active');
+    }
 
     if(content.hasClass('list')){
       content.removeClass('list');
@@ -853,6 +863,18 @@ win
     }
 })
 
+.on( 'click', '.block-friend', function(){
+
+  var idBlockUser = $(this).parents('.card').data().id;
+
+  wz.user.block( idBlockUser );
+  console.log(idBlockUser);
+
+wz.user.blockedList( function( error, list ){
+    console.log(list);
+});
+
+})
 .on( 'click', '.saveChanges' , function () {
 
     var card = $('.card-data');
@@ -909,6 +931,11 @@ win
 
 .key( 'enter', function( e ){
 
+  if(content.hasClass('edit-mode')){
+    $('.ui-window-content').removeClass('edit-mode');
+    $('.edit-me').addClass('active');
+    $('.more-options').removeClass('active');
+  }
     location = 'user-seeker';
 
     aside.find('.active').removeClass('active');
@@ -929,13 +956,13 @@ win
                 users = users.sort( function( a, b ){
                     return a.fullName.localeCompare( b.fullName );
                 });
+
                 cardsShowInfo( users, LIST_SEARCH );
                 content.addClass( 'list');
 
             });
         }
     }
-
 })
 
 .on('click', '.edit-me', function(){
@@ -973,7 +1000,10 @@ win
                 console.log('Se coge este texto: '+texto);
 
               });
-
+                /*content.removeClass('edit-mode');*/
+                $('.ui-window-content').removeClass('edit-mode');
+                $('.edit-me').addClass('active');
+                $('.more-options').removeClass('active');
 })
 
 .on( 'ui-view-resize', function(){
