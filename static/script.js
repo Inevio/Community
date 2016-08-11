@@ -356,9 +356,9 @@ var appendCardsShowInfo = function (list, type){
         listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
         centerListStatus();
     }
-    $('.list').find('more-card').removeClass('more-card');
+    /*$('.list').find('more-card').removeClass('more-card');
     $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
-
+*/
 
 };
 
@@ -390,7 +390,7 @@ var cardsShowInfo = function( list, type ){
         centerListStatus();
     }
 
-    $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
+    /*$('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');*/
 
 };
 
@@ -984,9 +984,9 @@ if($('.ui-window-content').hasClass('list')){
 }
 */
 
-.on('mouseover', '.more-card', function(e){
+.on('mousewheel', /*'.more-card',*/ function(e){
 
-  $(this).parents().find('.more-card').removeClass('more-card');
+  /*$(this).parents().find('.more-card').removeClass('more-card');*/
 
   var listaVisualizada = $('.list').children();
 
@@ -1037,7 +1037,7 @@ if($('.ui-window-content').hasClass('list')){
 
                 cardsShowInfo( users, LIST_SEARCH );
                 content.addClass( 'list');
-                $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
+                /*$('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');*/
 
             });
         }
