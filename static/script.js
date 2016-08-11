@@ -16,6 +16,8 @@ var blockedTopButton            = $('.blocked');
 var notificationCenter          = $('.notification');
 var location                    = '';
 var condicion                   = true;
+var numPagina                   = 0;
+var cadenaBusqueda              = "";
 
 
 var LIST_NORMAL   = 0;
@@ -121,7 +123,6 @@ var pendingRequests = function(){
 
 var createCard = function( info ){
 
-    console.log(info);
     var card   = cardPrototype.clone().removeClass( 'wz-prototype' );
     var isUser = !!info.avatar;
 
@@ -130,7 +131,11 @@ var createCard = function( info ){
     api.user( info.id, function( error, user ){
       descript = user.description;
     });
-    card.find( '.info' ).html(descript.replace(/\n/g, "<br />"));
+    if(descript == ""){
+      card.find( '.info ' ).text(lang.userBio);
+    }else{
+      card.find( '.info' ).html(descript.replace(/\n/g, "<br />"));
+    }
     card.find( '.info-tittle').text(lang.description);
     card.find( '.edition-description').find('textarea').attr('placeholder', descript);
 
@@ -326,7 +331,36 @@ var createNtCard = function( info ){
 
 };
 
+var appendCardsShowInfo = function (list, type){
 
+    var cardList = [];
+
+    for( var i = 0 ; i < list.length ; i++ ){
+        cardList.push( createCard( list[ i ] ) );
+    }
+
+
+    $('.list').append( cardList );
+
+    aside.find('.active').removeClass('active');
+
+    if( list.length ){
+
+        listStatus.css( 'display', 'none' );
+
+        if( list.length === 1 ){
+            aside.find( ( list[ 0 ].avatar ? '.user-' : '.group' ) + list[ 0 ].id ).addClass('active');
+        }
+
+    }else{
+        listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
+        centerListStatus();
+    }
+    $('.list').find('more-card').removeClass('more-card');
+    $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
+
+
+};
 
 
 var cardsShowInfo = function( list, type ){
@@ -355,6 +389,8 @@ var cardsShowInfo = function( list, type ){
         listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
         centerListStatus();
     }
+
+    $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
 
 };
 
@@ -581,11 +617,11 @@ win
 
     if(content.hasClass('list')){
       content.removeClass('list');
+      numPagina = 0;
+      cadenaBusqueda = "";
     }
     if(content.hasClass('edit-mode')){
-      $('.ui-window-content').removeClass('edit-mode');
-      $('.edit-me').addClass('active');
-      $('.more-options').removeClass('active');
+      content.removeClass('edit-mode');
     }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
@@ -601,13 +637,14 @@ win
     location = 'user-info';
 
     if(content.hasClass('edit-mode')){
-      $('.ui-window-content').removeClass('edit-mode');
-      $('.edit-me').addClass('active');
-      $('.more-options').removeClass('active');
+      content.removeClass('edit-mode');
+
     }
 
     if(content.hasClass('list')){
       content.removeClass('list');
+      numPagina = 0;
+      cadenaBusqueda = "";
     }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
@@ -621,6 +658,8 @@ win
 
     if(content.hasClass('list')){
       content.removeClass('list');
+      numPagina = 0;
+      cadenaBusqueda = "";
     }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
@@ -928,13 +967,49 @@ wz.user.blockedList( function( error, list ){
   }
 
 })
+/*
+
+Cuando se haga scroll
+if($('.ui-window-content').hasClass('list')){
+  /*
+  159 px por card de la lista
+  1591 scroll max con 10 usuarios
+
+  Numero de hijos de list tiene que ser min 12 y que el scrollTop sea numeroDeHijos-3x159 (implica que el scroll este mas menos sobre el ultimo usuario )para que se ejecute el método.
+  Entonces se hace una peticion con la siguiente pagina (Contador). SE AÑADEN A LISTA.
+  Numero de hijos de list va a ser 2 + 10 hijos primeros + resto de la peticion,
+          El resto pueden ser 10 o menos de 10 ( si es menos de 10 fin se acabo toda la historia)
+          El resto es 10 implica que puede que haya mas.
+
+}
+*/
+
+.on('mouseover', '.more-card', function(e){
+
+  $(this).parents().find('.more-card').removeClass('more-card');
+
+  var listaVisualizada = $('.list').children();
+
+  if ((listaVisualizada.size()>12) && (  $('list').scrollTop() < (listaVisualizada.size()-3) * 159 ) && ($('.list').scrollTop() > (listaVisualizada.size()-5) * 159) ) {
+
+    api.user.search( cadenaBusqueda, numPagina + 1 ,function( error, users ){
+        if(users.length > 0){
+        numPagina++;
+
+        users = users.sort( function( a, b ){
+            return a.fullName.localeCompare( b.fullName );
+        });
+        appendCardsShowInfo( users, LIST_SEARCH );
+      }
+    });
+  }
+})
 
 .key( 'enter', function( e ){
 
+  $('.list').scrollTop( 0 );
   if(content.hasClass('edit-mode')){
-    $('.ui-window-content').removeClass('edit-mode');
-    $('.edit-me').addClass('active');
-    $('.more-options').removeClass('active');
+    content.removeClass('edit-mode');
   }
     location = 'user-seeker';
 
@@ -945,11 +1020,14 @@ wz.user.blockedList( function( error, list ){
 
     if( $(e.target).is('.ui-input-search input') ){
 
-        if( $(e.target).val() ){
+        if( $(e.target).val()){
 
           /*
             Cambiar los parametros, poner la paginacion en el parametro del medio (valor, pagina, callback)
           */
+
+            cadenaBusqueda = $(e.target).val();
+            numPagina = 0;
 
             api.user.search( $(e.target).val(), function( error, users ){
 
@@ -959,6 +1037,7 @@ wz.user.blockedList( function( error, list ){
 
                 cardsShowInfo( users, LIST_SEARCH );
                 content.addClass( 'list');
+                $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
 
             });
         }
@@ -967,25 +1046,15 @@ wz.user.blockedList( function( error, list ){
 
 .on('click', '.edit-me', function(){
 
-  // Activamos la ventana de edicion
-  if(content.hasClass('list')){
-    console.error('Error se supone que eso no puede ocurrir');
-  }
-
-  $(this).removeClass('active');
+  $(this).parents('.more-options').removeClass('active');
   content.addClass('edit-mode');
-
-
 
 })
 
 .on('click', '.cancel-changes', function(){
 
-  // Activamos la ventana por defecto
+  content.removeClass('edit-mode');
 
-  $('.ui-window-content').removeClass('edit-mode');
-  $('.edit-me').addClass('active');
-  $('.more-options').removeClass('active');
 
 })
 
@@ -1000,10 +1069,7 @@ wz.user.blockedList( function( error, list ){
                 console.log('Se coge este texto: '+texto);
 
               });
-                /*content.removeClass('edit-mode');*/
-                $('.ui-window-content').removeClass('edit-mode');
-                $('.edit-me').addClass('active');
-                $('.more-options').removeClass('active');
+                content.removeClass('edit-mode');
 })
 
 .on( 'ui-view-resize', function(){
