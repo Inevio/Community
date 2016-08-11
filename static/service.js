@@ -13,4 +13,5 @@ api.user
 .on( 'requestRefused', updateBadge );
 
 
+
 updateBadge();
