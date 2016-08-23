@@ -245,13 +245,12 @@ var createCard = function( info ){
     }
 
     /*
-      Quitar la imagen y asignar una aleatoria a los usuarios cuando se crea un usuario nuevo?
-      o que cada vez que se cree la tarjeta de un usuario ponerle una img de fondo.
+      Quitar la imagen y asignar una aleatoria a los usuarios cuando se crea un usuario nuevo
+      Por ahora cada vez que se genere una tarjeta de un usuario, se le asigna a esa tarjeta una iamgen aleatoria
     */
 
     var valor = Math.floor((Math.random()*(5.999999-0.999999))+0.999999);
 
-    /*var url = 'url('+'@static/f'+valor+'.png'+') no-repeat';*/
     var urlCabecera = 'url(/app';
     var urlCuerpo1 = '/380/f';
     var urlCuerpo2 = '.png) no-repeat';
@@ -356,10 +355,6 @@ var appendCardsShowInfo = function (list, type){
         listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
         centerListStatus();
     }
-    /*$('.list').find('more-card').removeClass('more-card');
-    $('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');
-*/
-
 };
 
 
@@ -389,9 +384,6 @@ var cardsShowInfo = function( list, type ){
         listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
         centerListStatus();
     }
-
-    /*$('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');*/
-
 };
 
 
@@ -967,26 +959,7 @@ wz.user.blockedList( function( error, list ){
   }
 
 })
-/*
-
-Cuando se haga scroll
-if($('.ui-window-content').hasClass('list')){
-  /*
-  159 px por card de la lista
-  1591 scroll max con 10 usuarios
-
-  Numero de hijos de list tiene que ser min 12 y que el scrollTop sea numeroDeHijos-3x159 (implica que el scroll este mas menos sobre el ultimo usuario )para que se ejecute el método.
-  Entonces se hace una peticion con la siguiente pagina (Contador). SE AÑADEN A LISTA.
-  Numero de hijos de list va a ser 2 + 10 hijos primeros + resto de la peticion,
-          El resto pueden ser 10 o menos de 10 ( si es menos de 10 fin se acabo toda la historia)
-          El resto es 10 implica que puede que haya mas.
-
-}
-*/
-
-.on('mousewheel', /*'.more-card',*/ function(e){
-
-  /*$(this).parents().find('.more-card').removeClass('more-card');*/
+.on('mousewheel', function(e){
 
   var listaVisualizada = $('.list').children();
 
@@ -1006,42 +979,39 @@ if($('.ui-window-content').hasClass('list')){
 })
 
 .key( 'enter', function( e ){
+  if($('.ui-input-search').hasClass('active')){
 
-  $('.list').scrollTop( 0 );
-  if(content.hasClass('edit-mode')){
-    content.removeClass('edit-mode');
-  }
-    location = 'user-seeker';
+      $('.list').scrollTop( 0 );
+      if(content.hasClass('edit-mode')){
+        content.removeClass('edit-mode');
+      }
+        location = 'user-seeker';
 
-    aside.find('.active').removeClass('active');
-    requestsTopButton.removeClass('active');
-    blockedTopButton.removeClass('active');
+        aside.find('.active').removeClass('active');
+        requestsTopButton.removeClass('active');
+        blockedTopButton.removeClass('active');
 
 
-    if( $(e.target).is('.ui-input-search input') ){
+        if( $(e.target).is('.ui-input-search input') ){
 
-        if( $(e.target).val()){
+            if( $(e.target).val()){
 
-          /*
-            Cambiar los parametros, poner la paginacion en el parametro del medio (valor, pagina, callback)
-          */
+                cadenaBusqueda = $(e.target).val();
+                numPagina = 0;
 
-            cadenaBusqueda = $(e.target).val();
-            numPagina = 0;
+                api.user.search( $(e.target).val(), function( error, users ){
 
-            api.user.search( $(e.target).val(), function( error, users ){
+                    users = users.sort( function( a, b ){
+                        return a.fullName.localeCompare( b.fullName );
+                    });
 
-                users = users.sort( function( a, b ){
-                    return a.fullName.localeCompare( b.fullName );
+                    cardsShowInfo( users, LIST_SEARCH );
+                    content.addClass( 'list');
                 });
-
-                cardsShowInfo( users, LIST_SEARCH );
-                content.addClass( 'list');
-                /*$('.list').children().slice(($('.list').children().size()-2),($('.list').children().size())).addClass('more-card');*/
-
-            });
+            }
         }
-    }
+
+  }
 })
 
 .on('click', '.edit-me', function(){
@@ -1072,9 +1042,20 @@ if($('.ui-window-content').hasClass('list')){
                 content.removeClass('edit-mode');
 })
 
+
+.on('focusin', '.ui-input-textarea', function(){
+  $(this).parents('.ui-input').addClass('active');
+})
+
+.on('focusout', '.ui-input-textarea', function(){
+  $(this).parents('.ui-input').removeClass('active');
+})
+
+
 .on( 'ui-view-resize', function(){
     centerListStatus();
 });
+
 
 // Start app
 win.addClass('dark');
