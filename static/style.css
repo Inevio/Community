@@ -42,8 +42,9 @@
     background: #ffffff;
 
     .ui-content-top{
-      border-bottom: 1px solid #66676D;
+      border-bottom: 1px solid rgba(0,0,0,.3);
       text-align: center;
+      color: grey;
       font-size: 17px;
       height: 28px;
       padding-top: 11px;
@@ -75,7 +76,7 @@
 
       .notification-card{
         height: 106px;
-        border-bottom: 1px solid #66676D;
+        border-bottom: 1px solid rgba(0,0,0,.4);
         display: inline-block;
         width: 317px;
       }
@@ -350,7 +351,7 @@
 
 .ui-window-content{
 
-    width: 534px;
+    width: 535px;
     text-align: center;
     background: url('@static/pattern-dark.png') no-repeat;
 
@@ -365,20 +366,20 @@
     .card:last-child{
         border-bottom: none;
         height: inherit;
-        background-size: 534px 190px;
+        background-size: 535px 190px;
     }
 
     .card{
-        width: 534px;
+        width: 535px;
         /*border-bottom: 1px solid #66676D;*/
         display: inline-block;
         padding-bottom: 20px;
         height: inherit;
-        background-size: 534px 190px !important;
+        background-size: 535px 190px !important;
 
         .ui-header-btn{
           height: 120px;
-          width: 534px;
+          width: 535px;
           background: transparent;
 
           button{
@@ -475,7 +476,7 @@
         }
 
         .info-section{
-          width: 534px;
+          width: 535px;
 
           .card-data{
 
@@ -552,7 +553,7 @@
           }
         }
         .background-user{
-          width: 534px;
+          width: 535px;
           height: 190px;
         }
 
@@ -715,7 +716,7 @@
 
 .list{
 
-    width: 534px;
+    width: 535px;
     text-align: center;
 
     .list-status{
@@ -729,21 +730,21 @@
     .card:last-child{
         border-bottom: none;
         height: inherit;
-        background-size: 534px 190px;
+        background-size: 535px 190px;
     }
 
     .card{
-        width: 534px;
+        width: 535px;
         height: 210px !important;
         /*border-bottom: 1px solid #66676D;*/
         display: inline-block;
         padding-bottom: 0px;
-        background-size: 534px 210px !important;
+        background-size: 535px 210px !important;
 
 
         .ui-header-btn{
           height: auto;
-          width: 534px;
+          width: 535px;
 
           button{
             float: right;
@@ -827,7 +828,7 @@
         }
 
         .info-section{
-          width: 534px;
+          width: 535px;
 
           .card-data{
 
@@ -903,7 +904,7 @@
           }
         }
         .background-user{
-          width: 534px;
+          width: 535px;
           height: 190px;
         }
 
@@ -1060,22 +1061,22 @@
 
 .edit-mode{
 
-  width: 534px;
+  width: 535px;
 
   .card{
       /*
-      width: 534px;
+      width: 535px;
       border-bottom: 1px solid #66676D;
       display: inline-block;
       padding-bottom: 20px;
       height: inherit;
-      background-size: 534px 190px !important;
+      background-size: 535px 190px !important;
       */
 
       .ui-header-btn{
         /*
         height: 120px;
-        width: 534px;
+        width: 535px;
         background: transparent;
         */
 
@@ -1131,7 +1132,7 @@
       }
 
       .info-section{
-        width: 534px;
+        width: 535px;
 
         .card-data{
 
@@ -1223,6 +1224,7 @@
                     width: 452px;
                     padding: 0px 4px;
                     height: 100px;
+                    border: 1px solid transparent;
                     background: transparent;
                     font-size: 15px;
                     color: #d8dadc;
@@ -1257,7 +1259,7 @@
         }
       }
       .background-user{
-        width: 534px;
+        width: 535px;
         height: 190px;
       }
 
