@@ -256,7 +256,7 @@ var createCard = function( info ){
     var urlCuerpo2 = '.png) no-repeat';
     var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
 
-    card.find('.card-back-list').css('background' , urlFinal);
+    card.css('background' , urlFinal);
     return card;
 
 };
@@ -1025,6 +1025,80 @@ wz.user.blockedList( function( error, list ){
 
   content.removeClass('edit-mode');
 
+
+})
+
+.on( 'click', '.rm-friend', function(){
+
+
+      if( $(this).parents('.card').hasClass('friend') ){
+
+          api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+
+              user.removeFriend( function(){
+
+                  api.banner()
+                      .setTitle( lang.friendRemovedTitle )
+                      .setText( user.fullName + ' ' + lang.friendRemoved )
+                      .setIcon( user.avatar.tiny )
+                      .render();
+
+              });
+
+          });
+
+      }
+      else if( $(this).parents('.card').hasClass('pending-received') ){
+
+          api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+
+              user.cancelRequest( function(){
+
+                  api.banner()
+                      .setTitle( lang.requestCancelledTitle )
+                      .setText( user.fullName + ' ' + lang.requestCancelled )
+                      .setIcon( user.avatar.tiny )
+                      .render();
+
+              });
+
+          });
+
+      }else if( $(this).parents('.card').hasClass('pending-sent') ){
+
+          api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+
+              user.cancelRequest( function(){
+
+                  api.banner()
+                      .setTitle( lang.requestCancelledTitle )
+                      .setText( user.fullName + ' ' + lang.requestCancelled )
+                      .setIcon( user.avatar.tiny )
+                      .render();
+
+              });
+
+          }); 
+
+      }else{
+
+          console.log( this, $(this).parents('.card'), $(this).parents('.card').data() );
+          api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+
+              user.addFriend( 'Hello dolly', function(){
+
+                  api.banner()
+                      .setTitle( lang.requestSentTitle )
+                      .setText( lang.requestSent + ' ' + user.fullName )
+                      .setIcon( user.avatar.tiny )
+                      .render();
+
+              });
+
+          });
+
+      }
+      $(this).parents('card').remove();
 
 })
 
