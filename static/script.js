@@ -256,7 +256,7 @@ var createCard = function( info ){
     var urlCuerpo2 = '.png) no-repeat';
     var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
 
-    card.css('background' , urlFinal);
+    card.find('.card-back-list').css('background' , urlFinal);
     return card;
 
 };
@@ -1025,6 +1025,18 @@ wz.user.blockedList( function( error, list ){
 
   content.removeClass('edit-mode');
 
+
+})
+
+.on( 'click' , '.friend-msg' , function(){
+  var idUsr = $(this).parents('.card').data().id;
+  console.log(idUsr);
+
+  wz.app.openApp( 14 , [ 'open-chat' , { 'type' : 'user' , 'content' : idUsr } , function( o ){
+
+    console.log(o);
+
+  }] , 'hidden' );
 
 })
 
