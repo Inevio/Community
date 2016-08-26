@@ -325,6 +325,12 @@
         padding-bottom: 20px;
         height: inherit;
         background-size: 535px 190px !important;
+        .blackground{
+          height: 210px !important;
+          display: inline-block;
+          padding-bottom: 0px;
+          background-size: 535px 210px !important;
+        }
         .ui-header-btn {
             height: 120px;
             width: 535px;
@@ -629,6 +635,13 @@
         display: inline-block;
         padding-bottom: 0px;
         background-size: 535px 210px !important;
+        .blackground{
+          background: rgba(0,0,0,.3);
+          height: 210px !important;
+          display: inline-block;
+          padding-bottom: 0px;
+          background-size: 535px 210px !important;
+        }
         .ui-header-btn {
             height: auto;
             width: 535px;
