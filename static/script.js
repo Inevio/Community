@@ -661,35 +661,29 @@ win
     });
 
 })
-/*
+
 .on( 'mousedown', '.friend-contact', function(){
 
-    if( $(this).parents('.card').hasClass( 'friend' ) ){
-        alert( lang.notWorking );
-    }else if( $(this).parents('.card').hasClass( 'pending-received' ) ){
+  api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
-        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+      user.acceptRequest( function(){
 
-            user.acceptRequest( function(){
 
-                /*api.banner()
-                    .title( lang.requestAcceptedTitle )
-                    .text( user.fullName + ' ' + lang.requestAccepted )
-                    .icon( user.avatar.tiny )
-                    .render();*/
-                    /*
-            });
+        api.banner()
+            .setTitle( lang.requestAcceptedTitle )
+            .setText( user.fullName + ' ' + lang.requestAccepted )
+            .setIcon( user.avatar.tiny )
+            .render();
 
-        });
+      });
+  });
+  $(this).parents('.card').removeClass('pending-received');
+  $(this).parents('.card').addClass('friend');
 
-    }else if( $(this).parents('.card').hasClass( 'pending-sent' ) ){
-        alert( lang.notWorking );
-    }else{
-        alert( lang.notWorking );
 
-    }
+
 })
-*/
+
 
 .on('mousedown', '.nt-accept', function(){
 
@@ -1098,7 +1092,14 @@ wz.user.blockedList( function( error, list ){
           });
 
       }
-      $(this).parents('card').remove();
+      if (!($(this).parents().hasClass('list'))) {
+        api.user( $(this).parents('.card').data('id'), function( error, user ){
+            cardsShowInfo( [ user ], LIST_NORMAL );
+        });
+      }else{
+        $(this).parents('.more-options').removeClass('active');
+        $(this).removeClass('active');
+      }
 
 })
 
