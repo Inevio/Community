@@ -61,6 +61,7 @@
             .nt-list-status {
                 margin-top: 15px !important;
                 text-align: center;
+                color: gray;
                 margin-bottom: 14px !important;
             }
             .notification-card {
