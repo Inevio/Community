@@ -39,7 +39,7 @@
         .ui-content-top {
             border-bottom: 1px solid rgba(0, 0, 0, .3);
             text-align: center;
-            color: grey;
+            color: #545f65;
             font-size: 17px;
             height: 28px;
             padding-top: 11px;
@@ -61,7 +61,7 @@
             .nt-list-status {
                 margin-top: 15px !important;
                 text-align: center;
-                color: gray;
+                color: #545f65;
                 margin-bottom: 14px !important;
             }
             .notification-card {
@@ -96,6 +96,7 @@
                         .info-name {
                             font-weight: bold;
                             width: 100px;
+                            color: #545f65;
                             font-size: 17px;
                         }
                         .info-friend {
@@ -110,7 +111,7 @@
                         font-weight: 300;
                         span {
                             margin-left: 6px;
-                            color: grey;
+                            color: #545f65;
                         }
                     }
                 }
@@ -342,7 +343,7 @@
                 margin-right: 16px;
                 padding: 0 7px;
                 width: auto;
-                height: 33px;
+                height: 32px;
                 border-radius: 18px;
             }
             .save-changes {
@@ -1225,6 +1226,7 @@
 }
 .more-options article {
     display: none;
+    min-width: 81px;
     padding: 6px 10px;
 }
 .rm-friend.active {
