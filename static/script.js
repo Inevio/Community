@@ -101,17 +101,19 @@ var removeFromFriends = function( user ){
 
 };
 
+
 var pendingRequests = function(){
 
-  api.user.pendingRequests( function( error, users ){
+  api.user.pendingRequests( false, function( error, users ){
 
     if( users.length ){
+      console.log(users);
       $( '.notification-icon').addClass('active');
       $( '.nt-badge').text(users.length);
+      ntCardsShowInfo( users, LIST_REQUESTS );
 
-      //$( '.ui-header .requests span' ).addClass( 'requests-notification' ).text( users.length );
+
     }else{
-      //$( '.ui-header .requests span' ).removeClass( 'requests-notification' ).text( '' );
       $( '.notification-icon').removeClass('active');
       $( '.nt-badge').text('');
     }
@@ -385,7 +387,6 @@ var cardsShowInfo = function( list, type ){
         centerListStatus();
     }
 };
-
 
 var ntCardsShowInfo = function( list, type ){
 
@@ -692,11 +693,11 @@ win
       user.acceptRequest( function(){
 
 
-        api.banner()
+        /*api.banner()
             .setTitle( lang.requestAcceptedTitle )
             .setText( user.fullName + ' ' + lang.requestAccepted )
             .setIcon( user.avatar.tiny )
-            .render();
+            .render();*/
 
 
 
@@ -720,7 +721,7 @@ win
 
     user.cancelRequest( function(){
 
-        api.banner()
+      api.banner()
             .setTitle( lang.requestCancelledTitle )
             .setText( user.fullName + ' ' + lang.requestCancelled )
             .setIcon( user.avatar.tiny )
