@@ -1,4 +1,4 @@
-.wz-view {
+.notification.wz-view {
     border-radius: 6px;
     background-color: #3f4750;
 }
@@ -66,7 +66,7 @@
             }
             .notification-card {
                 height: 106px;
-                border-bottom: 1px solid rgba(0, 0, 0, .4);
+                border-bottom: 1px solid rgba(0, 0, 0, .3);
                 display: inline-block;
                 width: 317px;
             }
