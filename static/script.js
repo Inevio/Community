@@ -256,7 +256,7 @@ var createCard = function( info ){
     */
 
     var valor = Math.floor((Math.random()*(5.999999-0.999999))+0.999999);
-    card.css('background' , 'url(/app/380/f'+valor+'.png) no-repeat');
+    card.css('background' , 'url(/app/2/f'+valor+'.png) no-repeat');
     return card;
 
 };
