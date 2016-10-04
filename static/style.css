@@ -1,26 +1,31 @@
-.wz-app{
-  border-radius: 6px;
+.wz-view {
+    border-radius: 6px !important;
 }
 
 .notification.wz-view {
-    border-radius: 6px;
+    border-radius: 6px !important;
     background-color: #3f4750;
 }
+
 .wz-scroll-bottom {
     display: none !important;
 }
+
 
 /* START - Header */
 
 .ui-header-brand {
     width: 198px;
 }
+
 .ocultar {
     display: none !important;
 }
+
 .notification {
     display: none;
 }
+
 .notification.active {
     width: 330px;
     position: absolute;
@@ -138,6 +143,7 @@
         }
     }
 }
+
 .notification-icon {
     width: 34px;
     height: 34px;
@@ -172,9 +178,11 @@
         display: none;
     }
 }
+
 .notification-icon.active i {
     background-position: -17px 0px;
 }
+
 .ui-input-search {
     padding: 1px 0 1px 0;
     float: left;
@@ -185,22 +193,27 @@
     margin-top: 3px;
     background: rgba(0, 0, 0, 0.2);
 }
+
 .ui-input-search .search-icon {
     margin: 7px 10px 0px 0px;
     background: transparent;
 }
+
 .ui-input-search .delete-content {
     margin: 9px 7px 13px 0px;
     background: transparent;
 }
+
 .ui-input-search input {
     width: 208px;
     margin-top: 7px;
     background: transparent
 }
+
 .ui-input-search.active {
     border: none;
 }
+
 
 /* Requests and Blocked buttons */
 
@@ -255,6 +268,7 @@
     }
 }
 
+
 /* END - Header */
 
 
@@ -263,12 +277,15 @@
 .ui-navgroup.groups {
     display: none;
 }
+
 .ui-navbar {
     width: 214px
 }
+
 .ui-navgroup-title-txt {
     text-transform: uppercase;
 }
+
 .ui-navgroup-element {
     width: 214px;
     height: 28px;
@@ -290,6 +307,7 @@
         text-overflow: ellipsis;
     }
 }
+
 .alone .ui-navgroup-element-txt {
     padding: 0 20px;
     .ui-navgroup-element-txt {
@@ -302,6 +320,7 @@
         margin-bottom: 10px;
     }
 }
+
 
 /* END - Aside */
 
@@ -331,11 +350,11 @@
         padding-bottom: 20px;
         height: inherit;
         background-size: 535px 190px !important;
-        .blackground{
-          height: 210px !important;
-          display: inline-block;
-          padding-bottom: 0px;
-          background-size: 535px 210px !important;
+        .blackground {
+            height: 210px !important;
+            display: inline-block;
+            padding-bottom: 0px;
+            background-size: 535px 210px !important;
         }
         .ui-header-btn {
             height: 120px;
@@ -619,6 +638,7 @@
         }
     }
 }
+
 .list {
     width: 535px;
     text-align: center;
@@ -641,12 +661,12 @@
         display: inline-block;
         padding-bottom: 0px;
         background-size: 535px 210px !important;
-        .blackground{
-          background: rgba(0,0,0,.3);
-          height: 210px !important;
-          display: inline-block;
-          padding-bottom: 0px;
-          background-size: 535px 210px !important;
+        .blackground {
+            background: rgba(0, 0, 0, .3);
+            height: 210px !important;
+            display: inline-block;
+            padding-bottom: 0px;
+            background-size: 535px 210px !important;
         }
         .ui-header-btn {
             height: auto;
@@ -911,6 +931,7 @@
         }
     }
 }
+
 .edit-mode {
     width: 535px;
     .card {
@@ -1204,12 +1225,14 @@
         }
     }
 }
+
 .menu-options {
     display: inline-block;
     width: auto;
     height: 0px;
     position: absolute;
 }
+
 .more-options.active {
     display: inline-block;
     height: auto;
@@ -1217,6 +1240,7 @@
     margin-top: 56px;
     text-align: left;
 }
+
 .more-options {
     display: none;
     width: auto;
@@ -1228,29 +1252,36 @@
     background: white;
     border-radius: 3px;
 }
+
 .more-options article {
     display: none;
     min-width: 81px;
     padding: 6px 10px;
 }
+
 .rm-friend.active {
     display: inherit !important;
 }
+
 .block-friend.active {
     display: inherit !important;
 }
+
 .edit-me.active {
     display: inherit !important;
     padding-right: 14px;
 }
+
 .rm-friend:hover {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 3px 3px 0px 0px;
 }
+
 .block-friend:hover {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0px 0px 3px 3px;
 }
+
 .edit-me:hover {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 3px;
