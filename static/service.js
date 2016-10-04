@@ -12,4 +12,6 @@ api.user
 .on( 'requestAccepted', updateBadge )
 .on( 'requestRefused', updateBadge );
 
+
+
 updateBadge();
