@@ -107,7 +107,6 @@ var pendingRequests = function(){
   api.user.pendingRequests( false, function( error, users ){
 
     if( users.length ){
-      console.log(users);
       $( '.notification-icon').addClass('active');
       $( '.nt-badge').text(users.length);
       ntCardsShowInfo( users, LIST_REQUESTS );
@@ -132,14 +131,19 @@ var createCard = function( info ){
     var descript ='';
     api.user( info.id, function( error, user ){
       descript = user.description;
+
+      if(descript == ""){
+        card.find( '.info ' ).text(lang.userBio);
+        card.find( '.edition-description').find('textarea').attr('placeholder', descript);
+
+      }else{
+        card.find( '.info' ).html(descript.replace(/\n/g, "<br />"));
+        card.find( '.edition-description').find('textarea').attr('placeholder', descript);
+
+      }
     });
-    if(descript == ""){
-      card.find( '.info ' ).text(lang.userBio);
-    }else{
-      card.find( '.info' ).html(descript.replace(/\n/g, "<br />"));
-    }
+
     card.find( '.info-tittle').text(lang.description);
-    card.find( '.edition-description').find('textarea').attr('placeholder', descript);
 
     //card.find( '.info' ).text( info.fullName);
     card.find( '.text-edit').css( 'display', 'none');
@@ -252,13 +256,7 @@ var createCard = function( info ){
     */
 
     var valor = Math.floor((Math.random()*(5.999999-0.999999))+0.999999);
-
-    var urlCabecera = 'url(/app';
-    var urlCuerpo1 = '/380/f';
-    var urlCuerpo2 = '.png) no-repeat';
-    var urlFinal = urlCabecera+urlCuerpo1+valor+urlCuerpo2;
-
-    card.css('background' , urlFinal);
+    card.css('background' , 'url(/app/380/f'+valor+'.png) no-repeat');
     return card;
 
 };
@@ -1124,10 +1122,13 @@ wz.user.blockedList( function( error, list ){
 
               api.user.setDescription( texto , function(){
 
-                console.log('Se coge este texto: '+texto);
+                $('.self .info-bottom').find('span').html(texto.replace(/\n/g, "<br />"));
 
               });
                 content.removeClass('edit-mode');
+
+
+
 })
 
 
