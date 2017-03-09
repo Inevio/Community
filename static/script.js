@@ -18,7 +18,7 @@ var location                    = '';
 var condicion                   = true;
 var numPagina                   = 0;
 var cadenaBusqueda              = "";
-
+var inviteByMail                = $('.invite-by-mail');
 
 var LIST_NORMAL   = 0;
 var LIST_SEARCH   = 1;
@@ -39,12 +39,7 @@ var friends = function(){
 
         if( list.length === 0 ){
 
-            userCard = contactsAsideFilePrototype.clone().removeClass();
-
-            userCard.children('img').remove();
-            // To Do -> Quitar estos estilos de aqui
-            userCard.addClass('alone').children('span').html( lang.noFriends );
-            contactsAside.append( userCard );
+            $('.no-friends-content').addClass('no-friends');
 
         }else{
 
@@ -100,7 +95,6 @@ var removeFromFriends = function( user ){
     }
 
 };
-
 
 var pendingRequests = function(){
 
@@ -488,6 +482,11 @@ var translate = function(){
     $('.group-members h3').text( lang.membersTitle );
     $('.ui-content-top span').text(lang.friendRequests);
     listStatus.text( lang.appName );
+    $('.invite-by-mail span').text(lang.inviteByMail);
+    $('.no-friends-content .title').text(lang.noContacts);
+    $('.no-friends-content .subtitle').text(lang.findContacts);
+    $('.no-friends-content .subtitle2').text(lang.inviteContacts);
+    $('.no-friends-content .invite-by-mail span').text(lang.inviteFriends);
 };
 
 // WZ Events
@@ -972,6 +971,7 @@ wz.user.blockedList( function( error, list ){
 })
 
 .key( 'enter', function( e ){
+  $('.no-friends-content').removeClass('no-friends');
   if($('.ui-input-search').hasClass('active')){
 
       $('.list').scrollTop( 0 );
@@ -1145,6 +1145,9 @@ wz.user.blockedList( function( error, list ){
     centerListStatus();
 });
 
+inviteByMail.on( 'click' , function(){
+  api.app.createView( {} , 'inviteByMail' );
+});
 
 // Start app
 win.addClass('dark');

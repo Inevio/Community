@@ -36,6 +36,17 @@
     "requestSentTitle" : "Request sent",
     "requestSent" : "A request has been sent to",
     "wantToBeFriend" : "wants to be your friend",
-    "noMessage" : [ "", "No search results", "You've no pending contact requests", "You've no blocked users" ]
+    "noMessage" : [ "", "No search results", "You've no pending contact requests", "You've no blocked users" ],
+
+    "inviteByMail"        : "Invite by mail",
+    "inviteByMailDesc"    : "Enter the email of all the people you want to join horbito as your friends.",
+    "addMail"             : "+ Add more mails",
+    "share"               : "Share",
+    "mailExample"         : "example@mail.com",
+
+    "noContacts"          : "You don't have any contact",
+    "findContacts"        : "Find your contacts using their name, username or email",
+    "inviteContacts"      : "Or if you want, you cant invite your friends to join horbito",
+    "inviteFriends"       : "Invite friends"
 
 }
