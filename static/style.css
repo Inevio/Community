@@ -308,6 +308,12 @@
     }
 }
 
+.invite-by-mail img{
+  background-image: url('@static/inviteByMail.png');
+  background-size: 22px 22px;
+}
+
+
 .alone .ui-navgroup-element-txt {
     padding: 0 20px;
     .ui-navgroup-element-txt {
@@ -1285,4 +1291,75 @@
 .edit-me:hover {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 3px;
+}
+
+.no-friends-content{
+  position: absolute;
+  height: ~'calc(100% - 41px)';
+  width: 100%;
+  background-image: url('@static/pattern-dark.png');
+  background-size: cover;
+  z-index: 3;
+  display: none;
+  left: 0;
+  top: 41px;
+
+  .arrow{
+    position: absolute;
+    width: 24px;
+    height: 109px;
+    background-image: url('@static/arrow.png');
+    background-image: 24px 109px;
+    left: 270px;
+    top: 20px;
+  }
+  
+  .title{
+    float: left;
+    font-size: 45px;
+    font-weight: 900;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    margin-top: 175px;
+  }
+  .subtitle{
+    float: left;
+    font-size: 19px;
+    color: #d2dce2;
+    width: 100%;
+    text-align: center;
+    margin-top: 29px;
+  }
+  .subtitle2{
+    float: left;
+    font-size: 15px;
+    color: #d2dce2;
+    width: 100%;
+    text-align: center;
+    margin-top: 118px;
+  }
+  .invite-by-mail{
+    float: left;
+    width: 200px;
+    height: 49px;
+    background-color: #0071f6;
+    margin-left: ~'calc((100% - 200px)/2)';
+    margin-top: 25px;
+    border-radius: 6px;
+
+    span{
+      float: left;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  }
+}
+
+.no-friends.no-friends-content{
+  display: inline-block;
 }
