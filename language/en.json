@@ -39,14 +39,16 @@
     "noMessage" : [ "", "No search results", "You've no pending contact requests", "You've no blocked users" ],
 
     "inviteByMail"        : "Invite by mail",
-    "inviteByMailDesc"    : "Enter the email of all the people you want to join horbito as your friends.",
+    "inviteByMailDesc"    : "Introduce the email of all the people you want to invite to join horbito with you",
     "addMail"             : "+ Add more mails",
-    "share"               : "Share",
+    "share"               : "Invite",
     "mailExample"         : "example@mail.com",
 
     "noContacts"          : "You don't have any contact",
     "findContacts"        : "Find your contacts using their name, username or email",
-    "inviteContacts"      : "Or if you want, you cant invite your friends to join horbito",
-    "inviteFriends"       : "Invite friends"
+    "inviteContacts"      : "You can also invite anyone to join horbito with you",
+    "inviteFriends"       : "Invite people",
+    "invitationSentTitle"    : "Invitations sent", 
+    "invitationSentSubtitle" : "Your invitations are on their way!"
 
 }
