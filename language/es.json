@@ -40,14 +40,16 @@
 
     "inviteByMail"        : "Invitar por correo",
     "selectFile"          : "Selecciona el archivo",
-    "inviteByMailDesc"    : "Introduce el email de todas las personas que quieras que se unan a horbito como tus amigos.",
+    "inviteByMailDesc"    : "Introduce el email de todas las personas que quieras que se unan a horbito como tus contactos.",
     "addMail"             : "+ Añadir más correos",
-    "share"               : "Compartir",
+    "share"               : "Invitar",
     "mailExample"         : "ejemplo@mail.com",
 
     "noContacts"          : "No tienes contactos",
-    "findContacts"        : "Busca contactos usando su nombre, username o su correo electronico",
-    "inviteContacts"      : "Tambien puedes invitar a tus amigos a unirse a horbito",
-    "inviteFriends"       : "Invitar amigos"
+    "findContacts"        : "Busca contactos usando su nombre, username o su correo electrónico",
+    "inviteContacts"      : "También puedes invitar a tus contactos a unirse a horbito",
+    "inviteFriends"       : "Invitar contactos",
+    "invitationSentTitle"    : "Invitaciones enviadas", 
+    "invitationSentSubtitle" : "Tus invitaciones están de camino!"
 
 }
