@@ -1106,7 +1106,7 @@ wz.user.blockedList( function( error, list ){
   var idUsr = $(this).parents('.card').data().id;
   console.log(idUsr);
 
-  wz.app.openApp( 14 , [ 'open-chat' , { 'type' : 'user' , 'content' : idUsr } , function( o ){
+  wz.app.openApp( 14 , [ 'open-chat' , { 'openMode' : 'user' , 'chatId' : idUsr } , function( o ){
 
     console.log(o);
 
