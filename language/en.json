@@ -11,8 +11,8 @@
     "friendRequests" : "Fiend requests",
     "userBio" : "Here goes a short bio about the user so you can easily know if he is who you're looking for",
     "description" : "Description",
-    "noFriends" : "You don't have contacts.<hr/>Look for them in Inevio using the search engine at the top",
-    "noGroups" : "You don't have groups.<hr/>Look for them in Inevio using the search engine at the top",
+    "noFriends" : "You don't have contacts.<hr/>Look for them in horbito using the search engine at the top",
+    "noGroups" : "You don't have groups.<hr/>Look for them in horbito using the search engine at the top",
     "sendMessage" : "Send message",
     "deleteFriend" : "Delete contact",
     "rmFriend" : "Remove friend",
@@ -48,7 +48,7 @@
     "findContacts"        : "Find your contacts using their name, username or email",
     "inviteContacts"      : "You can also invite anyone to join horbito with you",
     "inviteFriends"       : "Invite people",
-    "invitationSentTitle"    : "Invitations sent", 
+    "invitationSentTitle"    : "Invitations sent",
     "invitationSentSubtitle" : "Your invitations are on their way!"
 
 }

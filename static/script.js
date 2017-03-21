@@ -194,7 +194,7 @@ var createCard = function( info ){
 
     }else{
 
-        card.find('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags@2x.png' );
+        card.find('img').attr( 'src', 'https://staticbeta.horbito.com/app/2/flags@2x.png' );
         card.find('.card-data .name').text( info.name );
         card.find('.group-members').show();
 
@@ -270,7 +270,7 @@ var createNtCard = function( info ){
         card.find('img').attr( 'src', info.avatar.normal );
     }else{
 
-        card.find('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags@2x.png' );
+        card.find('img').attr( 'src', 'https://staticbeta.horbito.com/app/2/flags@2x.png' );
         card.find('.card-data .name').text( info.name );
         card.find('.group-members').show();
 
@@ -457,7 +457,7 @@ var groups = function(){
         groupCard = contactsAsideGroupPrototype.clone().removeClass('wz-prototype');
 
         groupCard.data( 'id', list[ i ].id );
-        groupCard.children('img').attr( 'src', 'https://staticbeta.inevio.com/app/2/flags.png' );
+        groupCard.children('img').attr( 'src', 'https://staticbeta.horbito.com/app/2/flags.png' );
         groupCard.children('span').text( list[ i ].name );
         groupsAside.children().remove('.alone');
         groupsAside.append( groupCard );
