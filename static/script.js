@@ -152,7 +152,8 @@ var createCard = function( info ){
         if( info.relation === 'friend' ){
             card.addClass( 'friend' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
+            //card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
+            card.find( '.friend-info' ).addClass( 'cancel' ).hide();
             card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
             card.find( '.rm-friend').find('span').text(lang.rmFriend);
             card.find( '.block-friend').find('span').text(lang.blockFriend);
