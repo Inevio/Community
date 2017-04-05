@@ -891,12 +891,15 @@ win
 
   var idBlockUser = $(this).parents('.card').data().id;
 
-  wz.user.block( idBlockUser );
-  console.log(idBlockUser);
+  wz.user.block( idBlockUser, function(){
+    console.log(idBlockUser);
+    wz.user.blockedList( function( error, list ){
+        console.log(list);
+    });
+  });
 
-wz.user.blockedList( function( error, list ){
-    console.log(list);
-});
+
+
 
 })
 .on( 'click', '.saveChanges' , function () {
