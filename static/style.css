@@ -27,6 +27,7 @@
 }
 
 .notification.active {
+    z-index: 5;
     width: 330px;
     position: absolute;
     left: 28px;
@@ -1313,7 +1314,7 @@
     left: 270px;
     top: 20px;
   }
-  
+
   .title{
     float: left;
     font-size: 45px;
