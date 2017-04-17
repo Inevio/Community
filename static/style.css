@@ -151,8 +151,8 @@
     width: 34px;
     height: 34px;
     float: right;
-    margin-right: 9px;
-    margin-top: -8px;
+    margin-right: 13px;
+    margin-top: -3px;
     i {
         width: 17px;
         height: 17px;
@@ -193,7 +193,7 @@
     border: none;
     width: 280px;
     height: 33px;
-    margin-top: 3px;
+    margin-top: 8px;
     background: rgba(0, 0, 0, 0.2);
 }
 
@@ -224,9 +224,14 @@
     display: none;
     float: left;
     margin: 3px 0 0 10px;
+    .ui-alignment-btn:hover{
+      border-radius: 3px;
+      background-color: #545f65;
+    }
     .ui-alignment-btn {
         width: 32px;
         height: 32px;
+        margin-top: 4px;
         position: relative;
     }
     .ui-alignment-btn i {
