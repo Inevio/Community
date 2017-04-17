@@ -21,7 +21,9 @@
 .ocultar {
     display: none !important;
 }
-
+.ui-icons-ungrouped .active{
+  background-color: rgba(0,0,0,0.2);
+}
 .notification {
     display: none;
 }
@@ -230,6 +232,9 @@
     .ui-alignment-btn i {
         margin: 6px 4px 4px 7px;
     }
+    .requests{
+      display: none;
+    }
     .requests i {
         width: 22px;
         height: 21px;
@@ -350,6 +355,7 @@
         height: inherit;
         background-size: 535px 190px;
     }
+
     .card {
         width: 535px;
         /*border-bottom: 1px solid #66676D;*/
@@ -371,7 +377,7 @@
                 float: right;
                 margin-top: 16px;
                 margin-right: 16px;
-                padding: 0 7px;
+                padding: 0 12px;
                 width: auto;
                 height: 32px;
                 border-radius: 18px;
@@ -382,21 +388,28 @@
             .cancel-changes {
                 display: none;
             }
+            .unBlock  {
+              display: none;
+              float: right;
+              padding: 0 7px;
+              width: 120px;
+              display: none;
+            }
             .friend-msg {
                 float: right;
-                padding: 0 7px;
+                padding: 0 12px;
                 width: auto;
                 display: none;
             }
             .friend-contact {
                 float: right;
-                padding: 0 7px;
+                padding: 0 12px;
                 width: auto;
                 display: none;
             }
             .friend-info {
                 float: right;
-                padding: 0 7px;
+                padding: 0 12px;
                 width: auto;
             }
             .friend-contact span, .friend-info span, .friend-msg span {
@@ -646,7 +659,7 @@
     }
 }
 
-.list {
+.list , .block-list {
     width: 535px;
     text-align: center;
     .list-status {
@@ -1264,6 +1277,35 @@
     display: none;
     min-width: 81px;
     padding: 6px 10px;
+}
+
+
+.block-list{
+  .blockedUser{
+
+    .options{
+      display: none !important;
+    }
+    .unBlock{
+      display: block !important;
+    }
+
+    .save-changes {
+        display: none !important;
+    }
+    .cancel-changes {
+        display: none !important;
+    }
+    .friend-msg {
+        display: none !important;
+    }
+    .friend-contact {
+        display: none !important;
+    }
+    .friend-info {
+        display: none !important;
+    }
+  }
 }
 
 .rm-friend.active {
