@@ -496,6 +496,7 @@
                         color: #fff;
                         width: 345px;
                         float: left;
+                        height: 29px;
                         font-size: 26px;
                         font-weight: bold;
                         margin-top: 56px;
@@ -570,6 +571,7 @@
                     color: #d2dce2;
                     width: 383px;
                     font-size: 16px;
+                    height: 19px;
                     font-weight: bold;
                     float: left;
                     margin-top: 5px;
@@ -700,7 +702,7 @@
                 float: right;
                 margin-top: 16px;
                 margin-right: 16px;
-                padding: 0 7px;
+                padding: 0 12px;
                 width: auto;
                 height: 33px;
                 border-radius: 18px;
@@ -713,19 +715,16 @@
             }
             .friend-msg {
                 float: right;
-                padding: 0 7px;
                 width: auto;
                 display: none;
             }
             .friend-contact {
                 float: right;
-                padding: 0 7px;
                 width: auto;
                 display: none;
             }
             .friend-info {
                 float: right;
-                padding: 0 7px;
                 width: auto;
             }
             .friend-contact span, .friend-info span, .friend-msg span {
@@ -795,6 +794,7 @@
                         width: 345px;
                         float: left;
                         font-size: 26px;
+                        height: 29px;
                         font-weight: bold;
                         margin-top: 18px;
                         text-align: left;
@@ -869,6 +869,7 @@
                     color: #d2dce2;
                     width: 383px;
                     font-size: 16px;
+                    height: 19px;
                     font-weight: bold;
                     float: left;
                     margin-top: 5px;
@@ -979,7 +980,6 @@
           float: right;
           margin-top: 16px;
           margin-right: 16px;
-          padding: 0 7px;
           width: auto;
           height: 33px;
           border-radius: 18px;
@@ -1168,6 +1168,7 @@
                     color: #d2dce2;
                     width: 383px;
                     font-size: 16px;
+                    height: 19px;
                     font-weight: bold;
                     float: left;
                     margin-top: 5px;
