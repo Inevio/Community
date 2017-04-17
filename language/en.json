@@ -17,6 +17,7 @@
     "deleteFriend" : "Delete contact",
     "rmFriend" : "Remove friend",
     "blockFriend": "Block friend",
+    "unBlock"     : "Unblock",
     "editMe"      : "Edit my profile",
     "edit"        : "Edit",
     "saveChanges" : "Save changes",

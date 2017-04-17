@@ -143,6 +143,7 @@ var createCard = function( info ){
     card.find( '.text-edit').css( 'display', 'none');
     card.find( '.edit-info').css( 'display', 'none');
 
+
     if( isUser ){
 
         card.find('.edition-name').find('section').find('span').text(info.fullName);
@@ -184,7 +185,11 @@ var createCard = function( info ){
             card.find( '.cancel-changes').find('span').text(lang.cancelChanges);
             card.find( '.edition-name').find('.tittle').text(lang.name);
             card.find( '.edition-description').find('.tittle').text(lang.description);
-        }else{
+        }else if (info.relation === 'blocked') {
+            card.addClass('blockedUser');
+            card.find( '.unBlock span').text(lang.unBlock);
+        }
+        else{
             card.addClass( 'stranger' );
             //card.find( '.friend-contact span' ).text( lang.sendMessage );
             card.find( '.friend-info span' ).text( lang.addFriend );
@@ -358,7 +363,12 @@ var cardsShowInfo = function( list, type ){
     var cardList = [];
 
     for( var i = 0 ; i < list.length ; i++ ){
-        cardList.push( createCard( list[ i ] ) );
+
+        if(type == '3' && list[i] != null ){
+          list[ i ].relation = 'blocked';
+        }
+
+        cardList.push(createCard( list[ i ] ));
     }
 
 
@@ -753,10 +763,12 @@ win
 
 })
 
-/*
+
 .on( 'mousedown', '.blocked', function(){
 
     location = 'blocked-users';
+    content.removeClass('list');
+    content.addClass('block-list');
 
     api.user.blockedList( false, function( error, users ){
 
@@ -769,7 +781,7 @@ win
     });
 
 })
-*/
+
 
 .on( 'mousedown', '.friend-info', function(){
 
@@ -889,19 +901,41 @@ win
 
 .on( 'click', '.block-friend', function(){
 
-  var idBlockUser = $(this).parents('.card').data().id;
+  var userCard = $(this).parents('.card');
+  var idBlockUser = userCard.data().id;
+  var sidebarUser = $('.users').find('user-'+idBlockUser);
 
-  wz.user.block( idBlockUser, function(){
+
+  api.user.block( idBlockUser, function(){
+
     console.log(idBlockUser);
-    wz.user.blockedList( function( error, list ){
-        console.log(list);
-    });
+    userCard.remove();
+    sidebarUser.remove();
+    //wz.user.blockedList( function( error, list ){
+    //    console.log(list);
+    //});
   });
 
+})
+
+.on( 'click', '.unBlock', function(){
+
+  var userCard = $(this).parents('.card');
+  var idBlockUser = userCard.data().id;
+  var sidebarUser = $('.users').find('user-'+idBlockUser);
 
 
+  api.user.unblock( idBlockUser, function(){
+
+    console.log(idBlockUser);
+    userCard.remove();
+    //wz.user.blockedList( function( error, list ){
+      //  console.log(list);
+    //});
+  });
 
 })
+
 .on( 'click', '.saveChanges' , function () {
 
     var card = $('.card-data');
@@ -1014,6 +1048,7 @@ win
 .on('click', '.edit-me', function(){
 
   $(this).parents('.more-options').removeClass('active');
+  content.removeClass('block-list');
   content.addClass('edit-mode');
 
 })

@@ -17,6 +17,7 @@
     "deleteFriend" : "Eliminar contacto",
     "rmFriend" : "Borrar amigo",
     "blockFriend": "Bloquear amigo",
+    "unBlock"     : "Desbloquear",
     "editMe"      : "Editar mi perfil",
     "edit"        : "Editar",
     "saveChanges" : "Guardar cambios",
