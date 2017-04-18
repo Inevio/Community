@@ -167,11 +167,11 @@
         color: #fff;
         position: absolute;
         right: 541px;
-        border-radius: 60%;
+        border-radius: 20px;
         background: #f45756;
         text-align: center;
         height: 16px;
-        top: 2px;
+        top: 8px;
         min-width: 8px;
         padding: 0px 4px;
         font-size: 11px;
