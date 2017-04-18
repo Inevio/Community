@@ -1344,14 +1344,14 @@
 
 .no-friends-content{
   position: absolute;
-  height: ~'calc(100% - 41px)';
+  height: ~'calc(100% - 50px)';
   width: 100%;
   background-image: url('@static/pattern-dark.png');
   background-size: cover;
   z-index: 3;
   display: none;
   left: 0;
-  top: 41px;
+  top: 50px;
 
   .arrow{
     position: absolute;
