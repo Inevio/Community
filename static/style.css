@@ -189,17 +189,11 @@
 .ui-input-search {
     padding: 1px 0 1px 0;
     float: left;
-    border-radius: 20px;
     border: none;
     width: 280px;
     height: 33px;
     margin-top: 8px;
     background: rgba(0, 0, 0, 0.2);
-}
-
-.ui-input-search .search-icon {
-    margin: 7px 10px 0px 0px;
-    background: transparent;
 }
 
 .ui-input-search .delete-content {
