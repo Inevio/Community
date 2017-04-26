@@ -1349,10 +1349,10 @@
 
   .arrow{
     position: absolute;
-    width: 48px;
-    height: 161px;
+    width: 24px;
+    height: 109px;
     background-image: url('@static/arrow.png');
-    background-size: 48px 161px;
+    background-size: 24px 109px;
     left: 270px;
     top: 20px;
   }
