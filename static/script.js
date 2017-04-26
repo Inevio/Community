@@ -717,6 +717,9 @@ win
               $(this).parents('.nt-buttons').parents('.notification-card').remove();
             }
 
+          if($('.no-friends-content').hasClass('no-friends')){
+            $('.no-friends-content').removeClass('no-friends');
+          }
 
       });
 
@@ -834,22 +837,27 @@ win
 
         }); 
 
-    }else{
+    }else if(  $(this).parents('.card').hasClass('stranger') ){
 
-        console.log( this, $(this).parents('.card'), $(this).parents('.card').data() );
-        api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+      console.log( this, $(this).parents('.card'), $(this).parents('.card').data() );
+      api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
 
-            user.addFriend( 'Hello dolly', function(){
+          user.addFriend( 'Hello dolly', function(){
 
-                api.banner()
-                    .setTitle( lang.requestSentTitle )
-                    .setText( lang.requestSent + ' ' + user.fullName )
-                    .setIcon( user.avatar.tiny )
-                    .render();
+              api.banner()
+                  .setTitle( lang.requestSentTitle )
+                  .setText( lang.requestSent + ' ' + user.fullName )
+                  .setIcon( user.avatar.tiny )
+                  .render();
 
-            });
+          });
 
-        });
+      });
+
+    }
+    else{
+
+        console.log( "Error card without relation" ,this, $(this).parents('.card'), $(this).parents('.card').data() );
 
     }
 
@@ -1130,6 +1138,7 @@ win
           });
 
       }
+
       if (!($(this).parents().hasClass('list'))) {
         api.user( $(this).parents('.card').data('id'), function( error, user ){
             cardsShowInfo( [ user ], LIST_NORMAL );
