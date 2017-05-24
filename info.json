@@ -61,7 +61,7 @@
 
                     "css"    : ["style.css"],
                     "script" : ["script.js"],
-                    "start"  : []
+                    "start"  : ["start.js"]
 
                 },
 
