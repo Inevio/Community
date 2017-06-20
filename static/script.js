@@ -2,11 +2,9 @@
 var win                         = $( this );
 var aside                       = $('.ui-navbar');
 var contactsAside               = $('.users', aside);
-var groupsAside                 = $('.groups', aside);
 var content                     = $('.ui-window-content');
 var ntContent                   = $('.ui-content-bottom');
 var contactsAsideFilePrototype  = $('.users-user.wz-prototype');
-var contactsAsideGroupPrototype = $('.groups-group.wz-prototype');
 var cardPrototype               = $('.card.wz-prototype');
 var ntCardPrototype             = $('.notification-card.wz-prototype');
 var listStatus                  = $('.list-status');
@@ -118,8 +116,7 @@ var pendingRequests = function(){
 
 var createCard = function( info ){
 
-    var card   = cardPrototype.clone().removeClass( 'wz-prototype' );
-    var isUser = !!info.avatar;
+    var card = cardPrototype.clone().removeClass( 'wz-prototype' );
 
     card.data( 'id', info.id );
     var descript ='';
@@ -143,110 +140,54 @@ var createCard = function( info ){
     card.find( '.text-edit').css( 'display', 'none');
     card.find( '.edit-info').css( 'display', 'none');
 
+    card.find('.edition-name').find('section').find('span').text(info.fullName);
+    card.find('.card-data .name').text( info.fullName );
+    card.find('img').attr( 'src', info.avatar.normal );
 
-    if( isUser ){
+    if( info.relation === 'friend' ){
+        card.addClass( 'friend' );
+        //card.find( '.friend-contact span' ).text( lang.sendMessage );
+        //card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
+        card.find( '.friend-info' ).addClass( 'cancel' ).hide();
+        card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
+        card.find( '.rm-friend').find('span').text(lang.rmFriend);
+        card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');
+        card.find( '.rm-friend').addClass('active');
+    }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
+        card.addClass( 'pending-received' );
+        card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
+        card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
+        card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');
+    }else if( info.relation === 'pending' ){
+        card.addClass( 'pending-sent' );
+        //card.find( '.friend-contact span' ).text( lang.sendMessage );
+        card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
+        card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');
 
-        card.find('.edition-name').find('section').find('span').text(info.fullName);
-        card.find('.card-data .name').text( info.fullName );
-        card.find('img').attr( 'src', info.avatar.normal );
-
-        if( info.relation === 'friend' ){
-            card.addClass( 'friend' );
-            //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            //card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.deleteFriend );
-            card.find( '.friend-info' ).addClass( 'cancel' ).hide();
-            card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
-            card.find( '.rm-friend').find('span').text(lang.rmFriend);
-            card.find( '.block-friend').find('span').text(lang.blockFriend);
-            card.find( '.block-friend').addClass('active');
-            card.find( '.rm-friend').addClass('active');
-        }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
-            card.addClass( 'pending-received' );
-            card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
-            card.find( '.block-friend').find('span').text(lang.blockFriend);
-            card.find( '.block-friend').addClass('active');
-        }else if( info.relation === 'pending' ){
-            card.addClass( 'pending-sent' );
-            //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
-            card.find( '.block-friend').find('span').text(lang.blockFriend);
-            card.find( '.block-friend').addClass('active');
-
-        }else if( info.id === api.system.user().id ){
-            card.addClass( 'self' );
-            card.find( '.edit-me').find('span').text(lang.editMe);
-            card.find( '.edit-me').addClass('active');
-            card.find( '.friend-info' ).remove();
-            card.find( '.edit-info').css( 'display', 'block');
-            card.find( '.edit-info').addClass('right');
-            card.find( '.edit-info').find('span').text(lang.edit);
-            card.find( '.save-changes').find('span').text(lang.saveChanges);
-            card.find( '.cancel-changes').find('span').text(lang.cancelChanges);
-            card.find( '.edition-name').find('.tittle').text(lang.name);
-            card.find( '.edition-description').find('.tittle').text(lang.description);
-        }else if (info.relation === 'blocked') {
-            card.addClass('blockedUser');
-            card.find( '.unBlock span').text(lang.unBlock);
-        }
-        else{
-            card.addClass( 'stranger' );
-            //card.find( '.friend-contact span' ).text( lang.sendMessage );
-            card.find( '.friend-info span' ).text( lang.addFriend );
-            card.find( '.block-friend').find('span').text(lang.blockFriend);
-            card.find( '.block-friend').addClass('active');
-
-        }
-
+    }else if( info.id === api.system.user().id ){
+        card.addClass( 'self' );
+        card.find( '.edit-me').find('span').text(lang.editMe);
+        card.find( '.edit-me').addClass('active');
+        card.find( '.friend-info' ).remove();
+        card.find( '.edit-info').css( 'display', 'block');
+        card.find( '.edit-info').addClass('right');
+        card.find( '.edit-info').find('span').text(lang.edit);
+        card.find( '.save-changes').find('span').text(lang.saveChanges);
+        card.find( '.cancel-changes').find('span').text(lang.cancelChanges);
+        card.find( '.edition-name').find('.tittle').text(lang.name);
+        card.find( '.edition-description').find('.tittle').text(lang.description);
+    }else if (info.relation === 'blocked') {
+        card.addClass('blockedUser');
+        card.find( '.unBlock span').text(lang.unBlock);
     }else{
-
-        card.find('img').attr( 'src', 'https://staticbeta.horbito.com/app/2/flags@2x.png' );
-        card.find('.card-data .name').text( info.name );
-        card.find('.group-members').show();
-
-        if( info.fsnodeId ){
-
-            card.find('.group-folder').show();
-            card.find('.group-folder-button').data( 'id', info.fsnodeId );
-
-        }
-
-        var found  = false;
-        var userId = api.system.user().id;
-
-        for( var i = 0; i < info.list.length; i++ ){
-
-            if( info.list[ i ].id === userId ){
-                found = true;
-                break;
-            }
-
-        }
-
-        var members         = card.find('.group-members');
-        var memberList      = info.list;//.slice( 0, 7 );
-        var memberPrototype = card.find('.member.wz-prototype');
-        var tmp;
-
-        for( var i = 0; i < memberList.length; i++ ){
-
-            tmp = memberPrototype.clone().removeClass('wz-prototype');
-            tmp.data( 'id', memberList[ i ].id );
-            tmp.find('img').attr( 'src', memberList[ i ].avatar.normal );
-            tmp.find('figcaption').text( memberList[ i ].name );
-            memberList[ i ] = tmp;
-
-        }
-
-        members.append( memberList );
-
-        if( found ){
-            card.addClass( 'friend' );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.leaveGroup );
-        }else{
-            card.addClass('stranger');
-            card.find( '.friend-info span' ).text( lang.addFriend );
-        }
+        card.addClass( 'stranger' );
+        //card.find( '.friend-contact span' ).text( lang.sendMessage );
+        card.find( '.friend-info span' ).text( lang.addFriend );
+        card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');
 
     }
 
@@ -263,68 +204,14 @@ var createCard = function( info ){
 
 var createNtCard = function( info ){
 
-    var card   = ntCardPrototype.clone().removeClass( 'wz-prototype' );
-    var isUser = !!info.avatar;
+    var card = ntCardPrototype.clone().removeClass( 'wz-prototype' );
 
     card.data( 'id', info.id );
     card.find('.accept span').text(lang.acceptRequest);
     card.find('.cancel span').text(lang.cancelRequest);
     card.find('.info-friend').text(lang.wantToBeFriend);
-
-    if( isUser ){
-        card.find('.info-name').text( info.fullName );
-        card.find('img').attr( 'src', info.avatar.normal );
-    }else{
-
-        card.find('img').attr( 'src', 'https://staticbeta.horbito.com/app/2/flags@2x.png' );
-        card.find('.card-data .name').text( info.name );
-        card.find('.group-members').show();
-
-        if( info.fsnodeId ){
-
-            card.find('.group-folder').show();
-            card.find('.group-folder-button').data( 'id', info.fsnodeId );
-
-        }
-
-        var found  = false;
-        var userId = api.system.user().id;
-
-        for( var i = 0; i < info.list.length; i++ ){
-
-            if( info.list[ i ].id === userId ){
-                found = true;
-                break;
-            }
-
-        }
-
-        var members         = card.find('.group-members');
-        var memberList      = info.list;//.slice( 0, 7 );
-        var memberPrototype = card.find('.member.wz-prototype');
-        var tmp;
-
-        for( var i = 0; i < memberList.length; i++ ){
-
-            tmp = memberPrototype.clone().removeClass('wz-prototype');
-            tmp.data( 'id', memberList[ i ].id );
-            tmp.find('img').attr( 'src', memberList[ i ].avatar.normal );
-            tmp.find('figcaption').text( memberList[ i ].name );
-            memberList[ i ] = tmp;
-
-        }
-
-        members.append( memberList );
-
-        if( found ){
-            card.addClass( 'friend' );
-            card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.leaveGroup );
-        }else{
-            card.addClass('stranger');
-            card.find( '.friend-info span' ).text( lang.addFriend );
-        }
-
-    }
+    card.find('.info-name').text( info.fullName );
+    card.find('img').attr( 'src', info.avatar.normal );
 
     return card;
 
@@ -348,7 +235,7 @@ var appendCardsShowInfo = function (list, type){
         listStatus.css( 'display', 'none' );
 
         if( list.length === 1 ){
-            aside.find( ( list[ 0 ].avatar ? '.user-' : '.group' ) + list[ 0 ].id ).addClass('active');
+            aside.find( '.user-' + list[ 0 ].id ).addClass('active');
         }
 
     }else{
@@ -382,7 +269,7 @@ var cardsShowInfo = function( list, type ){
         listStatus.css( 'display', 'none' );
 
         if( list.length === 1 ){
-            aside.find( ( list[ 0 ].avatar ? '.user-' : '.group' ) + list[ 0 ].id ).addClass('active');
+            aside.find( '.user-' + list[ 0 ].id ).addClass('active');
         }
 
     }else{
@@ -410,7 +297,7 @@ var ntCardsShowInfo = function( list, type ){
         ntListStatus.css( 'display', 'none' );
 
         if( list.length === 1 ){
-            aside.find( ( list[ 0 ].avatar ? '.user-' : '.group' ) + list[ 0 ].id ).addClass('active');
+            aside.find( '.user-' + list[ 0 ].id ).addClass('active');
         }
 
     }else{
@@ -442,55 +329,13 @@ var profile = function(){
 
 };
 
-var groups = function(){
-
-  api.user.listGroups( function( error, list ){
-
-    var groupCard = null;
-
-    if( list.length === 0 ){
-
-    return;
-
-      groupCard = contactsAsideGroupPrototype.clone().removeClass();
-
-      groupCard.children('img').remove();
-      // To Do -> Quitar estos estilos de aqui
-      groupCard.addClass('alone').children('span').html( lang.noGroups );
-      groupsAside.append( groupCard );
-
-    }else{
-
-      groupsAside.show();
-
-      for( var i = 0; i < list.length; i++ ){
-
-        groupCard = contactsAsideGroupPrototype.clone().removeClass('wz-prototype');
-
-        groupCard.data( 'id', list[ i ].id );
-        groupCard.children('img').attr( 'src', 'https://staticbeta.horbito.com/app/2/flags.png' );
-        groupCard.children('span').text( list[ i ].name );
-        groupsAside.children().remove('.alone');
-        groupsAside.append( groupCard );
-
-      }
-
-    }
-
-  });
-
-};
-
 var translate = function(){
 
     $('input').attr( 'placeholder', lang.search );
     $('.profile-title').text( lang.profileTitle );
     $( '.users-title', contactsAside ).text( lang.usersTitle );
-    $( '.groups-title', groupsAside ).text( lang.groupsTitle );
     //$( '.card-data .info', cardPrototype ).text( lang.userBio );
-    $( '.tittleApp' ).text( lang.appName );
-    $('.user-groups h3').text( lang.groupsTitle );
-    $('.group-members h3').text( lang.membersTitle );
+    $( '.titleApp' ).text( lang.appName );
     $('.ui-content-top span').text(lang.friendRequests);
     listStatus.text( lang.appName );
     $('.invite-by-mail span').text(lang.inviteByMail);
@@ -650,24 +495,6 @@ win
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
     cardsShowInfo( [ api.system.user() ], LIST_NORMAL );
-
-})
-
-.on( 'mousedown', '.groups-group', function(){
-
-    location = 'info';
-
-    if(content.hasClass('list')){
-      content.removeClass('list');
-      numPagina = 0;
-      cadenaBusqueda = "";
-    }
-    requestsTopButton.removeClass('active');
-    blockedTopButton.removeClass('active');
-
-    api.user.group( $(this).data('id'), function( error, group ){
-        cardsShowInfo( [ group ], LIST_NORMAL );
-    });
 
 })
 
@@ -863,16 +690,6 @@ win
 
 })
 
-.on( 'mousedown', '.group-folder-button', function(){
-
-    console.log( $(this).data('id') );
-
-    wz.fs( $(this).data('id'), function( error, fsnode ){
-        fsnode.open();
-    });
-
-})
-
 
 /*
 .on( 'click', '.user img', function(){
@@ -976,7 +793,7 @@ win
         notificationCenter.removeClass('active');
       }
 })
-.on( 'click', '.tittleApp' ,function(){
+.on( 'click', '.titleApp' ,function(){
       if (notificationCenter.hasClass('active')) {
         notificationCenter.removeClass('active');
       }
@@ -1202,6 +1019,5 @@ win.addClass('dark');
 translate();
 profile();
 friends();
-groups();
 pendingRequests();
 centerListStatus();
