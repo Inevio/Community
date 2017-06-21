@@ -1,0 +1,489 @@
+/* COLORS */
+@colorMain: #7ebe30;
+
+@grayHorbito: #51575f;
+@grayHorbitoHover: #474d54;
+@grayHorbitoActive: #42464d;
+@grayHorbitoDisabled: #c3c9cc;
+
+@greenHorbito: #60b25e;
+@greenHorbitoHover: #4ea34b;
+@greenHorbitoActive: #3d903b;
+@greenHorbitoDisabled: #c3c9cc;
+
+@blueHorbito: #0071f6;
+@blueHorbitoHover: #006ae6;
+@blueHorbitoActive: #0062d6;
+@blueHorbitoDisabled: #c3c9cc;
+
+@redHorbito: #ff2153;
+@redHorbitoHover: #f81d4e;
+@redHorbitoActive: #e51846;
+@redHorbitoDisabled: #c3c9cc;
+
+@darkHorbito: #252525;
+@gray1: #717171;
+@gray2: #9a9aa2;
+@lightGray: #f9f9fe;
+
+.hidden{
+	display: none !important;
+}
+
+.wz-scroll{
+  -webkit-overflow-scrolling: touch;
+}
+
+.community-view{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background: #fff;
+}
+
+.community-utility{
+	position: absolute;
+	bottom: 0;
+	z-index: 3;             
+}
+
+.friend-list-view{
+
+	.shadow{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.3);
+		opacity: 0;
+		z-index: 1;
+	}
+
+	.view-title{
+		font-size: 38px;
+		color: @darkHorbito;
+		float: left;
+		width: ~'calc(100% - 120px)';
+		margin-top: 10px;
+		margin-left: 10px;
+		font-weight: 900;
+	}
+
+
+	.notifications{
+		float: right;
+		width: 17.5px;
+		height: 19px;
+		padding: 20px 15px;
+
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/bell.png');
+			background-size: 17.5px 19px;
+			transition: all 0.2s ease;
+		}
+	}
+
+	.notifications.active i{
+		background: url('@static/bellActive.png');
+		background-size: 17.5px 19px;
+	}
+
+	.add-friend-button{
+		float: right;
+		width: 17.5px;
+		height: 17.5px;
+		padding: 20px 15px;
+
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/plus.png');
+			background-size: 17.5px 17.5px;
+		}
+	}
+
+	.search-users{
+		float: left;
+		margin: 10px 15px;
+		width: ~'calc(100% - 30px)';
+	}
+
+	.friend-list{
+		float: left;
+		width: ~'calc(100% - 30px)';
+		height: ~'calc(100% - 113px)';
+		padding: 0 15px;
+	}
+
+	.friend{
+		float: left;
+		width: 100%;
+		height: 39px;
+		padding: 10px 0;
+
+		.friend-avatar{
+			float: left;
+			height: 100%;
+			width: 39px;
+			border-radius: 50%;
+			background-size: cover;
+		}
+
+		.friend-name{
+			float: left;
+			font-size: 16px;
+			font-weight: bold;
+			color: @darkHorbito;
+			padding: 10px 15px;
+			width: ~'calc(100% - 111px)';
+		}
+
+		.friend-options-button{
+			float: left;
+			width: 22px;
+			height: 22px;
+			padding: 10px;
+			
+			i{
+				float: left;
+				width: 100%;
+				height: 100%;
+				background: url('@static/arrowButton.png');
+				background-size: 22px 22px;
+			}
+		}
+
+	}
+
+}
+
+.user-list{
+
+	transform: translate(100%, 0);
+	z-index: 2;
+
+	.back-button{
+		float: left;
+		width: 15.5px;
+		height: 15px;
+		padding: 20px 20px;
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/back.png');
+			background-size: 15.5px 15px;
+		}
+	}
+
+	.view-title{
+		font-size: 38px;
+		color: @darkHorbito;
+		float: left;
+		width: ~'calc(100% - 70px)';
+		margin-top: 10px;
+		margin-left: 10px;
+		font-weight: 900;
+	}
+
+	.search-friends{
+		float: left;
+		margin: 10px 15px;
+		width: ~'calc(100% - 30px)';
+	}
+
+	.no-friends{
+		float: left;
+		width: 100%;
+		height: ~'calc(100% - 110px)';
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.no-friends-img{
+		display: block;
+		margin: 0 auto;
+		width: 184.5px;
+		height: 160px;
+		padding-left: 30px;
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/searchFriends.png');
+			background-size: 184.5px 160px;
+		}
+	}
+
+	.no-friends-text{
+		display: block;
+		width: 100%;
+		text-align: center;
+		color: @gray2;
+		font-weight: 900;
+		font-size: 37px;
+	}
+
+	.searched-user-list{
+		float: left;
+		width: ~'calc(100% - 30px)';
+		height: ~'calc(100% - 113px)';
+		padding: 0 15px;
+	}
+
+	.searched-user{
+		float: left;
+		width: 100%;
+		height: 39px;
+		padding: 10px 0;
+
+		.searched-user-avatar{
+			float: left;
+			height: 100%;
+			width: 39px;
+			background-color: red;
+			border-radius: 50%;
+		}
+
+		.searched-user-name{
+			float: left;
+			font-size: 16px;
+			font-weight: bold;
+			color: @darkHorbito;
+			padding: 10px 15px;
+			width: ~'calc(100% - 161px)';
+		}
+
+		.searched-user-options-button.no-friend{
+			float: right;
+			width: 75.5px;
+			height: 27px;
+			border: 1.5px solid #bbbbc1;
+			transition: all 0.2s ease;
+			background: #fff;
+			border-radius: 6px;
+
+			span{
+				float: left;
+				width: 100%;
+				height: 100%;
+				color: #bbbbc1;
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				padding: 5px 0;
+			}
+		}
+
+		.searched-user-options-button.friend{
+			float: right;
+			width: 80px;
+			height: 27px;
+			border: 1.5px solid @blueHorbito;
+			transition: all 0.2s ease;
+			background: @blueHorbito;
+			border-radius: 6px;
+			
+			span{
+				float: left;
+				width: 100%;
+				height: 100%;
+				color: #fff;
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				padding: 5px 0;
+			}
+		}
+
+	}
+
+
+}
+
+.notification-list{
+
+	transform: translate(100%, 0);
+	z-index: 2;
+
+	.back-button{
+		float: left;
+		width: 15.5px;
+		height: 15px;
+		padding: 20px 20px;
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/back.png');
+			background-size: 15.5px 15px;
+		}
+	}
+
+	.view-title{
+		font-size: 38px;
+		color: @darkHorbito;
+		float: left;
+		width: ~'calc(100% - 70px)';
+		margin-top: 10px;
+		margin-left: 10px;
+		font-weight: 900;
+	}
+
+	.notification-list{
+		float: left;
+		width: ~'calc(100% - 30px)';
+		height: ~'calc(100% - 113px)';
+		padding: 0 15px;
+	}
+
+	.notification{
+		float: left;
+		width: 100%;
+		height: 39px;
+		padding: 10px 0;
+
+		.notification-avatar{
+			float: left;
+			height: 100%;
+			width: 39px;
+			background-color: red;
+			border-radius: 50%;
+		}
+
+		.notification-name{
+			float: left;
+			font-size: 16px;
+			font-weight: bold;
+			color: @darkHorbito;
+			padding: 10px 15px;
+			width: ~'calc(100% - 240px)';
+		}
+
+		.notification-options-button.add{
+			float: right;
+			width: 75.5px;
+			height: 27px;
+			border: 1.5px solid #00b161;
+			background: #fff;
+			border-radius: 6px;
+
+			span{
+				float: left;
+				width: 100%;
+				height: 100%;
+				color: #00b161;
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				padding: 5px 0;
+			}
+		}
+
+		.notification-options-button.decline{
+			float: right;
+			width: 80px;
+			height: 27px;
+			border: 1.5px solid #fe1843;
+			transition: all 0.2s ease;
+			background: #fff;
+			border-radius: 6px;
+			margin-left: 5px;
+			
+			span{
+				float: left;
+				width: 100%;
+				height: 100%;
+				color: #fe1843;
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				padding: 5px 0;
+			}
+		}
+
+	}
+
+}
+
+.friend-options{
+	height: 115px;
+	padding: 0 8px;
+	width: ~'calc(100% - 16px)';
+	background-color: #fff;
+	transform: translate(0, 115px);
+
+	.friend{
+		float: left;
+		height: 39px;
+		width: 100%;
+		padding: 13px 0;
+		border-bottom: 0.5px solid #eee;
+
+		.friend-avatar{
+			float: left;
+			width: 39px;
+			height: 100%;
+			border-radius: 50%;
+			background-color: red;
+		}
+
+		.friend-name{
+			float: left;
+			font-size: 17px;
+			font-weight: 900;
+			color: @darkHorbito;
+			padding: 12px 15px;
+			width: ~'calc(100% - 69px)';
+		}
+
+	}
+
+	.options{
+		float: left;
+		width: 100%;
+		height: ~'calc(100% - 65px)';
+	}
+
+	.option{
+		float: left;
+		padding: 0 8px;
+		width: ~'calc(100% - 16px)';
+		height: 100%;
+
+		.option-icon{
+			float: left;
+			width: 23.5px;
+			height: 16.5px;
+			padding: 10px;
+
+			i{
+				float: left;
+				width: 100%;
+				height: 100%;
+				background: url('@static/removeFriend.png');
+				background-size: 23.5px 16.5px;
+			}
+		}
+
+		.option-name{
+			float: left;
+			font-size: 17px;
+			color: @darkHorbito;
+			padding: 9px 10px;
+			width: ~'calc(100% - 64px)';
+		}
+
+	}
+
+}
+
