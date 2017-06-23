@@ -77,16 +77,13 @@ friendListShadow.on( 'click' , function(){
 
 	//Activate scroll
 	app.removeClass('no-scroll');
-	//$('.community-view').css('position', 'absolute');
-	//$('.community-utility').css('position' , 'absolute');
+	StatusBar.backgroundColorByHexString("#fff");
 
-	friendListShadow.transition({
+	friendListShadow.css({
 		'opacity' : '0'
-	}, 200, function(){
-
-		friendListShadow.addClass('hidden');
-
 	});
+	friendListShadow.addClass('hidden');
+
 
 	friendOptions.removeClass('hidden').transition({
 		'transform'	: 'translate(0, '+ friendOptions.css('height') +')'
@@ -104,10 +101,12 @@ app
 
 	//Desactivate scroll
 	app.addClass('no-scroll');
+	StatusBar.backgroundColorByHexString("#b2b2b2");
 
-	friendListShadow.removeClass('hidden').transition({
+	friendListShadow.removeClass('hidden')
+	friendListShadow.css({
 		'opacity' : '1'
-	}, 200);
+	});
 
 	friendOptions.removeClass('hidden').transition({
 		'transform'	: 'translate(0, 0)'
@@ -229,6 +228,14 @@ app
 
 	$(this).parent().find('input').val('').trigger('input');
 
+})
+
+.on( 'focus' , '.search-users' , function(){
+	$('.no-friends').addClass('hidden');
+})
+
+.on( 'blur' , '.search-users' , function(){
+	$('.no-friends').removeClass('hidden');
 })
 
 api.user.on( 'friendRemoved', function( user ){

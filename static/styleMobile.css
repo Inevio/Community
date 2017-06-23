@@ -188,7 +188,7 @@
 		float: left;
 		width: 15.5px;
 		height: 15px;
-		padding: 20px 20px;
+		padding: 36px 8px 11px 24px;
 		i{
 			float: left;
 			width: 100%;
@@ -202,16 +202,17 @@
 		font-size: 38px;
 		color: @darkHorbito;
 		float: left;
-		width: ~'calc(100% - 70px)';
-		margin-top: 10px;
+		width: ~'calc(100% - 100px)';
+		margin-top: 23.5px;
 		margin-left: 10px;
 		font-weight: 900;
+		letter-spacing: 0.5px;
 	}
 
 	.search-users{
 		float: left;
-		margin: 10px 15px;
-		width: ~'calc(100% - 30px)';
+		margin: 30px 15px 11px 15px;
+		width: ~'calc(100% - 34px)';
 
 		input{
 			width: ~'calc(100% - 100px)' !important;
@@ -221,7 +222,7 @@
 	.no-friends{
 		float: left;
 		width: 100%;
-		height: ~'calc(100% - 110px)';
+		height: ~'calc(100% - 147px)';
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -231,19 +232,20 @@
 	.no-friends-img{
 		display: block;
 		margin: 0 auto;
-		width: 184.5px;
-		height: 160px;
-		padding-left: 30px;
+		width: 246px;
+		height: 161px;
+		margin-top: -43px;
 		i{
 			float: left;
 			width: 100%;
 			height: 100%;
 			background: url('@static/searchFriends.png');
-			background-size: 184.5px 160px;
+			background-size: 246px 161px;
 		}
 	}
 
 	.no-friends-text{
+		margin-top: 40px;
 		display: block;
 		width: 100%;
 		text-align: center;
@@ -255,20 +257,20 @@
 	.searched-user-list{
 		float: left;
 		width: ~'calc(100% - 30px)';
-		height: ~'calc(100% - 113px)';
-		padding: 0 15px;
+		height: ~'calc(100% - 152px)';
+		padding: 5px 15px 0 15px;
 	}
 
 	.searched-user{
 		float: left;
 		width: 100%;
-		height: 39px;
-		padding: 10px 0;
+		height: 40px;
+		padding: 5px 0;
 
 		.searched-user-avatar{
 			float: left;
 			height: 100%;
-			width: 39px;
+			width: 40px;
 			background-size: cover;
 			border-radius: 50%;
 		}
@@ -292,6 +294,7 @@
 		transition: all 0.2s ease;
 		background: #fff;
 		border-radius: 6px;
+		margin-top: 6px;
 
 		span{
 			float: left;
@@ -317,6 +320,7 @@
 		transition: all 0.2s ease;
 		background: @blueHorbito;
 		border-radius: 6px;
+		margin-top: 6px;
 		
 		span{
 			float: left;
@@ -336,18 +340,19 @@
 
 	.pending .searched-user-options-button{
 		float: right;
-		width: 75.5px;
+		width: 80px;
 		height: 27px;
-		border: 1.5px solid #bbbbc1;
+		border: 1.5px solid @gray1;
 		transition: all 0.2s ease;
 		background: #fff;
 		border-radius: 6px;
+		margin-top: 6px;
 
 		span{
 			float: left;
 			width: 100%;
 			height: 100%;
-			color: #bbbbc1;
+			color: @gray1;
 			font-weight: bold;
 			text-align: center;
 			font-size: 16px;
@@ -379,7 +384,7 @@
 		float: left;
 		width: 15.5px;
 		height: 15px;
-		padding: 20px 20px;
+		padding: 36px 8px 11px 24px;
 		i{
 			float: left;
 			width: 100%;
@@ -393,29 +398,30 @@
 		font-size: 38px;
 		color: @darkHorbito;
 		float: left;
-		width: ~'calc(100% - 70px)';
-		margin-top: 10px;
+		width: ~'calc(100% - 100px)';
+		margin-top: 23.5px;
 		margin-left: 10px;
 		font-weight: 900;
+		letter-spacing: 0.5px;
 	}
 
 	.notification-list{
 		float: left;
 		width: ~'calc(100% - 30px)';
-		height: ~'calc(100% - 113px)';
-		padding: 0 15px;
+		height: ~'calc(100% - 80px)';
+		padding: 18px 15px 0 15px;
 	}
 
 	.notification{
 		float: left;
 		width: 100%;
-		height: 39px;
+		height: 40px;
 		padding: 10px 0;
 
 		.notification-avatar{
 			float: left;
 			height: 100%;
-			width: 39px;
+			width: 40px;
 			background-size: cover;
 			border-radius: 50%;
 		}
@@ -425,7 +431,7 @@
 			font-size: 16px;
 			font-weight: bold;
 			color: @darkHorbito;
-			padding: 10px 15px;
+			padding: 12px 15px;
 			width: ~'calc(100% - 240px)';
 		}
 
@@ -436,6 +442,7 @@
 			border: 1.5px solid #00b161;
 			background: #fff;
 			border-radius: 6px;
+			margin-top: 7px;
 
 			span{
 				float: left;
@@ -458,6 +465,7 @@
 			background: #fff;
 			border-radius: 6px;
 			margin-left: 5px;
+			margin-top: 7px;
 			
 			span{
 				float: left;
@@ -475,23 +483,24 @@
 
 }
 
+
 .friend-options{
-	height: 115px;
-	padding: 0 8px;
-	width: ~'calc(100% - 16px)';
+	height: 150px;
+	padding: 0 15px;
+	width: ~'calc(100% - 30px)';
 	background-color: #fff;
 	transform: translate(0, 115px);
 
 	.friend-selected{
 		float: left;
-		height: 39px;
+		height: 40px;
 		width: 100%;
 		padding: 13px 0;
 		border-bottom: 0.5px solid #eee;
 
 		.friend-selected-avatar{
 			float: left;
-			width: 39px;
+			width: 40px;
 			height: 100%;
 			border-radius: 50%;
 			background-size: cover;
@@ -502,8 +511,8 @@
 			font-size: 17px;
 			font-weight: 900;
 			color: @darkHorbito;
-			padding: 12px 15px;
-			width: ~'calc(100% - 69px)';
+			padding: 12px 20px;
+			width: ~'calc(100% - 80px)';
 		}
 
 	}
@@ -516,9 +525,8 @@
 
 	.option{
 		float: left;
-		padding: 0 8px;
-		width: ~'calc(100% - 16px)';
-		height: 100%;
+		width: 100%;
+		margin-top: 24px;
 
 		.option-icon{
 			float: left;
@@ -539,11 +547,10 @@
 			float: left;
 			font-size: 17px;
 			color: @darkHorbito;
-			padding: 9px 10px;
-			width: ~'calc(100% - 64px)';
+			padding: 10px 14px;
+			width: ~'calc(100% - 72px)';
 		}
 
 	}
 
 }
-
