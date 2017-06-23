@@ -51,6 +51,15 @@
     "inviteContacts"      : "También puedes invitar a tus contactos a unirse a horbito",
     "inviteFriends"       : "Invitar contactos",
     "invitationSentTitle"    : "Invitaciones enviadas",
-    "invitationSentSubtitle" : "Tus invitaciones están de camino!"
+    "invitationSentSubtitle" : "Tus invitaciones están de camino!",
+
+    "noNotifications"       : "No tienes peticiones de amistad",
+    "addFriends"            : "Añadir Amigos",
+    "searchPeople"          : "Buscar gente",
+    "add"                   : "Añadir",
+    "friends"               : "Amigos",
+    "pending"               : "Pendiente",
+    "requests"              : "Peticiones",
+    "decline"               : "Rechazar"
 
 }
