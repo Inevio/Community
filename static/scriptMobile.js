@@ -15,6 +15,8 @@ var userPrototype 			= $('.searched-user.wz-prototype');
 var notificationPrototype = $('.notification.wz-prototype');
 var notificationList 		= $('.notification-list');
 
+var actualView = 'friendList';
+
 addFriendButton.on( 'click' , function(){
 
 	$('.search-users input').val('').trigger('input');
@@ -23,6 +25,7 @@ addFriendButton.on( 'click' , function(){
 	}, 200, function(){
 
 		friendListView.addClass('hidden');
+		actualView = 'userList';
 
 	});
 
@@ -40,6 +43,7 @@ notificationButton.on( 'click' , function(){
 	}, 200, function(){
 
 		friendListView.addClass('hidden');
+		actualView = 'notificationList';
 
 	});
 
@@ -54,6 +58,8 @@ backUserList.on( 'click' , function(){
 	}, 200, function(){
 
 		userListView.addClass('hidden');
+		actualView = 'friendList';
+
 
 	});
 
@@ -68,6 +74,7 @@ backNotifications.on( 'click' , function(){
 	}, 200, function(){
 
 		notificationListView.addClass('hidden');
+		actualView = 'friendList';
 
 	});
 
@@ -233,6 +240,19 @@ app
 
 .on( 'blur' , '.search-users' , function(){
 	$('.no-friends').removeClass('hidden');
+})
+
+.on( 'backbutton' , function( e ){
+
+  e.stopPropagation();
+	if ( actualView === 'userList') {
+		backUserList.click();
+	}else if( actualView === 'notificationList'){
+		backNotifications.click();
+	}else if( actualView === 'friendList'){
+		return;
+	}
+
 })
 
 api.user.on( 'friendRemoved', function( user ){
