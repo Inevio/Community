@@ -31,7 +31,7 @@ addFriendButton.on( 'click' , function(){
 notificationButton.on( 'click' , function(){
 
 	if (!$(this).hasClass('active')) {
-		navigator.notification.alert( 'TEXTO A CAMBIAR' );
+		navigator.notification.alert( lang.noNotifications );
 		return;
 	}
 
@@ -165,7 +165,6 @@ app
 
 	var friend = friendOptions.data('user');
 	friend.removeFriend( function(){
-		navigator.notification.alert( friend.fullName + ' ' + lang.friendRemoved );
 		$('.shadow').click();
 		$('.search-friends input').val('').trigger('input');
 	});
@@ -178,7 +177,6 @@ app
 	var user = domUser.data('user');	
 	user.removeFriend( function(){
 		domUser.removeClass('friendly').addClass('no-friend');
-		navigator.notification.alert( user.fullName + ' ' + lang.friendRemoved );
 	});
 
 })
@@ -190,7 +188,6 @@ app
 	user.addFriend( 'Hello dolly', function(){
 		
 		domUser.removeClass('no-friend').addClass('pending');
-		navigator.notification.alert( lang.requestSent + ' ' + user.fullName );
 
   });
 
@@ -342,6 +339,7 @@ var setMobile = function(){
 
 var initCommunity = function(){
 
+	translate();
 	setMobile();
 	friends();
 	getRequests();
@@ -353,6 +351,21 @@ var setFriendOptions = function( user ){
 	friendOptions.data( 'user', user );
 	friendOptions.find('.friend-selected-name').text(user.fullName);
 	friendOptions.find('.friend-selected-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
+
+}
+
+var translate = function(){
+
+	$('.user-list .view-title').text(lang.addFriends);
+	$('.no-friends-text').text(lang.searchPeople);
+	$('.searched-user-options-button.add span').text(lang.add);
+	$('.searched-user-options-button.friends span').text(lang.friends);
+	$('.searched-user-options-button.pending span').text(lang.pending);
+	$('.notification-list-view .view-title').text(lang.requests);
+	$('.notification-options-button.decline span').text(lang.decline);
+	$('.notification-options-button.add span').text(lang.add);
+	$('.option-name.remove-friend').text(lang.rmFriend);
+	$('.search-users input, .search-friends input').attr('placeholder' , lang.search);
 
 }
 

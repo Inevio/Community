@@ -50,6 +50,16 @@
     "inviteContacts"      : "You can also invite anyone to join horbito with you",
     "inviteFriends"       : "Invite people",
     "invitationSentTitle"    : "Invitations sent",
-    "invitationSentSubtitle" : "Your invitations are on their way!"
+    "invitationSentSubtitle" : "Your invitations are on their way!",
+
+    "noNotifications"       : "You don't have any friend requests",
+    "addFriends"            : "Add Friends",
+    "searchPeople"          : "Search people",
+    "add"                   : "Add",
+    "friends"               : "Friends",
+    "pending"               : "Pending",
+    "requests"              : "Requests",
+    "decline"               : "Decline"
+
 
 }
