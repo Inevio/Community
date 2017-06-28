@@ -1,5 +1,6 @@
 
 var win                         = $( this );
+var window                      = win.parents().slice( -1 )[ 0 ].parentNode.defaultView;
 var aside                       = $('.ui-navbar');
 var contactsAside               = $('.users', aside);
 var content                     = $('.ui-window-content');
@@ -1015,6 +1016,22 @@ inviteByMail.on( 'click' , function(){
 });
 
 // Start app
+wql.isFirstOpen( [ api.system.user().id ] , function( e , o ){
+
+  if ( o.length === 0 ){
+
+    wql.firstOpenDone( [ api.system.user().id ] , function( e , o ){
+
+      $( '.onboarding-arrow.arrow-community' , window.document ).remove();
+      if(e) console.log(e);
+
+    });
+
+  }
+
+});
+
+
 win.addClass('dark');
 translate();
 profile();
