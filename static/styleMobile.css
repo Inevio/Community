@@ -433,15 +433,15 @@
 /* Iphone 5 */
 @media(min-width:320px) and (max-width:375px){
 
-	.notification .notification-name{
+	.notification-list-view .notification .notification-name{
 		width: ~'calc(100% - 187px)';
 	}
 
-	.notification .notification-options-button{
+	.notification-list-view .notification .notification-options-button{
 		width: 60px;
 	}
 
-	.notification .notification-options-button span{
+	.notification-list-view .notification .notification-options-button span{
 		font-size: 12px;
 		padding: 7px 0;
 	}
