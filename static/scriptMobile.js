@@ -180,7 +180,7 @@ app
       }else{
       	userCard.addClass('no-friend');
       }
-      userList.append(userCard);
+      if( $('.user-' + user.id).length === 0 ) userList.append(userCard);
   	});
   });
 
@@ -268,7 +268,7 @@ var friends = function(){
         userCard.data( 'user', user );
         userCard.find('.user-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
         userCard.find('.user-name').text(user.fullName);
-        userList.append(userCard);
+        if( $('.user-' + user.id).length === 0 ) userList.append(userCard);
     	});
     }
   });
