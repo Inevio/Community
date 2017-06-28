@@ -5,7 +5,8 @@
 
         "main" : "Community",
         "en"   : "Community",
-        "es"   : "Comunidad"
+        "es"   : "Community"
+        
 
     },
 
@@ -91,6 +92,34 @@
 
                   "css"    : [ "inviteByMail.css" ],
                   "script" : [ "inviteByMail.js" ],
+                  "start"  : []
+
+                }
+
+            }
+
+        },
+
+        "mobile" : {
+
+            "primary" : "main",
+            "service" : [],
+            "common"  : {
+
+                "css"    : [],
+                "script" : [],
+                "start"  : []
+
+            },
+
+            "view" : {
+
+                "main" : {
+
+                  "template" : "mainMobile.html",
+
+                  "css"    : ["styleMobile.css"],
+                  "script" : ["scriptMobile.js"],
                   "start"  : []
 
                 }

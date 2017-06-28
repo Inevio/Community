@@ -1,0 +1,450 @@
+/* COLORS */
+@colorMain: #7ebe30;
+
+@grayHorbito: #51575f;
+@grayHorbitoHover: #474d54;
+@grayHorbitoActive: #42464d;
+@grayHorbitoDisabled: #c3c9cc;
+
+@greenHorbito: #60b25e;
+@greenHorbitoHover: #4ea34b;
+@greenHorbitoActive: #3d903b;
+@greenHorbitoDisabled: #c3c9cc;
+
+@blueHorbito: #0071f6;
+@blueHorbitoHover: #006ae6;
+@blueHorbitoActive: #0062d6;
+@blueHorbitoDisabled: #c3c9cc;
+
+@redHorbito: #ff2153;
+@redHorbitoHover: #f81d4e;
+@redHorbitoActive: #e51846;
+@redHorbitoDisabled: #c3c9cc;
+
+@darkHorbito: #252525;
+@gray1: #717171;
+@gray2: #9a9aa2;
+@gray3: #bbbbc1;
+@lightGray: #f9f9fe;
+
+*{
+	letter-spacing: 0px;
+}
+
+.hidden{
+	display: none !important;
+}
+
+.wz-scroll{
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+
+}
+
+.community-view{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background: #fff;
+}
+
+.community-utility{
+	position: fixed;
+	bottom: 0;
+	z-index: 3;             
+}
+
+.shadow{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.3);
+	opacity: 0;
+	z-index: 2;
+}
+
+.user-list-view{
+
+	.view-title{
+		font-size: 38px;
+		color: @darkHorbito;
+		float: left;
+		width: ~'calc(100% - 104px)';
+		margin-top: 23px;
+		margin-left: 15px;
+		font-weight: 900;
+	}
+
+	.notifications{
+		float: right;
+		width: 17.5px;
+		height: 19px;
+		padding: 38px 12px 0 12px;
+
+
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/bell.png');
+			background-size: 17.5px 19px;
+			transition: all 0.2s ease;
+		}
+	}
+
+	.notifications.active i{
+		background: url('@static/bellActive.png');
+		background-size: 17.5px 19px;
+	}
+
+	.search-users{
+		float: left;
+		margin: 30px 15px 10px 15px;
+		width: ~'calc(100% - 34px)';
+
+		input{
+			width: ~'calc(100% - 100px)' !important;
+		}
+	}
+
+	.no-friends{
+		float: left;
+		width: 100%;
+		height: ~'calc(100% - 147px)';
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		display: none;
+	}
+
+	.no-friends-img{
+		display: block;
+		margin: 0 auto;
+		width: 246px;
+		height: 161px;
+		margin-top: -43px;
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/searchFriends.png');
+			background-size: 246px 161px;
+		}
+	}
+
+	.no-friends-text{
+		margin-top: 40px;
+		display: block;
+		width: 100%;
+		text-align: center;
+		color: @gray2;
+		font-weight: 900;
+		font-size: 37px;
+	}
+
+	.user-list{
+		float: left;
+		width: ~'calc(100% - 30px)';
+		height: ~'calc(100% - 145px)';
+		padding: 0 15px;
+	}
+
+	.user{
+		float: left;
+		width: 100%;
+		height: 40px;
+		padding: 5px 0;
+
+		.user-avatar{
+			float: left;
+			height: 100%;
+			width: 40px;
+			border-radius: 50%;
+			background-size: cover;
+		}
+
+		.user-name{
+			float: left;
+			font-size: 16px;
+			font-weight: bold;
+			color: @darkHorbito;
+			padding: 10px 15px;
+			width: ~'calc(100% - 162px)';
+		}
+
+	}
+
+	.no-friend .add{
+		float: right;
+		width: 75.5px;
+		height: 27px;
+		border: 1.5px solid @blueHorbito;
+		transition: all 0.2s ease;
+		background: @blueHorbito;
+		border-radius: 6px;
+		margin-top: 6px;
+
+		span{
+			float: left;
+			width: 100%;
+			height: 100%;
+			color: #fff;
+			font-weight: bold;
+			text-align: center;
+			font-size: 16px;
+			padding: 5px 0;
+		}
+	}
+
+	.no-friend .friends, .no-friend .pending{
+		display: none;
+	}
+
+	.friendly .friends{
+		float: right;
+		width: 22px;
+		height: 22px;
+		padding: 10px 0px 10px 15px;
+		
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/arrowButton.png');
+			background-size: 22px 22px;
+		}
+	}
+
+	.friendly .add, .friendly .pending{
+		display: none;
+	}
+
+	.pending .pending{
+		float: right;
+		width: 80px;
+		height: 27px;
+		border: 1.5px solid @gray1;
+		transition: all 0.2s ease;
+		background: #fff;
+		border-radius: 6px;
+		margin-top: 6px;
+
+		span{
+			float: left;
+			width: 100%;
+			height: 100%;
+			color: @gray1;
+			font-weight: bold;
+			text-align: center;
+			font-size: 16px;
+			padding: 5px 0;
+		}
+	}
+
+	.pending .friends, .pending .add{
+		display: none;
+	}
+
+}
+
+.notification-list-view{
+
+	transform: translate(100%, 0);
+	z-index: 2;
+
+	.back-button{
+		float: left;
+		width: 15.5px;
+		height: 15px;
+		padding: 36px 8px 11px 24px;
+		i{
+			float: left;
+			width: 100%;
+			height: 100%;
+			background: url('@static/back.png');
+			background-size: 15.5px 15px;
+		}
+	}
+
+	.view-title{
+		font-size: 38px;
+		color: @darkHorbito;
+		float: left;
+		width: ~'calc(100% - 100px)';
+		margin-top: 23.5px;
+		margin-left: 10px;
+		font-weight: 900;
+		letter-spacing: 0.5px;
+	}
+
+	.notification-list{
+		float: left;
+		width: ~'calc(100% - 30px)';
+		height: ~'calc(100% - 80px)';
+		padding: 18px 15px 0 15px;
+	}
+
+	.notification{
+		float: left;
+		width: 100%;
+		height: 40px;
+		padding: 10px 0;
+
+		.notification-avatar{
+			float: left;
+			height: 100%;
+			width: 40px;
+			background-size: cover;
+			border-radius: 50%;
+		}
+
+		.notification-name{
+			float: left;
+			font-size: 16px;
+			font-weight: bold;
+			color: @darkHorbito;
+			padding: 12px 0px 12px 15px;
+			width: ~'calc(100% - 225px)';
+		}
+
+		.notification-options-button.add{
+			float: right;
+			width: 75.5px;
+			height: 27px;
+			border: 1.5px solid #00b161;
+			background: #fff;
+			border-radius: 6px;
+			margin-top: 7px;
+
+			span{
+				float: left;
+				width: 100%;
+				height: 100%;
+				color: #00b161;
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				padding: 5px 0;
+			}
+		}
+
+		.notification-options-button.decline{
+			float: right;
+			width: 80px;
+			height: 27px;
+			border: 1.5px solid #fe1843;
+			transition: all 0.2s ease;
+			background: #fff;
+			border-radius: 6px;
+			margin-left: 5px;
+			margin-top: 7px;
+			
+			span{
+				float: left;
+				width: 100%;
+				height: 100%;
+				color: #fe1843;
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				padding: 5px 0;
+			}
+		}
+
+	}
+
+}
+
+.friend-options{
+	height: 150px;
+	padding: 0 15px;
+	width: ~'calc(100% - 30px)';
+	background-color: #fff;
+	transform: translate(0, 115px);
+
+	.friend-selected{
+		float: left;
+		height: 40px;
+		width: 100%;
+		padding: 13px 0;
+		border-bottom: 0.5px solid #eee;
+
+		.friend-selected-avatar{
+			float: left;
+			width: 40px;
+			height: 100%;
+			border-radius: 50%;
+			background-size: cover;
+		}
+
+		.friend-selected-name{
+			float: left;
+			font-size: 17px;
+			font-weight: 900;
+			color: @darkHorbito;
+			padding: 12px 20px;
+			width: ~'calc(100% - 80px)';
+		}
+
+	}
+
+	.options{
+		float: left;
+		width: 100%;
+		height: ~'calc(100% - 65px)';
+	}
+
+	.option{
+		float: left;
+		width: 100%;
+		margin-top: 24px;
+
+		.option-icon{
+			float: left;
+			width: 23.5px;
+			height: 16.5px;
+			padding: 10px;
+
+			i{
+				float: left;
+				width: 100%;
+				height: 100%;
+				background: url('@static/removeFriend.png');
+				background-size: 23.5px 16.5px;
+			}
+		}
+
+		.option-name{
+			float: left;
+			font-size: 17px;
+			color: @darkHorbito;
+			padding: 10px 14px;
+			width: ~'calc(100% - 72px)';
+		}
+
+	}
+
+}
+
+/* Iphone 5 */
+@media(min-width:320px) and (max-width:375px){
+
+	.notification .notification-name{
+		width: ~'calc(100% - 187px)';
+	}
+
+	.notification .notification-options-button{
+		width: 60px;
+	}
+
+	.notification .notification-options-button span{
+		font-size: 12px;
+		padding: 7px 0;
+	}
+
+}
