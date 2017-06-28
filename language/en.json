@@ -59,7 +59,8 @@
     "friends"               : "Friends",
     "pending"               : "Pending",
     "requests"              : "Requests",
-    "decline"               : "Decline"
+    "decline"               : "Decline",
+    "arrow"                 : "Here you'll find your teammates"
 
 
 }
