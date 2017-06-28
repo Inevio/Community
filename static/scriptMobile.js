@@ -1,35 +1,20 @@
 var app 								= $(this);
-var friendListView			= $('.friend-list-view');
-var friendListShadow  	= $('.shadow');
-var friendList 					= $('.friend-list');
-var userList 						= $('.searched-user-list');
+
+var userListView				= $('.user-list-view');
+var userListShadow  		= $('.shadow');
+var userList 						= $('.user-list');
+
 var friendOptions 			= $('.friend-options');
-var addFriendButton			= $('.add-friend-button');
-var userListView				= $('.user-list');
-var backUserList				= $('.user-list .back-button');
+
 var notificationButton  = $('.notifications');
 var notificationListView = $('.notification-list-view');
 var backNotifications		 = $('.notification-list-view .back-button');
-var friendPrototype			= $('.friend.wz-prototype');
-var userPrototype 			= $('.searched-user.wz-prototype');
-var notificationPrototype = $('.notification.wz-prototype');
 var notificationList 		= $('.notification-list');
 
-var actualView = 'friendList';
+var userPrototype					= $('.user.wz-prototype');
+var notificationPrototype = $('.notification.wz-prototype');
 
-addFriendButton.on( 'click' , function(){
-
-	$('.search-users input').val('').trigger('input');
-	userListView.removeClass('hidden').transition({
-		'transform'	: 'translate(0, 0)'
-	}, 200, function(){
-
-		friendListView.addClass('hidden');
-		actualView = 'userList';
-
-	});
-
-});
+var actualView = 'userList';
 
 notificationButton.on( 'click' , function(){
 
@@ -42,24 +27,8 @@ notificationButton.on( 'click' , function(){
 		'transform'	: 'translate(0, 0)'
 	}, 200, function(){
 
-		friendListView.addClass('hidden');
-		actualView = 'notificationList';
-
-	});
-
-});
-
-backUserList.on( 'click' , function(){
-
-	$('.search-friends input').val('').trigger('input');
-	friendListView.removeClass('hidden');
-	userListView.transition({
-		'transform'	: 'translate(100%, 0)'
-	}, 200, function(){
-
 		userListView.addClass('hidden');
-		actualView = 'friendList';
-
+		actualView = 'notificationList';
 
 	});
 
@@ -68,28 +37,28 @@ backUserList.on( 'click' , function(){
 backNotifications.on( 'click' , function(){
 
 	$('.search-friends input').val('').trigger('input');
-	friendListView.removeClass('hidden');
+	userListView.removeClass('hidden');
 	notificationListView.transition({
 		'transform'	: 'translate(100%, 0)'
 	}, 200, function(){
 
 		notificationListView.addClass('hidden');
-		actualView = 'friendList';
+		actualView = 'userList';
 
 	});
 
 });
 
-friendListShadow.on( 'click' , function(){
+userListShadow.on( 'click' , function(){
 
 	//Activate scroll
 	app.removeClass('no-scroll');
 	StatusBar.backgroundColorByHexString("#fff");
 
-	friendListShadow.css({
+	userListShadow.css({
 		'opacity' : '0'
 	});
-	friendListShadow.addClass('hidden');
+	userListShadow.addClass('hidden');
 
 
 	friendOptions.removeClass('hidden').transition({
@@ -104,14 +73,14 @@ friendListShadow.on( 'click' , function(){
 
 app
 
-.on( 'click' , '.friend-options-button' , function(){
+.on( 'click' , '.user-options-button.friends' , function(){
 
 	//Desactivate scroll
 	app.addClass('no-scroll');
 	StatusBar.backgroundColorByHexString("#b2b2b2");
 
-	friendListShadow.removeClass('hidden')
-	friendListShadow.css({
+	userListShadow.removeClass('hidden')
+	userListShadow.css({
 		'opacity' : '1'
 	});
 
@@ -123,48 +92,15 @@ app
 
 })
 
-.on( 'input' , '.search-users input' , function(){
+.on( 'click' , '.user-options-button.add' , function(){
 
-	$('.cleanable').remove();
+	var domUser = $(this).parent();
+	var user = domUser.data('user');
+	user.addFriend( 'Hello dolly', function(){
+		
+		domUser.removeClass('no-friend').addClass('pending');
 
-  api.user.search( $(this).val(), function( error, users ){
-
-  	if (users.length === 0 || $('.search-users input').val() === '') {
-  		userListView.addClass('search');
-  		return;
-  	}else{
-  		userListView.removeClass('search');
-  	}
-
-  	users.forEach(function( user ){
-		  var userCard = userPrototype.clone().removeClass('wz-prototype');
-      userCard.addClass( 'cleanable user-' + user.id );
-      userCard.data( 'id', user.id );
-      userCard.data( 'user', user );
-      userCard.find('.searched-user-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
-      userCard.find('.searched-user-name').text(user.fullName);
-      if ( user.relation === 'pending' ) {
-      	userCard.addClass('pending');
-      }else if( user.relation === 'friend' ){
-      	userCard.addClass('friendly');
-      }else{
-      	userCard.addClass('no-friend');
-      }
-      userList.append(userCard);
-  	});
   });
-
-})
-
-.on( 'input' , '.search-friends input' , function(){
-
-	var filter = $(this).val().toLowerCase();
-	$('.friend.hidden').removeClass('hidden');
-	$('.friend:not(.wz-prototype)').each(function( i , friend ){
-		if(!$(friend).find('.friend-name').text().toLowerCase().includes( filter )){
-			$(friend).addClass('hidden');
-		}
-	})
 
 })
 
@@ -175,28 +111,6 @@ app
 		$('.shadow').click();
 		$('.search-friends input').val('').trigger('input');
 	});
-
-})
-
-.on( 'click' , '.searched-user-options-button.friends' , function(){
-
-	var domUser = $(this).parent();
-	var user = domUser.data('user');	
-	user.removeFriend( function(){
-		domUser.removeClass('friendly').addClass('no-friend');
-	});
-
-})
-
-.on( 'click' , '.searched-user-options-button.add' , function(){
-
-	var domUser = $(this).parent();
-	var user = domUser.data('user');
-	user.addFriend( 'Hello dolly', function(){
-		
-		domUser.removeClass('no-friend').addClass('pending');
-
-  });
 
 })
 
@@ -214,7 +128,6 @@ app
 
 })
 
-
 .on( 'click' , '.notification-options-button.decline' , function(){
 
 	var notification = $(this).parent();
@@ -225,6 +138,51 @@ app
 			$('.notifications').removeClass('active');
 		}
 	});
+
+})
+
+.on( 'input' , '.search-users input' , function(){
+
+	/*
+	var filter = $(this).val().toLowerCase();
+	$('.friend.hidden').removeClass('hidden');
+	$('.friend:not(.wz-prototype)').each(function( i , friend ){
+		if(!$(friend).find('.friend-name').text().toLowerCase().includes( filter )){
+			$(friend).addClass('hidden');
+		}
+	})
+	*/
+
+	$('.cleanable').remove();
+
+	if( $('.search-users input').val() === '') {
+		friends();
+		return;
+  }
+
+  api.user.search( $(this).val(), function( error, users ){
+
+  	if (users.length === 0 ){
+  		return;
+  	}
+
+  	users.forEach(function( user ){
+		  var userCard = userPrototype.clone().removeClass('wz-prototype');
+      userCard.addClass( 'cleanable user-' + user.id );
+      userCard.data( 'id', user.id );
+      userCard.data( 'user', user );
+      userCard.find('.user-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
+      userCard.find('.user-name').text(user.fullName);
+      if ( user.relation === 'pending' ) {
+      	userCard.addClass('pending');
+      }else if( user.relation === 'friend' ){
+      	userCard.addClass('friendly');
+      }else{
+      	userCard.addClass('no-friend');
+      }
+      userList.append(userCard);
+  	});
+  });
 
 })
 
@@ -245,11 +203,9 @@ app
 .on( 'backbutton' , function( e ){
 
   e.stopPropagation();
-	if ( actualView === 'userList') {
-		backUserList.click();
-	}else if( actualView === 'notificationList'){
+	if( actualView === 'notificationList'){
 		backNotifications.click();
-	}else if( actualView === 'friendList'){
+	}else if( actualView === 'userList'){
 		return;
 	}
 
@@ -257,20 +213,19 @@ app
 
 api.user.on( 'friendRemoved', function( user ){
 
-	$('.friend.user-' + user.id ).remove();
+	$('.user-' + user.id ).removeClass('friendly').addClass('no-friend').data('user' , user );
 
 });
 
 api.user.on( 'requestAccepted', function( user ){
 
-	$('.searched-user.user-' + user.id).removeClass('pending').addClass('friendly');
-	friends();
+	$('.user-' + user.id).removeClass('pending').addClass('friendly').data('user' , user );
 
 });
 
 api.user.on( 'requestRefused', function( user ){
 
-	$('.searched-user.user-' + user.id).removeClass('pending').addClass('no-friend');
+	$('.user-' + user.id).removeClass('pending').addClass('no-friend').data('user' , user );
 
 });
 
@@ -288,7 +243,9 @@ api.user.on( 'requestReceived', function( user ){
 });
 
 var friends = function(){
-	$('.friend:not(.wz-prototype)').remove();
+
+	$('.cleanable').remove();
+
   api.user.friendList( false, function( error, list ){
 
     list = list.sort( function( a, b ){
@@ -302,16 +259,16 @@ var friends = function(){
     var userCard = null;
 
     if( list.length === 0 ){
-    	friendList.addClass('no-friends');
+    	userList.addClass('no-friends');
     }else{
-    	list.forEach(function( friend ){
-  		  var userCard = friendPrototype.clone().removeClass('wz-prototype');
-        userCard.addClass( 'user-' + friend.id );
-        userCard.data( 'id', friend.id );
-        userCard.data( 'user', friend );
-        userCard.find('.friend-avatar').css( 'background-image', 'url(' + friend.avatar.small + ')' );
-        userCard.find('.friend-name').text(friend.fullName);
-        friendList.append(userCard);
+    	list.forEach(function( user ){
+  		  var userCard = userPrototype.clone().removeClass('wz-prototype');
+        userCard.addClass( 'cleanable friendly user-' + user.id );
+        userCard.data( 'id', user.id );
+        userCard.data( 'user', user );
+        userCard.find('.user-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
+        userCard.find('.user-name').text(user.fullName);
+        userList.append(userCard);
     	});
     }
   });
@@ -357,6 +314,7 @@ var setMobile = function(){
 
 }
 
+
 var initCommunity = function(){
 
 	translate();
@@ -378,9 +336,9 @@ var translate = function(){
 
 	$('.user-list .view-title').text(lang.addFriends);
 	$('.no-friends-text').text(lang.searchPeople);
-	$('.searched-user-options-button.add span').text(lang.add);
-	$('.searched-user-options-button.friends span').text(lang.friends);
-	$('.searched-user-options-button.pending span').text(lang.pending);
+	$('.user-options-button.add span').text(lang.add);
+	$('.user-options-button.friends span').text(lang.friends);
+	$('.user-options-button.pending span').text(lang.pending);
 	$('.notification-list-view .view-title').text(lang.requests);
 	$('.notification-options-button.decline span').text(lang.decline);
 	$('.notification-options-button.add span').text(lang.add);
