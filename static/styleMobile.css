@@ -438,12 +438,12 @@
 	}
 
 	.notification-list-view .notification .notification-options-button{
-		width: 60px;
+		width: 60px !important;
 	}
 
 	.notification-list-view .notification .notification-options-button span{
-		font-size: 12px;
-		padding: 7px 0;
+		font-size: 12px !important;
+		padding: 7px 0 !important;
 	}
 
 }
