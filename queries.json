@@ -1,0 +1,4 @@
+{
+    "firstOpenDone"  : "INSERT INTO first_open (user) VALUES (?)",
+    "isFirstOpen"    : "SELECT * FROM first_open WHERE user = ?"
+}
