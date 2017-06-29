@@ -60,6 +60,7 @@
     "friends"               : "Amigos",
     "pending"               : "Pendiente",
     "requests"              : "Peticiones",
-    "decline"               : "Rechazar"
+    "decline"               : "Rechazar",
+    "arrow"                 : "Aquí encontrarás a tus compañeros"
 
 }
