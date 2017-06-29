@@ -1016,18 +1016,10 @@ inviteByMail.on( 'click' , function(){
 });
 
 // Start app
-wql.isFirstOpen( [ api.system.user().id ] , function( e , o ){
+wql.firstOpenDone( [ api.system.user().id ] , function( e , o ){
 
-  if ( o.length === 0 ){
-
-    wql.firstOpenDone( [ api.system.user().id ] , function( e , o ){
-
-      $( '.onboarding-arrow.arrow-community' , window.document ).remove();
-      if(e) console.log(e);
-
-    });
-
-  }
+  $( '.onboarding-arrow.arrow-community' , window.document ).remove();
+  if(e) console.log(e);
 
 });
 
