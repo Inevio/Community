@@ -166,6 +166,16 @@ app
   		return;
   	}
 
+  	// Friends first
+  	var friends = users.filter(function( user ){
+  		return user.relation === 'friend';
+  	});
+  	var noFriends = $(users).not( $(friends) );
+  	noFriends.each(function(i, user){
+  		friends.push(user);
+  	});
+  	users = friends;
+
   	users.forEach(function( user ){
 		  var userCard = userPrototype.clone().removeClass('wz-prototype');
       userCard.addClass( 'cleanable user-' + user.id );
