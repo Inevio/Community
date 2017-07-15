@@ -163,7 +163,9 @@ app
   api.user.search( $(this).val(), function( error, users ){
 
   	if (users.length === 0 ){
-  		return;
+  		$('.no-friends').addClass('active');
+  	}else{
+  		$('.no-friends').removeClass('active');
   	}
 
   	// Friends first
@@ -258,6 +260,12 @@ var friends = function(){
 
   api.user.friendList( false, function( error, list ){
 
+  	if ( list.length === 0 ) {
+  		$('.no-friends').addClass('active');
+  	}else{
+  		$('.no-friends').removeClass('active');
+  	}
+
     list = list.sort( function( a, b ){
         return a.fullName.localeCompare( b.fullName );
     });
@@ -268,19 +276,16 @@ var friends = function(){
 
     var userCard = null;
 
-    if( list.length === 0 ){
-    	userList.addClass('no-friends');
-    }else{
-    	list.forEach(function( user ){
-  		  var userCard = userPrototype.clone().removeClass('wz-prototype');
-        userCard.addClass( 'cleanable friendly user-' + user.id );
-        userCard.data( 'id', user.id );
-        userCard.data( 'user', user );
-        userCard.find('.user-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
-        userCard.find('.user-name').text(user.fullName);
-        if( $('.user-' + user.id).length === 0 ) userList.append(userCard);
-    	});
-    }
+  	list.forEach(function( user ){
+		  var userCard = userPrototype.clone().removeClass('wz-prototype');
+      userCard.addClass( 'cleanable friendly user-' + user.id );
+      userCard.data( 'id', user.id );
+      userCard.data( 'user', user );
+      userCard.find('.user-avatar').css( 'background-image', 'url(' + user.avatar.small + ')' );
+      userCard.find('.user-name').text(user.fullName);
+      if( $('.user-' + user.id).length === 0 ) userList.append(userCard);
+  	});
+    
   });
 }
 
