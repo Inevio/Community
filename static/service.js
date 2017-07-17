@@ -54,7 +54,8 @@ var addArrow = function( appName, text, position ){
 
 }
 
-if( !mobile ){
+console.log('community',typeof cordova == 'undefined')
+if( typeof cordova == 'undefined' ){
 
   wql.isFirstOpen( [ api.system.user().id ] , function( e , o ){
 
