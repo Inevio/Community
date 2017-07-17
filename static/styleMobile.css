@@ -115,10 +115,13 @@
 		float: left;
 		width: 100%;
 		height: ~'calc(100% - 147px)';
-		display: flex;
 		justify-content: center;
 		flex-direction: column;
 		display: none;
+	}
+
+	.no-friends.active{
+		display: flex;
 	}
 
 	.no-friends-img{
