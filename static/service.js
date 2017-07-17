@@ -1,4 +1,5 @@
 var window = $(this)[0];
+var mobile = $(this).hasClass('wz-mobile-view');
 
 var updateBadge = function(){
 
@@ -53,15 +54,19 @@ var addArrow = function( appName, text, position ){
 
 }
 
-wql.isFirstOpen( [ api.system.user().id ] , function( e , o ){
+if( !mobile ){
 
-  if ( o.length === 0 ){
+  wql.isFirstOpen( [ api.system.user().id ] , function( e , o ){
 
-    addArrow( 'community', lang.arrow ,2 )
+    if ( o.length === 0 ){
 
-  }
+      addArrow( 'community', lang.arrow ,2 )
 
-});
+    }
+
+  });
+
+}
 
 api.user
 .on( 'requestReceived', updateBadge )
