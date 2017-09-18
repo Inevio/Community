@@ -1019,6 +1019,7 @@ inviteByMail.on( 'click' , function(){
 wql.firstOpenDone( [ api.system.user().id ] , function( e , o ){
 
   $( '.onboarding-arrow.arrow-community' , window.document ).remove();
+  $( '.onboarding-arrow.arrow-cosmos' , window.document ).show();
   if(e) console.log(e);
 
 });
