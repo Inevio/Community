@@ -997,6 +997,9 @@ win
 
 })
 
+.on('click', '.card.self .card-data .avatar-user', function(){
+  api.app.openApp(3)
+})
 
 .on('focusin', '.ui-input-textarea', function(){
   $(this).parents('.ui-input').addClass('active');
