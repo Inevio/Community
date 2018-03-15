@@ -541,6 +541,9 @@
             display: block;
         }
     }
+    .card.self .avatar-user{
+        cursor: pointer;
+    }
 }
 
 .list , .block-list {
