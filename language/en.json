@@ -32,7 +32,7 @@
     "requestAccepted" : "is now your contact",
     "friendRemovedTitle" : "Contact removed",
     "friendRemoved" : "is not your contact anymore!",
-    "requestCancelledTitle" : "Request cancelled",
+    "requestCancelledTitle" : "Friend request canceled",
     "requestCancelled" : "will continue not being your contact",
     "requestSentTitle" : "Request sent",
     "requestSent" : "A request has been sent to",
