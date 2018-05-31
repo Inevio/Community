@@ -1,5 +1,6 @@
 .wz-view {
     border-radius: 6px !important;
+    background: #3f464f;
 }
 
 .notification.wz-view {
@@ -48,18 +49,22 @@
         max-height: 253px !important;
         border-radius: 6px;
         background: #ffffff;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
         .ui-content-top {
-            border-bottom: 1px solid rgba(0, 0, 0, .3);
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
             text-align: center;
-            color: #545f65;
+            color: #252525;
             font-size: 17px;
-            height: 28px;
-            padding-top: 11px;
+            font-family: Lato;
+            font-weight: 900;
+            height: 33px;
+            padding-top: 18px;
             width: 316px;
             margin-left: 10px;
             span {
                 margin: auto;
                 white-space: nowrap;
+                font-family: Lato;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
@@ -71,10 +76,12 @@
             margin-left: 9px;
             padding-bottom: 5px !important;
             .nt-list-status {
-                margin-top: 15px !important;
+                margin-top: 36px !important;
                 text-align: center;
-                color: #545f65;
-                margin-bottom: 14px !important;
+                font-family: Lato;
+
+                color: #9a9aa2;
+                margin-bottom: 35px !important;
             }
             .notification-card {
                 height: 106px;
@@ -147,6 +154,7 @@
     }
 }
 
+
 .notification-icon {
     width: 34px;
     height: 34px;
@@ -154,13 +162,13 @@
     margin-right: 13px;
     margin-top: -3px;
     i {
-        width: 17px;
+        width: 16px;
         height: 17px;
         float: left;
         margin-left: 13px;
         background: url('@static/campana.png') no-repeat;
         background-position: 0px 0px;
-        background-size: 34px 17px;
+        background-size: 33px 17px;
         margin-top: 6px;
     }
     span {
@@ -204,6 +212,7 @@
 .ui-input-search input {
     width: 208px;
     margin-top: 7px;
+    font-weight: bold;
     background: transparent
 }
 
@@ -280,25 +289,26 @@
 /* START - Aside */
 
 .ui-navbar {
-    width: 214px
+    width: 214px;
+    border-right: 1px solid #373d45;
 }
 
 .ui-navgroup-title-txt {
     text-transform: uppercase;
+    color: #d2dce2;
+    font-weight: bold;
 }
 
 .ui-navgroup-element {
     width: 214px;
     height: 28px;
+    margin-bottom: 3px;
     img {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
         float: left;
         margin: 2px 8px;
         border-radius: 50%;
-        background: #606060;
-        box-shadow: inset 0 1px 1px rgba(255, 255, 255, .3);
-        border: solid 1px rgba(44, 50, 56, .5);
     }
     span {
         padding: 9px 0 6px;
@@ -307,11 +317,30 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+
 }
+
+.ui-navgroup-element:hover {
+
+    border-right: 1px solid #3f4750;
+    background-color: #3f4750;
+    border-top: 1px solid #3f4750;
+    border-bottom: 1px solid #3f4750;
+}
+
+.ui-navgroup-element.active {
+    font-weight: bold;
+    background-color: #2c3238 !important;
+    border-top: 1px solid #2c3238 !important;
+    border-bottom: 1px solid #2c3238 !important;
+
+}
+
 
 .invite-by-mail img{
   background-image: url('@static/inviteByMail.png');
-  background-size: 22px 22px;
+  background-size: 24px 24px;
 }
 
 
@@ -339,10 +368,10 @@
     text-align: center;
     background: url('@static/pattern-dark.png') no-repeat;
     .list-status {
-        color: #767776;
+        color: #d2dce2;
         font-size: 36px;
         font-family: Lato;
-        font-weight: 200;
+        font-weight: 900;
         text-align: center;
     }
     .card:last-child {
@@ -413,13 +442,14 @@
             }
             .options {
                 float: right;
-                border-radius: 100%;
+                border-radius: 6px;
                 background: url('@static/more.png') no-repeat;
                 width: 34px;
                 height: 34px;
-                background-position: 15px 7px;
-                background-size: 3px 17px;
+                background-position: 10px 12px;
+                background-size: 13px 7px;
             }
+
             /*
           .ui-header-btn-bottom{
 
@@ -478,9 +508,7 @@
                         float: left;
                         margin-top: 20px;
                         border-radius: 50%;
-                        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
-                        border: solid 1px rgba(44, 50, 56, 0.5);
-                        background: #606060;
+
                     }
                     .name {
                         color: #fff;
@@ -488,7 +516,8 @@
                         float: left;
                         height: 29px;
                         font-size: 26px;
-                        font-weight: bold;
+                        font-family: Lato;
+                        font-weight: 900;
                         margin-top: 56px;
                         text-align: left;
                         margin-left: 12px;
@@ -533,7 +562,9 @@
     .card.friend {
         .friend-msg {
             display: inherit !important;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            border-radius: 6px;
         }
     }
     .card.pending-received {
@@ -877,6 +908,7 @@
             }
             .friend-msg {
                 display: none;
+
             }
             .friend-contact {
                 display: none;
@@ -892,14 +924,15 @@
                 display: none;
                 /*
           float: right;
-          border-radius: 100%;
+          border-radius: 6px;
           background: url('@static/more.png') no-repeat;
           width: 34px;
           height: 34px;
-          background-position: 15px 7px;
-          background-size: 3px 17px;
+          background-position: 10px 12px;
+          background-size: 14px 7px;
           */
             }
+
         }
         .info-section {
             width: 535px;
