@@ -36,7 +36,7 @@
     "requestCancelled" : "will continue not being your contact",
     "requestSentTitle" : "Request sent",
     "requestSent" : "A request has been sent to",
-    "wantToBeFriend" : "wants to be your friend",
+    "wantToBeFriend" : "Wants to be your friend",
     "noMessage" : [ "", "No search results", "You've no pending contact requests", "You've no blocked users" ],
 
     "inviteByMail"        : "Invite by mail",
