@@ -225,10 +225,10 @@
 .ui-input-search {
     padding: 1px 0 1px 0;
     float: left;
-    border: none;
+    border: 2px solid #24292e;
     width: 280px;
-    height: 33px;
-    margin-top: 8px;
+    height: 31px;
+    margin-top: 7px;
     background: rgba(0, 0, 0, 0.2);
 }
 
@@ -245,7 +245,6 @@
 }
 
 .ui-input-search.active {
-    border: none;
 }
 
 
@@ -552,13 +551,13 @@
                     }
                 }
                 .card-data-bottom {
-                    width: 474px;
+                    width: 479px;
                     background: rgba(0, 0, 0, .2);
                     height: auto;
                     border-radius: 6px;
-                    padding: 10px;
+                    padding: 12px 10px 50px 10px;
                     text-align: left;
-                    margin-top: 65px;
+                    margin-top: 50px;
                     .info-top {
                         .info-tittle {
                               font-size: 21px;
