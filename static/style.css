@@ -51,10 +51,10 @@
     top: 39px;
     display: inherit;
     -webkit-animation-name: fade-in; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
     animation-name: fade-in;
     animation-timing-function:'cubic-bezier(.81,0,.2,1)';
-    animation-duration: 0.4s;
+    animation-duration: 0.3s;
     .ui-triangle {
         width: 0px;
         height: 0px;
@@ -316,7 +316,7 @@
 /* START - Aside */
 
 .ui-navbar {
-    width: 214px;
+    width: 220px;
     border-right: 1px solid #373d45;
 }
 
@@ -339,7 +339,7 @@
     }
     span {
         padding: 9px 0 6px;
-        width: 132px;
+        width: 165px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -477,6 +477,18 @@
               background-size: 13px 7px;
             }
 
+            .options:hover {
+              float: right;
+              border-radius: 6px;
+              border: none;
+              background: url(https://static.horbito.com/app/243/more.png) no-repeat,rgba(0, 0, 0, 0.8);
+              width: 33px;
+              height: 33px;
+              background-position: 10px 13px;
+              background-size: 13px 7px;
+
+            }
+
             /*
           .ui-header-btn-bottom{
 
@@ -575,7 +587,7 @@
                               font-family: Lato;
                               color: #d2dce2;
                               line-height: 21px;
-                              text-align: justify;
+                              text-align: left;
                               display: block;
                               max-width: 95%;
                               margin-top: 9px;
@@ -601,6 +613,9 @@
             background: rgba(0, 0, 0, 0.4);
             border: none;
             border-radius: 6px;
+        }
+        .friend-msg:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
     }
     .card.pending-received {
@@ -766,17 +781,17 @@
                     }
                     .info-bottom {
                         max-width: 342px;
-                        max-height: 67px;
+                        max-height: 85px;
                         overflow: hidden;
                         .info {
                           font-size: 15px;
                           font-family: Lato;
-                          line-height: 22px;
+                          line-height: 21px;
                           color: #ffffff;
-                          text-align: justify;
-                          margin-top: 10px;
+                          text-align: left;
+                          margin-top: 3px;
                           margin-left: 0px;
-                          overflow: hidden;
+                          overflow: auto;
                           word-wrap: break-word;
                         }
                     }
@@ -1320,6 +1335,7 @@
   .title{
     float: left;
     font-size: 45px;
+    font-family: Lato;
     font-weight: 900;
     color: #fff;
     width: 100%;
@@ -1328,7 +1344,8 @@
   }
   .subtitle{
     float: left;
-    font-size: 19px;
+    font-family: Lato;
+    font-size: 17px;
     color: #d2dce2;
     width: 100%;
     text-align: center;
@@ -1337,6 +1354,7 @@
   .subtitle2{
     float: left;
     font-size: 15px;
+    font-family: Lato;
     color: #d2dce2;
     width: 100%;
     text-align: center;
@@ -1354,6 +1372,7 @@
     span{
       float: left;
       width: 100%;
+      font-family: Lato;
       text-align: center;
       color: #fff;
       font-size: 17px;
