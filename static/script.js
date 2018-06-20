@@ -66,7 +66,7 @@ var addToFriends = function( user ){
 
     var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
 
-    userCard.data( 'id', user.id );
+    userCard.data( 'id', user.idWorkspace );
     userCard.children('img').attr( 'src', user.avatar.tiny );
     userCard.children('span').text(user.fullName);
     contactsAside.children().remove('.alone');
@@ -84,7 +84,7 @@ var centerNtListStatus = function(){
 var removeFromFriends = function( user ){
 
     var contactInfo = contactsAside.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( contactInfo.size() ){
@@ -121,7 +121,7 @@ var createCard = function( info ){
 
     var card = cardPrototype.clone().removeClass( 'wz-prototype' );
 
-    card.data( 'id', info.id );
+    card.data( 'id', info.idWorkspace );
     var descript ='';
 
     card.find( '.info-tittle').text(lang.description);
@@ -196,7 +196,7 @@ var createNtCard = function( info ){
 
     var card = ntCardPrototype.clone().removeClass( 'wz-prototype' );
 
-    card.data( 'id', info.id );
+    card.data( 'id', info.idWorkspace );
     card.find('.accept span').text(lang.acceptRequest);
     card.find('.cancel span').text(lang.cancelRequest);
     card.find('.info-friend').text(lang.wantToBeFriend);
@@ -300,7 +300,7 @@ var ntCardsShowInfo = function( list, type ){
 var removeFriendInfo = function( user ){
 
     var userRequest = content.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( userRequest.size() ){
@@ -348,7 +348,7 @@ api.user
   }else{
 
       var userRequest = content.children().filter( function(){
-          return $(this).data( 'id' ) === user.id;
+          return $(this).data( 'id' ) === user.idWorkspace;
       });
 
       if( userRequest.size() ){
@@ -375,7 +375,7 @@ api.user
     }else{
 
         var userRequest = content.children().filter( function(){
-            return $(this).data( 'id' ) === user.id;
+            return $(this).data( 'id' ) === user.idWorkspace;
         });
 
         if( userRequest.size() ){
@@ -400,7 +400,7 @@ api.user
     }else{
 
         var userRequest = content.children().filter( function(){
-            return $(this).data( 'id' ) === user.id;
+            return $(this).data( 'id' ) === user.idWorkspace;
         });
 
         if( userRequest.size() ){
@@ -417,7 +417,7 @@ api.user
 .on( 'requestSent', function( user ){
 
     var userRequest = content.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( userRequest.size() ){
@@ -434,7 +434,7 @@ api.user
     removeFromFriends( user );
 
     var userRequest = content.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( userRequest.size() ){
