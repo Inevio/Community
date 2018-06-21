@@ -391,7 +391,7 @@
 /* START - Main content */
 
 .ui-window-content {
-    width: 535px;
+    width: ~'calc(100% - 221px)';
     text-align: center;
     background: url('@static/pattern-dark.png') no-repeat;
     .list-status {
@@ -408,7 +408,7 @@
     }
 
     .card {
-        width: 535px;
+        width: 100%;
         /*border-bottom: 1px solid #66676D;*/
         display: inline-block;
         padding-bottom: 20px;
