@@ -126,7 +126,7 @@ var createCard = function( info ){
 
     card.find( '.info-tittle').text(lang.description);
 
-    //card.find( '.info' ).text( info.fullName);
+    card.find( '.info' ).text( info.description );
     card.find( '.text-edit').css( 'display', 'none');
     card.find( '.edit-info').css( 'display', 'none');
 
@@ -144,7 +144,7 @@ var createCard = function( info ){
         card.find( '.block-friend').find('span').text(lang.blockFriend);
         card.find( '.block-friend').addClass('active');
         card.find( '.rm-friend').addClass('active');
-    }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
+    }else if( info.relation === 'pending' && ( info.idWorkspace === info.sender ) ){
         card.addClass( 'pending-received' );
         card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
         card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
@@ -157,7 +157,7 @@ var createCard = function( info ){
         card.find( '.block-friend').find('span').text(lang.blockFriend);
         card.find( '.block-friend').addClass('active');
 
-    }else if( parseInt(info.id, 10) === parseInt(api.system.workspace().idWorkspace, 10) ){
+    }else if( parseInt(info.idWorkspace, 10) === parseInt(api.system.workspace().idWorkspace, 10) ){
         card.addClass( 'self' );
         card.find( '.edit-me').find('span').text(lang.editMe);
         card.find( '.edit-me').addClass('active');
@@ -488,7 +488,8 @@ win
     }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
-    cardsShowInfo( [ api.system.workspace() ], LIST_NORMAL );
+    let me = Object.assign({}, api.system.workspace(), api.system.user())
+    cardsShowInfo( [ me ], LIST_NORMAL );
 
 })
 
