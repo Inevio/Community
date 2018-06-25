@@ -488,7 +488,7 @@ win
     }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
-    cardsShowInfo( [ api.system.user() ], LIST_NORMAL );
+    cardsShowInfo( [ api.system.workspace() ], LIST_NORMAL );
 
 })
 
