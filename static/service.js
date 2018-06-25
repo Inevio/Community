@@ -59,7 +59,7 @@ var addArrow = function( appName, text, position ){
 console.log('community',typeof cordova == 'undefined')
 if( typeof cordova == 'undefined' ){
 
-  wql.isFirstOpen( [ api.system.user().id ] , function( e , o ){
+  wql.isFirstOpen( [ api.system.workspace().id ] , function( e , o ){
 
     if ( o.length === 0 ){
 
