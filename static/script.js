@@ -321,12 +321,13 @@ var removeFriendInfo = function( user ){
 
 var profile = function(){
 
-    var user    = api.system.user();
+    var user = api.system.user()
+    var workspace = api.system.workspace()
     var profile = $('.profile-user');
 
-    profile.addClass( 'user-' + user.id );
+    profile.addClass( 'user-' + workspace.idWorkspace );
     $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
-    $( 'img', profile ).attr( 'src', user.avatar.tiny );
+    $( 'img', profile ).attr( 'src', workspace.avatar.tiny );
 
 };
 
