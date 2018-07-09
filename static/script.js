@@ -339,7 +339,11 @@ var translate = function(){
     $( '.titleApp' ).text( lang.appName );
     $('.ui-content-top span').text(lang.friendRequests);
     listStatus.text( lang.appName );
-    $('.invite-by-mail span').text(lang.inviteByMail);
+    if(api.system.fullMode()){
+        $('.invite-by-mail span').text(lang.inviteByMail);
+    }else{
+        inviteByMail.remove()
+    }
     $('.no-friends-content .title').text(lang.noContacts);
     $('.no-friends-content .subtitle').text(lang.findContacts);
     $('.no-friends-content .subtitle2').text(lang.inviteContacts);
