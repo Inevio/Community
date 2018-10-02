@@ -26,45 +26,47 @@ var LIST_BLOCKED  = 3;
 
 var friends = function(){
 
-    api.user.friendList( false, function( error, list ){
+    api.user.friendList( false, function( error, users ){
 
-        list = list.sort( function( a, b ){
-            return a.fullName.localeCompare( b.fullName );
-        });
+      users = users.map(user => {
+        user.id = user.idWorkspace
+        return user
+      })
 
-        // To Do -> Error
+      users = users.sort( function( a, b ){
+          return a.fullName.localeCompare( b.fullName );
+      });
 
-        var userCard = null;
+      // To Do -> Error
 
-        if( list.length === 0 ){
+      var userCard = null;
 
-            $('.no-friends-content').addClass('no-friends');
+      if( users.length === 0 ){
 
-        }else{
+          $('.no-friends-content').addClass('no-friends');
 
-            for( var i = 0; i < list.length; i++ ){
+      }else{
 
-                userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
+          for( var i = 0; i < users.length; i++ ){
 
-                userCard.addClass( 'user-' + list[i].id );
-                userCard.data( 'id', list[i].id );
-                userCard.children('img').attr( 'src', list[i].avatar.tiny );
-                userCard.children('span').text(list[i].fullName);
-                contactsAside.append(userCard);
+              userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
 
-            }
+              userCard.addClass( 'user-' + users[i].idWorkspace );
+              userCard.data( 'id', users[i].idWorkspace );
+              userCard.children('img').attr( 'src', users[i].avatar.tiny );
+              userCard.children('span').text(users[i].fullName);
+              contactsAside.append(userCard);
 
-        }
-
-    });
-
-};
+          }
+      }
+  })
+}
 
 var addToFriends = function( user ){
 
     var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
 
-    userCard.data( 'id', user.id );
+    userCard.data( 'id', user.idWorkspace );
     userCard.children('img').attr( 'src', user.avatar.tiny );
     userCard.children('span').text(user.fullName);
     contactsAside.children().remove('.alone');
@@ -82,7 +84,7 @@ var centerNtListStatus = function(){
 var removeFromFriends = function( user ){
 
     var contactInfo = contactsAside.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( contactInfo.size() ){
@@ -119,25 +121,12 @@ var createCard = function( info ){
 
     var card = cardPrototype.clone().removeClass( 'wz-prototype' );
 
-    card.data( 'id', info.id );
+    card.data( 'id', info.idWorkspace );
     var descript ='';
-    api.user( info.id, function( error, user ){
-      descript = user.description;
-
-      if(descript == ""){
-        card.find( '.info ' ).text(lang.userBio);
-        card.find( '.edition-description').find('textarea').attr('placeholder', descript);
-
-      }else{
-        card.find( '.info' ).html(descript.replace(/\n/g, "<br />"));
-        card.find( '.edition-description').find('textarea').attr('placeholder', descript);
-
-      }
-    });
 
     card.find( '.info-tittle').text(lang.description);
 
-    //card.find( '.info' ).text( info.fullName);
+    card.find( '.info' ).text( info.description );
     card.find( '.text-edit').css( 'display', 'none');
     card.find( '.edit-info').css( 'display', 'none');
 
@@ -155,7 +144,7 @@ var createCard = function( info ){
         card.find( '.block-friend').find('span').text(lang.blockFriend);
         card.find( '.block-friend').addClass('active');
         card.find( '.rm-friend').addClass('active');
-    }else if( info.relation === 'pending' && ( info.id === info.sender ) ){
+    }else if( info.relation === 'pending' && ( info.idWorkspace === info.sender ) ){
         card.addClass( 'pending-received' );
         card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
         card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
@@ -168,7 +157,7 @@ var createCard = function( info ){
         card.find( '.block-friend').find('span').text(lang.blockFriend);
         card.find( '.block-friend').addClass('active');
 
-    }else if( info.id === api.system.user().id ){
+    }else if( parseInt(info.idWorkspace, 10) === parseInt(api.system.workspace().idWorkspace, 10) ){
         card.addClass( 'self' );
         card.find( '.edit-me').find('span').text(lang.editMe);
         card.find( '.edit-me').addClass('active');
@@ -207,7 +196,7 @@ var createNtCard = function( info ){
 
     var card = ntCardPrototype.clone().removeClass( 'wz-prototype' );
 
-    card.data( 'id', info.id );
+    card.data( 'id', info.idWorkspace );
     card.find('.accept span').text(lang.acceptRequest);
     card.find('.cancel span').text(lang.cancelRequest);
     card.find('.info-friend').text(lang.wantToBeFriend);
@@ -311,7 +300,7 @@ var ntCardsShowInfo = function( list, type ){
 var removeFriendInfo = function( user ){
 
     var userRequest = content.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( userRequest.size() ){
@@ -321,12 +310,13 @@ var removeFriendInfo = function( user ){
 
 var profile = function(){
 
-    var user    = api.system.user();
+    var user = api.system.user()
+    var workspace = api.system.workspace()
     var profile = $('.profile-user');
 
-    profile.addClass( 'user-' + user.id );
+    profile.addClass( 'user-' + workspace.idWorkspace );
     $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
-    $( 'img', profile ).attr( 'src', user.avatar.tiny );
+    $( 'img', profile ).attr( 'src', workspace.avatar.tiny );
 
 };
 
@@ -354,24 +344,26 @@ var translate = function(){
 api.user
 .on( 'requestReceived', function( user ){
 
-    pendingRequests();
+  user.id = user.idWorkspace
 
-    if( location === 'pending-requests' ){
-        // To Do -> friendsShowInfo( [ user ], false, LIST_NORMAL );
-    }else{
+  pendingRequests();
 
-        var userRequest = content.children().filter( function(){
-            return $(this).data( 'id' ) === user.id;
-        });
+  if( location === 'pending-requests' ){
+      // To Do -> friendsShowInfo( [ user ], false, LIST_NORMAL );
+  }else{
 
-        if( userRequest.size() ){
+      var userRequest = content.children().filter( function(){
+          return $(this).data( 'id' ) === user.idWorkspace;
+      });
 
-            userRequest.removeClass( 'stranger' ).addClass( 'pending-received' );
-            userRequest.find( '.friend-contact span' ).text( lang.acceptRequest );
-            userRequest.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
-        }
+      if( userRequest.size() ){
 
-    }
+          userRequest.removeClass( 'stranger' ).addClass( 'pending-received' );
+          userRequest.find( '.friend-contact span' ).text( lang.acceptRequest );
+          userRequest.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
+      }
+
+  }
 
 })
 
@@ -388,7 +380,7 @@ api.user
     }else{
 
         var userRequest = content.children().filter( function(){
-            return $(this).data( 'id' ) === user.id;
+            return $(this).data( 'id' ) === user.idWorkspace;
         });
 
         if( userRequest.size() ){
@@ -413,7 +405,7 @@ api.user
     }else{
 
         var userRequest = content.children().filter( function(){
-            return $(this).data( 'id' ) === user.id;
+            return $(this).data( 'id' ) === user.idWorkspace;
         });
 
         if( userRequest.size() ){
@@ -430,7 +422,7 @@ api.user
 .on( 'requestSent', function( user ){
 
     var userRequest = content.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( userRequest.size() ){
@@ -447,7 +439,7 @@ api.user
     removeFromFriends( user );
 
     var userRequest = content.children().filter( function(){
-        return $(this).data( 'id' ) === user.id;
+        return $(this).data( 'id' ) === user.idWorkspace;
     });
 
     if( userRequest.size() ){
@@ -478,7 +470,8 @@ win
     blockedTopButton.removeClass('active');
 
     api.user( $(this).data('id'), function( error, user ){
-        cardsShowInfo( [ user ], LIST_NORMAL );
+      user.id = user.idWorkspace
+      cardsShowInfo( [ user ], LIST_NORMAL );
     });
 
 })
@@ -499,7 +492,8 @@ win
     }
     requestsTopButton.removeClass('active');
     blockedTopButton.removeClass('active');
-    cardsShowInfo( [ api.system.user() ], LIST_NORMAL );
+    let me = Object.assign({}, api.system.workspace(), api.system.user())
+    cardsShowInfo( [ me ], LIST_NORMAL );
 
 })
 
@@ -826,12 +820,19 @@ win
   if ((listaVisualizada.size()>12) && (  $('list').scrollTop() < (listaVisualizada.size()-3) * 159 ) && ($('.list').scrollTop() > (listaVisualizada.size()-5) * 159) ) {
 
     api.user.search( cadenaBusqueda, numPagina + 1 ,function( error, users ){
-        if(users.length > 0){
+
+      users = users.map(user => {
+        user.id = user.idWorkspace
+        return user
+      })
+
+      if(users.length > 0){
         numPagina++;
 
         users = users.sort( function( a, b ){
             return a.fullName.localeCompare( b.fullName );
         });
+
         appendCardsShowInfo( users, LIST_SEARCH );
       }
     });
@@ -862,13 +863,18 @@ win
 
                 api.user.search( $(e.target).val(), function( error, users ){
 
-                    users = users.sort( function( a, b ){
-                        return a.fullName.localeCompare( b.fullName );
-                    });
+                  users = users.map(user => {
+                    user.id = user.idWorkspace
+                    return user
+                  })
 
-                    cardsShowInfo( users, LIST_SEARCH );
-                    content.addClass( 'list');
-                });
+                  users = users.sort( function( a, b ){
+                      return a.fullName.localeCompare( b.fullName );
+                  });
+
+                  cardsShowInfo( users, LIST_SEARCH );
+                  content.addClass( 'list');
+              });
             }
         }
 
@@ -896,18 +902,17 @@ win
       if( $(this).parents('.card').hasClass('friend') ){
 
           api.user( $(this).parents('.card').data( 'id' ), function( error, user ){
+            user.removeFriend( function(){
 
-              user.removeFriend( function(){
+                api.banner()
+                    .setTitle( lang.friendRemovedTitle )
+                    .setText( user.fullName + ' ' + lang.friendRemoved )
+                    .setIcon( user.avatar.tiny )
+                    .render();
 
-                  api.banner()
-                      .setTitle( lang.friendRemovedTitle )
-                      .setText( user.fullName + ' ' + lang.friendRemoved )
-                      .setIcon( user.avatar.tiny )
-                      .render();
+            });
 
-              });
-
-          });
+        });
 
       }
       else if( $(this).parents('.card').hasClass('pending-received') ){
@@ -963,7 +968,8 @@ win
 
       if (!($(this).parents().hasClass('list'))) {
         api.user( $(this).parents('.card').data('id'), function( error, user ){
-            cardsShowInfo( [ user ], LIST_NORMAL );
+          user.id = user.idWorkspace
+          cardsShowInfo( [ user ], LIST_NORMAL );
         });
       }else{
         $(this).parents('.more-options').removeClass('active');
@@ -1023,7 +1029,7 @@ inviteByMail.on( 'click' , function(){
 });
 
 // Start app
-wql.firstOpenDone( [ api.system.user().id ] , function( e , o ){
+wql.firstOpenDone( [ api.system.workspace().idWorkspace ] , function( e , o ){
 
   $( '.onboarding-arrow.arrow-community' , window.document ).remove();
   $( '.onboarding-arrow.arrow-cosmos' , window.document ).show();
