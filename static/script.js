@@ -141,21 +141,21 @@ var createCard = function( info ){
         card.find( '.friend-info' ).addClass( 'cancel' ).hide();
         card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
         card.find( '.rm-friend').find('span').text(lang.rmFriend);
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
         card.find( '.rm-friend').addClass('active');
     }else if( info.relation === 'pending' && ( info.idWorkspace === info.sender ) ){
         card.addClass( 'pending-received' );
         card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
         card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
     }else if( info.relation === 'pending' ){
         card.addClass( 'pending-sent' );
         //card.find( '.friend-contact span' ).text( lang.sendMessage );
         card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
 
     }else if( parseInt(info.idWorkspace, 10) === parseInt(api.system.workspace().idWorkspace, 10) ){
         card.addClass( 'self' );
@@ -170,14 +170,14 @@ var createCard = function( info ){
         card.find( '.edition-name').find('.tittle').text(lang.name);
         card.find( '.edition-description').find('.tittle').text(lang.description);
     }else if (info.relation === 'blocked') {
-        card.addClass('blockedUser');
-        card.find( '.unBlock span').text(lang.unBlock);
+        /*card.addClass('blockedUser');
+        card.find( '.unBlock span').text(lang.unBlock);*/
     }else{
         card.addClass( 'stranger' );
         //card.find( '.friend-contact span' ).text( lang.sendMessage );
         card.find( '.friend-info span' ).text( lang.addFriend );
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
 
     }
 
@@ -593,7 +593,7 @@ win
 })
 
 
-.on( 'mousedown', '.blocked', function(){
+/*.on( 'mousedown', '.blocked', function(){
 
     location = 'blocked-users';
     content.removeClass('list');
@@ -609,7 +609,7 @@ win
 
     });
 
-})
+})*/
 
 
 .on( 'mousedown', '.friend-info', function(){
