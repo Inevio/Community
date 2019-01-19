@@ -224,12 +224,12 @@
 
 .ui-input-search {
     padding: 1px 0 1px 0;
-    float: left;
     border: 2px solid #24292e;
     width: 280px;
     height: 31px;
-    margin-top: 7px;
-    background: rgba(0, 0, 0, 0.2);
+    margin-top: 38px;
+    background: rgba(0, 0, 0, 0.4);
+    display: inline-block;
 }
 
 .ui-input-search .delete-content {
@@ -238,10 +238,11 @@
 }
 
 .ui-input-search input {
+  float: left;
     width: 208px;
     margin-top: 7px;
     font-weight: bold;
-    background: transparent
+    background: transparent;
 }
 
 .ui-input-search.active {
@@ -394,13 +395,82 @@
     width: ~'calc(100% - 221px)';
     text-align: center;
     background: url('@static/pattern-dark.png') no-repeat;
+
     .list-status {
         color: #d2dce2;
         font-size: 36px;
         font-family: Lato;
         font-weight: 900;
         text-align: center;
+        display: none;
     }
+
+    .list-return{
+      float: left;
+      width: 100%;
+      display: none;
+      padding: 20px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .list-return:hover span{
+      text-decoration: underline;
+    }
+
+    .list-return i{
+      float: left;
+      border: solid rgba( 255, 255, 255, 0.9 );
+      border-width: 0 3px 3px 0;
+      padding: 3px;
+      transform: rotate(135deg);
+      margin-top: 6px;
+      cursor: pointer;
+    }
+
+    .list-return span{
+      float: left;
+      font-size: 20px;
+      color: rgba( 255, 255, 255, 0.9 );
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    .list-home{
+      float: left;
+      width: 100%;
+      padding: 60px 40px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .list-home span{
+      float: left;
+      width: 100%;
+      color: rgba( 255, 255, 255, 0.9 );
+      text-align: left;
+    }
+
+    .list-home-title{
+      font-size: 24px;
+    }
+
+    .list-home-nick{
+      font-size: 32px;
+      margin-top: 10px;
+    }
+
+    span.list-home-share{
+      color: rgba( 255, 255, 255, 0.4 );
+      font-size: 15px;
+      margin-top: 4px;
+    }
+
+    .list-home-find{
+      font-size: 18px;
+      margin-top: 40px;
+    }
+
     .card:last-child {
         border-bottom: none;
         height: inherit;
@@ -631,13 +701,6 @@
 .list , .block-list {
     width: ~'calc(100% - 221px)';
     text-align: center;
-    .list-status {
-        color: #767776;
-        font-size: 36px;
-        font-family: Lato;
-        font-weight: 200;
-        text-align: center;
-    }
     .card:last-child {
         border-bottom: none;
         height: inherit;
