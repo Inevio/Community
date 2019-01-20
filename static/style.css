@@ -366,6 +366,14 @@
 }
 
 
+.invite-by-mail{
+  display: none;
+}
+
+.personal .invite-by-mail{
+  display: block;
+}
+
 .invite-by-mail img{
   background-image: url('@static/inviteByMail.png');
   background-size: 24px 24px;

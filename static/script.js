@@ -347,6 +347,10 @@ var profile = function(){
 
 var translate = function(){
 
+  if( api.system.workplace().type == 'personal' ){
+    win.addClass( 'personal' )
+  }
+
     $('input').attr( 'placeholder', lang.search );
     $('.profile-title').text( lang.profileTitle );
     $( '.users-title', contactsAside ).text( lang.usersTitle );
