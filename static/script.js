@@ -343,6 +343,12 @@ var profile = function(){
     $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
     $( 'img', profile ).attr( 'src', workspace.avatar.tiny );
 
+    if( api.system.workplace().type == 'personal' ){
+    	$( '.list-home-nick' ).text( '@' + api.system.workspace().username )
+    }else{
+    	$( '.list-home-nick' ).text( '@' + api.system.workplace().alias + '.' + api.system.workspace().username )
+    }
+
 };
 
 var translate = function(){
