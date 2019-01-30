@@ -8,7 +8,9 @@ var ntContent                   = $('.ui-content-bottom');
 var contactsAsideFilePrototype  = $('.users-user.wz-prototype');
 var cardPrototype               = $('.card.wz-prototype');
 var ntCardPrototype             = $('.notification-card.wz-prototype');
+var listReturn                  = $('.list-return');
 var listStatus                  = $('.list-status');
+var listHome                    = $('.list-home');
 var ntListStatus                = $('.nt-list-status');
 var requestsTopButton           = $('.requests');
 var blockedTopButton            = $('.blocked');
@@ -64,13 +66,29 @@ var friends = function(){
 
 var addToFriends = function( user ){
 
-    var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
+  var userCard = contactsAsideFilePrototype.clone().removeClass('wz-prototype');
 
-    userCard.data( 'id', user.idWorkspace );
-    userCard.children('img').attr( 'src', user.avatar.tiny );
-    userCard.children('span').text(user.fullName);
-    contactsAside.children().remove('.alone');
+  userCard.data( 'id', user.idWorkspace );
+  userCard.children('img').attr( 'src', user.avatar.tiny );
+  userCard.children('span').text(user.fullName);
+  contactsAside.children().remove('.alone');
+
+  var nextName = null
+  
+  contactsAside.children( '.users-user' ).each( function(){
+
+    if( $( this ).children( 'span' ).text().localeCompare( user.fullName ) == 1 ){
+      nextName = $( this )
+      return false
+    }
+
+  })
+
+  if( nextName ){
+    nextName.before(userCard);
+  }else{
     contactsAside.append(userCard);
+  } 
 
 };
 
@@ -141,21 +159,21 @@ var createCard = function( info ){
         card.find( '.friend-info' ).addClass( 'cancel' ).hide();
         card.find( '.friend-msg').find( 'span').text(lang.sendMessage);
         card.find( '.rm-friend').find('span').text(lang.rmFriend);
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
         card.find( '.rm-friend').addClass('active');
     }else if( info.relation === 'pending' && ( info.idWorkspace === info.sender ) ){
         card.addClass( 'pending-received' );
         card.find( '.friend-contact' ).addClass('accept').find('span').text( lang.acceptRequest );
         card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequest );
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
     }else if( info.relation === 'pending' ){
         card.addClass( 'pending-sent' );
         //card.find( '.friend-contact span' ).text( lang.sendMessage );
         card.find( '.friend-info' ).addClass( 'cancel' ).find( 'span' ).text( lang.cancelRequestTwo );
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
 
     }else if( parseInt(info.idWorkspace, 10) === parseInt(api.system.workspace().idWorkspace, 10) ){
         card.addClass( 'self' );
@@ -170,14 +188,14 @@ var createCard = function( info ){
         card.find( '.edition-name').find('.tittle').text(lang.name);
         card.find( '.edition-description').find('.tittle').text(lang.description);
     }else if (info.relation === 'blocked') {
-        card.addClass('blockedUser');
-        card.find( '.unBlock span').text(lang.unBlock);
+        /*card.addClass('blockedUser');
+        card.find( '.unBlock span').text(lang.unBlock);*/
     }else{
         card.addClass( 'stranger' );
         //card.find( '.friend-contact span' ).text( lang.sendMessage );
         card.find( '.friend-info span' ).text( lang.addFriend );
-        card.find( '.block-friend').find('span').text(lang.blockFriend);
-        card.find( '.block-friend').addClass('active');
+        /*card.find( '.block-friend').find('span').text(lang.blockFriend);
+        card.find( '.block-friend').addClass('active');*/
 
     }
 
@@ -215,7 +233,6 @@ var appendCardsShowInfo = function (list, type){
         cardList.push( createCard( list[ i ] ) );
     }
 
-
     $('.list').append( cardList );
 
     aside.find('.active').removeClass('active');
@@ -223,14 +240,18 @@ var appendCardsShowInfo = function (list, type){
     if( list.length ){
 
         listStatus.css( 'display', 'none' );
+        listHome.css( 'display', 'none' );
+        listReturn.css( 'display', 'block' );
 
         if( list.length === 1 ){
             aside.find( '.user-' + list[ 0 ].id ).addClass('active');
         }
 
     }else{
-        listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
-        centerListStatus();
+      listReturn.css( 'display', 'block' );
+      listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
+      listHome.css( 'display', 'none' )
+      centerListStatus();
     }
 };
 
@@ -249,7 +270,7 @@ var cardsShowInfo = function( list, type ){
     }
 
 
-    content.children().not('.wz-prototype').not( listStatus ).remove();
+    content.children( '.card' ).not('.wz-prototype').remove();
     content.append( cardList );
 
     aside.find('.active').removeClass('active');
@@ -257,6 +278,8 @@ var cardsShowInfo = function( list, type ){
     if( list.length ){
 
         listStatus.css( 'display', 'none' );
+        listReturn.css( 'display', 'block' )
+        listHome.css( 'display', 'none' )
 
         if( list.length === 1 ){
             aside.find( '.user-' + list[ 0 ].id ).addClass('active');
@@ -264,6 +287,8 @@ var cardsShowInfo = function( list, type ){
 
     }else{
         listStatus.css( 'display', 'block' ).text( lang.noMessage[ type ] );
+        listReturn.css( 'display', 'block' )
+        listHome.css( 'display', 'none' )
         centerListStatus();
     }
 };
@@ -318,9 +343,19 @@ var profile = function(){
     $( '.ui-navgroup-element-txt', profile ).text( user.fullName );
     $( 'img', profile ).attr( 'src', workspace.avatar.tiny );
 
+    if( api.system.workplace().type == 'personal' ){
+    	$( '.list-home-nick' ).text( '@' + api.system.workspace().username )
+    }else{
+    	$( '.list-home-nick' ).text( '@' + api.system.workplace().alias + '.' + api.system.workspace().username )
+    }
+
 };
 
 var translate = function(){
+
+  if( api.system.workplace().type == 'personal' ){
+    win.addClass( 'personal' )
+  }
 
     $('input').attr( 'placeholder', lang.search );
     $('.profile-title').text( lang.profileTitle );
@@ -328,7 +363,11 @@ var translate = function(){
     //$( '.card-data .info', cardPrototype ).text( lang.userBio );
     $( '.titleApp' ).text( lang.appName );
     $('.ui-content-top span').text(lang.friendRequests);
+    listReturn.children( 'span' ).text( lang.homeReturn )
     listStatus.text( lang.appName );
+    listHome.children( '.list-home-title' ).text( lang.homeTitle )
+    listHome.children( '.list-home-share' ).text( lang.homeShare )
+    listHome.children( '.list-home-find' ).text( lang.homeFind )
     if(api.system.fullMode()){
         $('.invite-by-mail span').text(lang.inviteByMail);
     }else{
@@ -579,9 +618,6 @@ win
 
 .on( 'mousedown', '.notification-icon', function(){
 
-
-
-
       api.user.pendingRequests( false, function( error, users ){
 
           users = users.sort( function( a, b ){
@@ -593,7 +629,7 @@ win
 })
 
 
-.on( 'mousedown', '.blocked', function(){
+/*.on( 'mousedown', '.blocked', function(){
 
     location = 'blocked-users';
     content.removeClass('list');
@@ -609,7 +645,7 @@ win
 
     });
 
-})
+})*/
 
 
 .on( 'mousedown', '.friend-info', function(){
@@ -707,6 +743,15 @@ win
 
 })
 */
+
+.on( 'click', '.list-return', function(){
+
+  $( '.ui-window-content .card' ).not( '.wz-prototype' ).remove()
+  listStatus.css( 'display', 'none' )
+  listReturn.css( 'display', 'none' )
+  listHome.css( 'display', 'block' )
+
+})
 
 .on( 'click', '.edit-info', function(){
 

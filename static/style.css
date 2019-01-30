@@ -224,24 +224,32 @@
 
 .ui-input-search {
     padding: 1px 0 1px 0;
-    float: left;
     border: 2px solid #24292e;
-    width: 280px;
-    height: 31px;
-    margin-top: 7px;
-    background: rgba(0, 0, 0, 0.2);
+    width: 350px;
+    height: 40px;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    display: inline-block;
 }
 
 .ui-input-search .delete-content {
-    margin: 9px 7px 13px 0px;
+    margin: 13px 12px 18px 0px;
     background: transparent;
 }
 
+.ui-input-search .search-icon {
+    width: 16px;
+    height: 16px;
+    margin: 5px 7px 0px 0px;
+}
+
 .ui-input-search input {
+  float: left;
     width: 208px;
-    margin-top: 7px;
+    margin-top: 10px;
+    font-size: 17px;
     font-weight: bold;
-    background: transparent
+    background: transparent;
 }
 
 .ui-input-search.active {
@@ -365,6 +373,14 @@
 }
 
 
+.invite-by-mail{
+  display: none;
+}
+
+.personal .invite-by-mail{
+  display: block;
+}
+
 .invite-by-mail img{
   background-image: url('@static/inviteByMail.png');
   background-size: 24px 24px;
@@ -394,13 +410,89 @@
     width: ~'calc(100% - 221px)';
     text-align: center;
     background: url('@static/pattern-dark.png') no-repeat;
+
     .list-status {
         color: #d2dce2;
         font-size: 36px;
         font-family: Lato;
         font-weight: 900;
         text-align: center;
+        display: none;
     }
+
+    .list-return{
+      float: left;
+      width: 100%;
+      display: none;
+      padding: 20px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .list-return:hover span{
+      text-decoration: underline;
+    }
+
+    .list-return i{
+      float: left;
+      border: solid rgba( 255, 255, 255, 0.9 );
+      border-width: 0 3px 3px 0;
+      padding: 3px;
+      transform: rotate(135deg);
+      margin-top: 6px;
+      cursor: pointer;
+    }
+
+    .list-return span{
+      float: left;
+      font-size: 20px;
+      color: rgba( 255, 255, 255, 0.9 );
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    .list-home{
+      float: left;
+      width: 100%;
+      padding: 60px 40px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .list-home span{
+      float: left;
+      width: 100%;
+      font-family: 'Avenir Next';
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      color: rgba( 255, 255, 255, 1);
+      text-align: left;
+    }
+
+    .list-home-title{
+      font-size: 17px;
+      opacity: 0.7;
+    }
+
+    .list-home-nick{
+      font-size: 45px;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em !important;
+      margin-top: 5px;
+    }
+
+    span.list-home-share{
+      color: rgba( 255, 255, 255, 0.7 );
+      font-size: 15px;
+      margin-top: 25px;
+    }
+
+    .list-home-find{
+      font-size: 17px;
+      line-height: 26px;
+      margin-top: 87px;
+    }
+
     .card:last-child {
         border-bottom: none;
         height: inherit;
@@ -631,13 +723,6 @@
 .list , .block-list {
     width: ~'calc(100% - 221px)';
     text-align: center;
-    .list-status {
-        color: #767776;
-        font-size: 36px;
-        font-family: Lato;
-        font-weight: 200;
-        text-align: center;
-    }
     .card:last-child {
         border-bottom: none;
         height: inherit;
@@ -1319,46 +1404,42 @@
   background-size: cover;
   z-index: 3;
   display: none;
+  text-align: center;
   left: 0;
   top: 50px;
-
-  .arrow{
-    position: absolute;
-    width: 24px;
-    height: 109px;
-    background-image: url('@static/arrow.png');
-    background-size: 24px 109px;
-    left: 270px;
-    top: 20px;
-  }
 
   .title{
     float: left;
     font-size: 45px;
-    font-family: Lato;
-    font-weight: 900;
+    font-family: Avenir Next;
+    font-weight: 700;
     color: #fff;
+    letter-spacing: -0.02em;
     width: 100%;
     text-align: center;
-    margin-top: 175px;
+    margin-top: 135px;
   }
   .subtitle{
     float: left;
-    font-family: Lato;
+    font-family: Avenir Next;
     font-size: 17px;
+    font-weight: 500;
     color: #d2dce2;
     width: 100%;
     text-align: center;
     margin-top: 29px;
   }
+  .ui-input-search {
+      margin: 30px;
+  }
   .subtitle2{
     float: left;
     font-size: 15px;
-    font-family: Lato;
+    font-family: Avenir Next;
+    font-weight: 500;
     color: #d2dce2;
     width: 100%;
     text-align: center;
-    margin-top: 118px;
   }
   .invite-by-mail{
     float: left;
