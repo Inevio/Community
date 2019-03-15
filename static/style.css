@@ -1466,3 +1466,7 @@
 .no-friends.no-friends-content{
   display: inline-block;
 }
+
+.stranger .options{
+  display: none;
+}
