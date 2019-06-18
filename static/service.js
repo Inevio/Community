@@ -9,6 +9,7 @@ var updateBadge = function(){
 
 };
 
+/*
 var addArrow = function( appName, text, position ){
 
   var arrow = $( '<div class="onboarding-arrow"><figure></figure><span></span></div>' );
@@ -70,6 +71,7 @@ if( typeof cordova == 'undefined' ){
   });
 
 }
+*/
 
 api.user
 .on( 'requestReceived', updateBadge )
