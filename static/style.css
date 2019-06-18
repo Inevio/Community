@@ -377,7 +377,7 @@
   display: none;
 }
 
-.personal .invite-by-mail{
+.wz-view.personal .invite-by-mail{
   display: block;
 }
 
